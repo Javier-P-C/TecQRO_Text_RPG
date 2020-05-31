@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
   Objeto objeto1("manzana", "roja brillante",DAMAGE, 5);
   Puntos pt = objeto1.getPuntos();
   TipoPuntos tp = pt.getTipoP();
-  cout<<tp<<endl;
+  cout<<""<<tp<<endl;
 
   return 0;
 }
