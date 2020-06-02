@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "rpg.h"
+#include "puntos.h"
 
 using namespace std;
 using namespace listasrpg;
@@ -19,14 +20,14 @@ class Personaje
   string nombre; //Nombre del personaje
 
   public:
-  virtual float Atacar() = 0; //Manda los puntos de daño
+  virtual Puntos Atacar() = 0; //Manda los puntos de daño
   //virtual float Batalla()=0; //Crea la batalla entre el jugador
   virtual void Hablar(); //Imprime dialogo
   virtual void Huir(); //Acaba con la interacción con el jugador
-  virtual void DamageReceived(float damage); //Llama al metodo para bajar la salud y manda un mensaje al jugador
+  virtual void DamageReceived(Puntos *pt); //Llama al metodo para bajar la salud y manda un mensaje al jugador
   virtual void getDescripcion(); //Muestra los atributos relevantes del personaje
   string getNombre(); //Manda el nombre del personaje
-  void setSalud(float puntos, TipoPuntos tipoP); //Cambia los puntos de salud dependiendo de si son de daño o de cura
+  void setSalud(Puntos *pt); //Cambia los puntos de salud dependiendo de si son de daño o de cura
   float getSalud(); //Manda el valor de salud
   void CambiarVisibilidad(); //Cambia de false a true y viceversa la visibilidad
   bool getVisibilidad(); //Manda el valor de visibilidad
@@ -96,10 +97,10 @@ void Personaje::Huir()
   cout<<nombre<<" ha huido"<<endl;
 }
   
-void Personaje::DamageReceived(float damage)
+void Personaje::DamageReceived(Puntos *pt)
 {
-  setSalud(damage,DAMAGE);
-  cout<<"Has recibido daño, salud: "<<salud<<"/100"<<endl;
+  setSalud(pt);
+  cout<<nombre<<" ha recibido daño, salud: "<<salud<<"/100"<<endl;
 }
 
 void Personaje::getDescripcion()
@@ -115,15 +116,15 @@ string Personaje::getNombre()
   return nombre;
 }
 
-void Personaje::setSalud(float puntos, TipoPuntos tipoP)
+void Personaje::setSalud(Puntos *pt)
 {
-  if (tipoP==DAMAGE)
+  if (pt->getTipoP()==DAMAGE)
   {
-    salud-=puntos;
+    salud-=pt->getValor();
   }
-  else if(tipoP==HEALTH)
+  else if(pt->getTipoP()==HEALTH)
   {
-    salud+=puntos;
+    salud+=pt->getValor();
   }
   if (salud>100)
   {

@@ -35,7 +35,7 @@ Puntos::Puntos(TipoPuntos tipo, float cantidad)
 
 Puntos::Puntos()
 {
-  tipoP = NA;
+  tipoP = NP;
   valor = 0;
 }
 

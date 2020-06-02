@@ -5,49 +5,94 @@
 
 #include "personaje.h"
 
+//Cada que crees un animal se debe determinar su hostilidad
 class Animal : public Personaje
 {
   protected:
-  string especie;
-
-  private:
+  Especie especie;
   bool hostilidad;
 
+  private:
+  
   public:
-  virtual float Acariciar()=0; //Puede dar puntos de sentido humano o daño dependideno del animal
+  virtual void DeterminarHostilidad(Puntos* spirit_pt); //Recibe los puntos de sentido humano del jugador
   virtual void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();
-  virtual void DeterminarHostilidad(float puntos); //Recibe los puntos de sentido humano del jugador
+  void Hablar();
   string getEspecie();
-  virtual float darPuntos(); //Da puntos de destreza o sentido humano
+  bool getHostilidad();
+  Puntos Acariciar(); //Puede dar puntos de sentido humano o daño dependideno del animal
+  Puntos Atacar();
 
   //Constructores
-  Animal(string name,string specie);//Usa los parametros, salud a 50
-  Animal(string specie);
+  Animal(string name,Especie specie);//Usa los parametros, salud a 50
+  Animal(string name);
+  Animal(Especie specie);
   Animal();
 
   //Detructor
   ~Animal();
 };
 
-Animal::Animal(string name,string specie)
+Animal::Animal(string name,Especie specie)
       :Personaje(name)
 {
-  especie = specie;
+  Puntos puntosAjuste(DAMAGE,50);
+  setSalud(&puntosAjuste);
+  puntosAjuste.~Puntos();
   hostilidad = false;
+  if(specie==GATO)
+  {
+    especie = GATO;
+    descripcion="Un gato, cuatro patas, peludo, orejas, ya sabes... un gato. Son comunes en el campus.";
+  }
+  else if (specie==PERRO)
+  {
+    especie = PERRO;
+    descripcion = "El mejor amigo del hombe, si te ataca debes considerar que tan buena persona eres";
+  }
+  else if (specie==AVE)
+  {
+    especie = AVE;
+    descripcion = "Pequeño, con plumas, vuela";
+  }
 }
 
-Animal::Animal(string specie)
-      :Personaje("---")
+Animal::Animal(Especie specie)
+       :Personaje("---")
 {
-  especie = specie;
+  Puntos puntosAjuste(DAMAGE,50);
+  setSalud(&puntosAjuste);
+  puntosAjuste.~Puntos();
   hostilidad = false;
+  if(specie==GATO)
+  {
+    especie = GATO;
+    descripcion="Un gato, cuatro patas, peludo, orejas, ya sabes... un gato. Son comunes en el campus.";
+  }
+  else if (specie==PERRO)
+  {
+    especie = PERRO;
+    descripcion = "El mejor amigo del hombe, si te ataca debes considerar que tan buena persona eres";
+  }
+  else if (specie==AVE)
+  {
+    especie = AVE;
+    descripcion = "Pequeño, con plumas, vuela";
+  }
+}
+
+Animal::Animal(string name)
+      :Personaje(name)
+{
+  hostilidad = false;
+  especie = NA;
 }
 
 Animal::Animal()
        :Personaje()
 {
-  especie = "";
+  especie = NA;
   hostilidad = false;
 }
 
@@ -57,12 +102,14 @@ Animal::~Animal()
 
 void Animal::Huir()
 {
-  cout<<"El "<<especie<<" ha huido"<<endl;
+  cout<<"El "<<getEspecie()<<" ha huido"<<endl;
+  CambiarVisibilidad();
 }
 
 void Animal::getDescripcion()
 {
   Personaje::getDescripcion();
+  cout<<"ESPECIE: "<<getEspecie()<<endl;
   cout<<"SALUD: "<<getSalud()<<endl;
   cout<<"HOSTIL: ";
   if (hostilidad==true)
@@ -76,26 +123,109 @@ void Animal::getDescripcion()
   cout<<"-----------------"<<endl<<endl;
 }
 
-void Animal::DeterminarHostilidad(float puntos)
+void Animal::DeterminarHostilidad(Puntos* spirit_pt)
 {
-  if (puntos<25)
+  if (especie==(GATO||AVE))
   {
-    hostilidad = true;
+    if (spirit_pt->getValor()<25)
+    {
+      hostilidad = true;
+    }
+    else
+    {
+      hostilidad = false;
+    }
   }
-  else
+  else if (especie==PERRO)
   {
-    hostilidad = false;
+    if (spirit_pt->getValor()<15)
+    {
+      hostilidad = true;
+    }
+    else
+    {
+      hostilidad = false;
+    }
   }
 }
 
 string Animal::getEspecie()
 {
-  return especie;
+  string esp;
+  if(especie==GATO)
+  {
+    esp = "gato";
+  }
+  else if(especie==PERRO)
+  {
+    esp = "perro";
+  }
+  else if(especie==AVE)
+  {
+    esp = "ave";
+  }
+  return esp;
 }
 
-float Animal::darPuntos()
+bool Animal::getHostilidad()
 {
-  return 3;
+  return hostilidad;
+}
+
+Puntos Animal::Acariciar()
+{
+  if(especie==GATO)
+  {
+    cout<<"Al gato no le gusto tu caricia te ha rasguñado"<<endl;
+    Puntos pt(DAMAGE,5);
+    Huir();
+    return pt;
+  }
+  else if(especie==PERRO)
+  {
+    cout<<"Has alegrado al perro"<<endl;
+    Puntos pt(SPIRIT,5);
+    return pt;
+  }
+  else if(especie==AVE)
+  {
+    cout<<"El ave se ha ido"<<endl;
+    Puntos pt(NP,0);
+    Huir();
+    return pt;
+  }
+}
+
+void Animal::Hablar()
+{
+  if(especie==GATO)
+  {
+    cout<<"Miau... Miauuu..."<<endl;
+  }
+  else if(especie==PERRO)
+  {
+    cout<<"Guau, guau..."<<endl;
+  }
+  else if(especie==AVE)
+  {
+    cout<<"..."<<endl;
+  }
+}
+
+Puntos Animal::Atacar()
+{
+  if(especie==GATO)
+  {
+    cout<<"El gato lanza un zarpazo"<<endl;
+    Puntos pt(DAMAGE,5);
+    return pt;
+  }
+  else if(especie==PERRO)
+  {
+    cout<<"El perro te ha mordido"<<endl;
+    Puntos pt(DAMAGE,8);
+    return pt;
+  }
 }
 
 #endif

@@ -2,7 +2,6 @@
 
 #include "personaje.h"
 #include "animal.h"
-#include "gato.h"
 #include "objeto.h"
 #include "puntos.h"
 #include "rpg.h"
