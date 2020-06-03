@@ -16,7 +16,7 @@ class Personaje
 
   private:
   float salud; //Puntos de vida
-  bool visibilidad; //Determina si es visible para el jugador
+  bool visibilidad; //Determina si puede interactuar con el jugador
   string nombre; //Nombre del personaje
 
   public:
@@ -36,7 +36,6 @@ class Personaje
   Personaje(string name); //Usa los parametros recibidos, provee descripcion generica, vuelve visible al personaje, salud al 100
   Personaje(string name, string description); //Usa los parametros, vuelve visible al personaje, salud al 100
   Personaje(string name, string description, bool visibility); //Usa los parametros, salud al 100
-  Personaje(string name, string description, bool visibility, float salud); //Usa los parametros
   Personaje(); //Genera un personaje con valores vacios
 
   //Destrcutor
@@ -67,14 +66,6 @@ Personaje::Personaje(string name, string description, bool visibility)
   visibilidad = visibility;
 }
 
-Personaje::Personaje(string name, string description, bool visibility, float salud)
-{
-  nombre = name;
-  descripcion = description;
-  salud = salud; //No puede ser mayor a 100
-  visibilidad = visibility;
-}
-
 Personaje::Personaje()
 {
   nombre = "";
@@ -89,7 +80,7 @@ Personaje::~Personaje()
 
 void Personaje::Hablar()
 {
-  cout<<"Parece que "<<nombre<<" no quiere hablar contigo"<<endl;
+  cout<<"Parece que "<<nombre<<" no quiere hablar contigo."<<endl;
 }
 
 void Personaje::Huir()

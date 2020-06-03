@@ -22,6 +22,7 @@ class Puntos
   Puntos(TipoPuntos tipo, float cantidad); //Usa los parametros para los atributos
   Puntos(); //Tipo No Aplica, valor a 0
   Puntos(const Puntos &points);
+  void SubirPuntos(float aumento);
 
   //Destructor
   ~Puntos();
@@ -57,6 +58,11 @@ TipoPuntos Puntos::getTipoP()
 float Puntos::getValor()
 {
   return valor;
+}
+
+void Puntos::SubirPuntos(float aumento)
+{
+ valor+=aumento;
 }
 
 #endif
