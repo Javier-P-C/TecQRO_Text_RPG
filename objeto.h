@@ -65,7 +65,7 @@ string Objeto::getDescripcion()
 
 Puntos Objeto::getPuntos()
 {
-  return bonificacion; //Mandado por direcciion
+  return bonificacion; //Mandado por direccion
 }
 
 #endif

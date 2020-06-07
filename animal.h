@@ -17,7 +17,7 @@ class Animal : public Personaje
   void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();//Sobrecarga del original
   void Hablar();
-  string getEspecie();//Manda un string en base a la especie
+  string getstrEspecie();//Manda un string en base a la especie
   bool getHostilidad();
   Puntos Acariciar(); //Puede dar puntos de sentido humano o daño dependideno del animal
   Puntos Atacar();
@@ -35,7 +35,8 @@ class Animal : public Personaje
 Animal::Animal(string name,Especie specie)
       :Personaje(name)
 {
-  Puntos puntosAjuste(DAMAGE,75);
+  Puntos puntosAjuste(HEALT,75);
+  puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
   hostilidad = false;
@@ -59,7 +60,8 @@ Animal::Animal(string name,Especie specie)
 Animal::Animal(Especie specie)
        :Personaje("---")
 {
-  Puntos puntosAjuste(DAMAGE,50);
+  Puntos puntosAjuste(HEALT,75);
+  puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
   hostilidad = false;
@@ -101,14 +103,14 @@ Animal::~Animal()
 
 void Animal::Huir()
 {
-  cout<<"El "<<getEspecie()<<" ha huido"<<endl;
+  cout<<"El "<<getstrEspecie()<<" ha huido"<<endl;
   CambiarVisibilidad();
 }
 
 void Animal::getDescripcion()
 {
   Personaje::getDescripcion();
-  cout<<"ESPECIE: "<<getEspecie()<<endl;
+  cout<<"ESPECIE: "<<getstrEspecie()<<endl;
   cout<<"SALUD: "<<getSalud()<<endl;
   cout<<"HOSTIL: ";
   if (hostilidad==true)
@@ -148,7 +150,7 @@ void Animal::DeterminarHostilidad(Puntos* spirit_pt)
   }
 }
 
-string Animal::getEspecie()
+string Animal::getstrEspecie()
 {
   string esp;
   if(especie==GATO)
@@ -176,7 +178,8 @@ Puntos Animal::Acariciar()
   if(especie==GATO)
   {
     cout<<"Al gato no le gusto tu caricia te ha rasguñado."<<endl;
-    Puntos pt(DAMAGE,5);
+    Puntos pt(HEALT,5);
+    pt.setUso("disminuir");
     Huir();
     return pt;
   }
@@ -184,6 +187,7 @@ Puntos Animal::Acariciar()
   {
     cout<<"Has alegrado al perro."<<endl;
     Puntos pt(SPIRIT,5);
+    pt.setUso("aumentar");
     return pt;
   }
   else if(especie==AVE)
@@ -216,13 +220,15 @@ Puntos Animal::Atacar()
   if(especie==GATO)
   {
     cout<<"El gato lanza un zarpazo."<<endl;
-    Puntos pt(DAMAGE,5);
+    Puntos pt(HEALT,5);
+    pt.setUso("disminuir");
     return pt;
   }
   else if(especie==PERRO)
   {
     cout<<"El perro te ha mordido."<<endl;
-    Puntos pt(DAMAGE,8);
+    Puntos pt(HEALT,8);
+    pt.setUso("disminuir");
     return pt;
   }
 }

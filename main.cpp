@@ -4,6 +4,9 @@
 #include "animal.h"
 #include "objeto.h"
 #include "puntos.h"
+#include "enemigo.h"
+#include "jugador.h"
+#include "miembrotec.h"
 #include "rpg.h"
 
 using namespace std;
