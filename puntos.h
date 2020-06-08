@@ -20,6 +20,7 @@ class Puntos
   float getValor();
   string getUso();
   void setUso(string use);
+  void getPropiedades();
 
   //Constructores
   Puntos(TipoPuntos tipo, float cantidad); //Usa los parametros para los atributos
@@ -50,6 +51,7 @@ Puntos::Puntos(const Puntos &otro)
 {
   tipoP = otro.tipoP;
   valor = otro.valor;
+  uso = otro.uso;
 }
 
 Puntos::~Puntos()
@@ -84,6 +86,11 @@ void Puntos::SubirPuntos(float aumento)
 void Puntos::BajarPuntos(float disminucion)
 {
   valor-=disminucion;
+}
+
+void Puntos::getPropiedades()
+{
+  cout<<tipoP<<","<<valor<<","<<uso<<endl;
 }
 
 #endif

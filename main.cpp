@@ -12,25 +12,24 @@
 using namespace std;
 using namespace listasrpg;
 
-void static Interactuar(Gato* gato);
+void static Interactuar(Animal* gato);
 
 int main(int argc, char* argv[])
 {
-  Gato gato1("Pedro");
-  cout<<gato1.getSalud()<<endl;
-  Interactuar(&gato1);
-  cout<<gato1.getSalud()<<endl;
-  Objeto objeto1("manzana", "roja brillante",DAMAGE, 5);
-  Puntos pt = objeto1.getPuntos();
-  TipoPuntos tp = pt.getTipoP();
-  cout<<""<<tp<<endl;
-
+  Animal gato(GATO);
+  gato.getDescripcion();
+  Interactuar(&gato);
+  gato.getDescripcion();
+  Puntos pt = gato.Atacar();
+  pt.getPropiedades();
+  gato.DamageReceived(&pt);
+  gato.getDescripcion();
   return 0;
 }
 
-void static Interactuar(Gato* gato)
+void static Interactuar(Animal* gato)
 {
-  gato->setSalud(3,DAMAGE);
-  cout<<gato->getSalud()<<endl;
-
+Puntos pt(HEALT,10);
+pt.setUso("disminuir");
+ gato->setSalud(&pt);
 }

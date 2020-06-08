@@ -120,7 +120,7 @@ void Personaje::setSalud(Puntos *pt)
     {
       salud+=pt->getValor();
     }
-    else if(pt->getUso()=="neuto")
+    else if(pt->getUso()=="neutro")
     {
       cout<<"No hay efecto en la salud"<<endl;
     }

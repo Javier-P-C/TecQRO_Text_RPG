@@ -43,7 +43,8 @@ class Enemigo : public Personaje
 Enemigo::Enemigo(string name,TipoEnemigo enemy)
         :Personaje(name)
 {
-  Puntos puntosAjuste(DAMAGE,50);
+  Puntos puntosAjuste(HEALT,50);
+  puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
   enemigo=enemy;
@@ -73,7 +74,7 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
     debilidad2 = ESTUDIOS_CREATIVOS;
     fortaleza1 = AMBIENTE_CONSTRUIDO;
     fortaleza2 = NEGOCIOS;
-    fortaleza3 = NAL;
+    fortaleza3 = NAR;
   }
   else if(enemigo==BORRACHO)
   {
@@ -82,7 +83,7 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
     debilidad2 = INGENIERIAS;
     fortaleza1 = ESTUDIOS_CREATIVOS;
     fortaleza2 = SALUD;
-    fortaleza3 = NAL;
+    fortaleza3 = NAR;
   }
   else if(enemigo==BOSS);//Marcar error
 }
@@ -90,7 +91,8 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
 Enemigo::Enemigo(TipoEnemigo enemy)
         :Personaje("---")
 {
-  Puntos puntosAjuste(DAMAGE,50);
+  Puntos puntosAjuste(HEALT,50);
+  puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
   enemigo=enemy;
@@ -120,7 +122,7 @@ Enemigo::Enemigo(TipoEnemigo enemy)
     debilidad2 = ESTUDIOS_CREATIVOS;
     fortaleza1 = AMBIENTE_CONSTRUIDO;
     fortaleza2 = NEGOCIOS;
-    fortaleza3 = NAL;
+    fortaleza3 = NAR;
   }
   else if(enemigo==BORRACHO)
   {
@@ -129,7 +131,7 @@ Enemigo::Enemigo(TipoEnemigo enemy)
     debilidad2 = INGENIERIAS;
     fortaleza1 = ESTUDIOS_CREATIVOS;
     fortaleza2 = SALUD;
-    fortaleza3 = NAL;
+    fortaleza3 = NAR;
   }
   else if(enemigo==BOSS);//Marcar error
 }
@@ -140,11 +142,11 @@ Enemigo::Enemigo(string name,string description,TipoEnemigo enemy)
   enemigo = enemy;
   if(enemigo==BOSS)
   {
-    debilidad1 = NAL;
-    debilidad2 = NAL;
-    fortaleza1 = NAL;
-    fortaleza2 = NAL;
-    fortaleza3 = NAL;  
+    debilidad1 = NAR;
+    debilidad2 = NAR;
+    fortaleza1 = NAR;
+    fortaleza2 = NAR;
+    fortaleza3 = NAR;  
   }
   else if(enemigo!=BOSS);//Marcar error
 }
@@ -156,11 +158,11 @@ Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enem
  enemigo = enemy;
   if(enemigo==BOSS)
   {
-    debilidad1 = NAL;
-    debilidad2 = NAL;
-    fortaleza1 = NAL;
-    fortaleza2 = NAL;
-    fortaleza3 = NAL;  
+    debilidad1 = NAR;
+    debilidad2 = NAR;
+    fortaleza1 = NAR;
+    fortaleza2 = NAR;
+    fortaleza3 = NAR;  
   }
   else if(enemigo!=BOSS);//Marcar error
 }
@@ -168,11 +170,11 @@ Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enem
 Enemigo::Enemigo()
         :Personaje()
 {
-  debilidad1 = NAL;
-  debilidad2 = NAL;
-  fortaleza1 = NAL;
-  fortaleza2 = NAL;
-  fortaleza3 = NAL;
+  debilidad1 = NAR;
+  debilidad2 = NAR;
+  fortaleza1 = NAR;
+  fortaleza2 = NAR;
+  fortaleza3 = NAR;
 }
 
 Enemigo::~Enemigo()
@@ -186,14 +188,14 @@ Puntos Enemigo::Atacar()
     //Mandar error
   }
   Puntos pt(HEALT,25);
-  Puntos.setUso("disminuir");
+  pt.setUso("disminuir");
   return pt;
 }
 
 Puntos Enemigo::Atacar(AreaTec tipoAl)
 {
   Puntos pt(HEALT,10);
-  Puntos.setUso("disminuir");
+  pt.setUso("disminuir");
   if(enemigo==COLADO)
   {
     if((fortaleza1||fortaleza2||fortaleza3)==(INGENIERIAS||AMBIENTE_CONSTRUIDO||CIENCIAS_SOCIALES))
@@ -229,22 +231,22 @@ void Enemigo::Hablar()
 {
    if(enemigo==COLADO)
   {
-    cout<<getsrtEnemigo()<<": Bonitas instalaciones las del Tec tienen buenas paredes para mi arte urbano."<<endl;
+    cout<<getstrEnemigo()<<": Bonitas instalaciones las del Tec tienen buenas paredes para mi arte urbano."<<endl;
   }
   else if(enemigo==HATER)
   {
-    cout<<getsrtEnemigo()<<": Con lo inteligente que te ves no me queda duda que los del Tec pagan para pasar."<<endl;
+    cout<<getstrEnemigo()<<": Con lo inteligente que te ves no me queda duda que los del Tec pagan para pasar."<<endl;
   }
   else if(enemigo==VALEM)
   {
-    cout<<getsrtEnemigo()<<": Vamonos a la capilla bro el examen argumentativo de hoy no vale mucho."<<endl;
+    cout<<getstrEnemigo()<<": Vamonos a la capilla bro el examen argumentativo de hoy no vale mucho."<<endl;
   }
   else if(enemigo==BORRACHO)
   {
-    cout<<getsrtEnemigo()<<": Deja de mirarme *eructo* solo essszz agua..."<<endl;
+    cout<<getstrEnemigo()<<": Deja de mirarme *eructo* solo essszz agua..."<<endl;
   }
   else if(enemigo==BOSS)
-  cout<<getsrtEnemigo()<<": >:| *No parece muy contento*"<<endl;
+  cout<<getstrEnemigo()<<": >:| *No parece muy contento*"<<endl;
 }
 
 void Enemigo::getDescripcion()

@@ -15,12 +15,13 @@ class MiembroTec : public Personaje //NPC's y el jugador
   string matricula;
   string posicion; //alumno, profesor, directivo
   AreaTec area;
+  bool player;
 
   public:
   void Hablar();
   void Huir();
   void getDescripcion();
-  Puntos Atacar();
+  virtual Puntos Atacar();
   string getstrArea();
   AreaTec getArea();
 
@@ -41,6 +42,7 @@ MiembroTec::MiembroTec(string name, string description, bool visibility,string i
   matricula = id;
   posicion = position;
   this->area = area;
+  player=false;
 }
 
 MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,string position)
@@ -49,6 +51,7 @@ MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,st
   matricula = id;
   posicion = position;
   this->area = area;
+  player=false;
 }
 
 MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
@@ -58,6 +61,7 @@ MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
   posicion = position;
   this->area = area;
   descripcion="Miembro del Tec";
+  player=false;
 }
 
 MiembroTec::MiembroTec(string id,AreaTec area,string position)
@@ -67,6 +71,7 @@ MiembroTec::MiembroTec(string id,AreaTec area,string position)
   posicion = position;
   this->area = area;
   descripcion="Miembro del Tec";
+  player=false;
 }
 
 MiembroTec::MiembroTec()
@@ -74,6 +79,7 @@ MiembroTec::MiembroTec()
   matricula = "";
   posicion = "";
   area = NAR;
+  player=false;
 }
 
 MiembroTec::~MiembroTec()
@@ -132,34 +138,38 @@ void MiembroTec::Hablar()
 {
   if (posicion=="directivo"||"profesor")
   {
-    cout<<"Saludos joven, que tenga un buen día."<<endl;
+    cout<<posicion<<": Saludos joven, que tenga un buen día."<<endl;
   }
   else
   {
     if(area==AMBIENTE_CONSTRUIDO)
     {
-      cout<<"Hoy no dormí pero ha sido la mejor maqueta que he hecho."<<endl;
+      cout<<posicion<<": Hoy no dormí pero ha sido la mejor maqueta que he hecho."<<endl;
     }
     else if(area==CIENCIAS_SOCIALES)
     {
-      cout<<"."<<endl;
+      cout<<posicion<<": Soy científico... social."<<endl;
     }
     else if(area==ESTUDIOS_CREATIVOS)
     {
-      cout<<"."<<endl;
+      cout<<posicion<<": El Tec me ha enseñado que la creatividad de estudia con lineamientos estrictos."<<endl;
     }
     else if(area==INGENIERIAS)
     {
-      cout<<"Tengo que estudiar quiza en otro momento."<<endl;
+      cout<<posicion<<": Tengo que estudiar quiza en otro momento."<<endl;
     }
     else if(area==NEGOCIOS)
     {
-      cout<<"."<<endl;
+      cout<<posicion<<": ¿Te interesaría ganar dinero con un empredimiento?"<<endl;
     }
     else if(area==SALUD)
     {
-      cout<<"No, no sé que tienes aún no me graduo. ¿Por qué siempre me pasa esto?"<<endl;
+      cout<<posicion<<": No, no sé que tienes aún no me graduo. ¿Por qué siempre me pasa esto?"<<endl;
     }
+  }
+  if (player==true)
+  {
+    cout<<"*No hay nadie para hablar*"<<endl;
   }
 }
 

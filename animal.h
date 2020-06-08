@@ -6,7 +6,7 @@
 #include "personaje.h"
 
 //Cada que crees un animal se debe determinar su hostilidad
-class Animal : public Personaje
+class Animal : public Personaje //gato, perro, ave
 {
   private:
   Especie especie;
@@ -222,6 +222,7 @@ Puntos Animal::Atacar()
     cout<<"El gato lanza un zarpazo."<<endl;
     Puntos pt(HEALT,5);
     pt.setUso("disminuir");
+    //pt.getPropiedades();
     return pt;
   }
   else if(especie==PERRO)
