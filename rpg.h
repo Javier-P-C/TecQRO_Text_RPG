@@ -3,7 +3,7 @@
 
 namespace listasrpg
 {
-  enum variantes_de_puntos {NP,HEALT,SPIRIT,SENSE,INTEGRITY,CHARM,INTELLIGENCE,SKILL};
+  enum variantes_de_puntos {NP,HEALTH,SPIRIT,SENSE,INTEGRITY,CHARM,INTELLIGENCE,SKILL};
 
   enum especie_animal {NA,GATO,PERRO,AVE};
 

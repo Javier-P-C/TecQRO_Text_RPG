@@ -3,11 +3,10 @@
 
 #include <iostream>
 
-#include "personaje.h"
 #include "miembrotec.h"
-#include "rpg.h"
 
 using namespace std;
+using namespace listasrpg;
 
 class Jugador : MiembroTec
 {
@@ -20,6 +19,7 @@ class Jugador : MiembroTec
   float sentidoHumano;
   float espirituEmprendedor;
   float integridadAcademica;
+  bool stamina; //Permite usar su ataque especial una vez por combate
 
   public:
   Puntos Atacar();
@@ -32,15 +32,15 @@ class Jugador : MiembroTec
   void setIntegridadAcademica(Puntos *pt);
 
   //Constructores
-  Jugador(string name, string description, bool visibility,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad);
+  Jugador(string name, string description,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad);
   Jugador();
 
   //Destructor
   ~Jugador();
 };
 
-Jugador::Jugador(string name, string description, bool visibility,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad)
-        :MiembroTec(name,description,visibility,id,area,posicion)
+Jugador::Jugador(string name, string description, string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad)
+        :MiembroTec(name,description,id,area,posicion)
 {
   inteligencia = intel;
   carisma = charm;
@@ -66,8 +66,23 @@ Jugador::~Jugador()
 
 Puntos Jugador::Atacar()
 {
-  Puntos pt(HEALT,7);
-  //Falta determinar los tipos de ataques y sus dinámicas
+  int opcion;
+  Puntos pt(HEALTH,8);
+  if (stamina==true)
+  {
+    cout<<"<<<¿Quieres usar ataque normal(1) o RAYO EMPRENDEDOR(2)? -El rayo solo se puede usar una vez por combate->>>"<<endl;
+    cin>>opcion;
+    if (opcion==2)
+    {
+      pt.SubirPuntos(2+(int)(sentidoHumano/10)+(int)(espirituEmprendedor/10)+(int)(integridadAcademica/10));
+      cout<<"David Noel te ha bendecido con un rayo emprendedor, has emprendido un ataque contundente al enemigo."<<endl;
+    }
+  }
+  else
+  {
+    cout<<"Has golpeado al enemigo."<<endl;
+  }
+  return pt;
 }
 
 void Jugador::getStats() //Enlista las estadísticas del jugador

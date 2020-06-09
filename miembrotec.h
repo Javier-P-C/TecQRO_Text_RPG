@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "personaje.h"
-#include "rpg.h"
 
 using namespace std;
 using namespace listasrpg;
@@ -39,6 +38,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
 MiembroTec::MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string position)
            :Personaje(name,description,visibility)
 {
+  tipoPersonaje="miembro Tec";
   matricula = id;
   posicion = position;
   this->area = area;
@@ -48,6 +48,7 @@ MiembroTec::MiembroTec(string name, string description, bool visibility,string i
 MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,string position)
            :Personaje(name,description)
 {
+  tipoPersonaje="miembro Tec";
   matricula = id;
   posicion = position;
   this->area = area;
@@ -57,6 +58,7 @@ MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,st
 MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
            :Personaje(name)
 {
+  tipoPersonaje="miembro Tec";
   matricula = id;
   posicion = position;
   this->area = area;
@@ -67,6 +69,7 @@ MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
 MiembroTec::MiembroTec(string id,AreaTec area,string position)
            :Personaje("---")
 {
+  tipoPersonaje="miembro Tec";
   matricula = id;
   posicion = position;
   this->area = area;
@@ -76,6 +79,7 @@ MiembroTec::MiembroTec(string id,AreaTec area,string position)
 
 MiembroTec::MiembroTec()
 {
+  tipoPersonaje="miembro Tec";
   matricula = "";
   posicion = "";
   area = NAR;

@@ -35,7 +35,8 @@ class Animal : public Personaje //gato, perro, ave
 Animal::Animal(string name,Especie specie)
       :Personaje(name)
 {
-  Puntos puntosAjuste(HEALT,75);
+  tipoPersonaje="animal";
+  Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
@@ -60,7 +61,8 @@ Animal::Animal(string name,Especie specie)
 Animal::Animal(Especie specie)
        :Personaje("---")
 {
-  Puntos puntosAjuste(HEALT,75);
+  tipoPersonaje="animal";
+  Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
@@ -86,6 +88,7 @@ Animal::Animal(Especie specie)
 Animal::Animal(string name)
       :Personaje(name)
 {
+  tipoPersonaje="animal";
   hostilidad = false;
   especie = NA;
 }
@@ -93,6 +96,7 @@ Animal::Animal(string name)
 Animal::Animal()
        :Personaje()
 {
+  tipoPersonaje="animal";
   especie = NA;
   hostilidad = false;
 }
@@ -178,7 +182,7 @@ Puntos Animal::Acariciar()
   if(especie==GATO)
   {
     cout<<"Al gato no le gusto tu caricia te ha rasguñado."<<endl;
-    Puntos pt(HEALT,5);
+    Puntos pt(HEALTH,5);
     pt.setUso("disminuir");
     Huir();
     return pt;
@@ -220,7 +224,7 @@ Puntos Animal::Atacar()
   if(especie==GATO)
   {
     cout<<"El gato lanza un zarpazo."<<endl;
-    Puntos pt(HEALT,5);
+    Puntos pt(HEALTH,5);
     pt.setUso("disminuir");
     //pt.getPropiedades();
     return pt;
@@ -228,7 +232,7 @@ Puntos Animal::Atacar()
   else if(especie==PERRO)
   {
     cout<<"El perro te ha mordido."<<endl;
-    Puntos pt(HEALT,8);
+    Puntos pt(HEALTH,8);
     pt.setUso("disminuir");
     return pt;
   }

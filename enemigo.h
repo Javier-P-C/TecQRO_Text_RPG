@@ -43,7 +43,8 @@ class Enemigo : public Personaje
 Enemigo::Enemigo(string name,TipoEnemigo enemy)
         :Personaje(name)
 {
-  Puntos puntosAjuste(HEALT,50);
+  tipoPersonaje="enemigo";
+  Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
@@ -91,7 +92,8 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
 Enemigo::Enemigo(TipoEnemigo enemy)
         :Personaje("---")
 {
-  Puntos puntosAjuste(HEALT,50);
+  tipoPersonaje="enemigo";
+  Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
   puntosAjuste.~Puntos();
@@ -139,6 +141,7 @@ Enemigo::Enemigo(TipoEnemigo enemy)
 Enemigo::Enemigo(string name,string description,TipoEnemigo enemy)
         :Personaje(name,description)
 {
+  tipoPersonaje="enemigo";
   enemigo = enemy;
   if(enemigo==BOSS)
   {
@@ -187,14 +190,14 @@ Puntos Enemigo::Atacar()
   {
     //Mandar error
   }
-  Puntos pt(HEALT,25);
+  Puntos pt(HEALTH,25);
   pt.setUso("disminuir");
   return pt;
 }
 
 Puntos Enemigo::Atacar(AreaTec tipoAl)
 {
-  Puntos pt(HEALT,10);
+  Puntos pt(HEALTH,10);
   pt.setUso("disminuir");
   if(enemigo==COLADO)
   {

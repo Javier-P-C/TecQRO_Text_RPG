@@ -13,6 +13,7 @@ class Personaje
 {
   protected:
   string descripcion; //Descripcion corta del personaje
+  string tipoPersonaje;
 
   private:
   float salud; //Puntos de vida
@@ -110,7 +111,7 @@ string Personaje::getNombre()
 
 void Personaje::setSalud(Puntos *pt)
 {
-  if (pt->getTipoP()==HEALT)
+  if (pt->getTipoP()==HEALTH)
   {
     if (pt->getUso()=="disminuir")
     {

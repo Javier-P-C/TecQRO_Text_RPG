@@ -19,6 +19,7 @@ class Objeto
   string getNombre();
   string getDescripcion();
   Puntos getPuntos();
+  void setNombre(string name);
 
   //Constructores
   Objeto(string name, string description,TipoPuntos tipoBonificacion, float cantPuntos);
@@ -74,6 +75,11 @@ string Objeto::getDescripcion()
 Puntos Objeto::getPuntos()
 {
   return bonificacion; //Mandado por direccion
+}
+
+void Objeto::setNombre(string name)
+{
+ nombre=name;
 }
 
 #endif
