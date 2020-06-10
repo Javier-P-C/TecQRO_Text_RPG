@@ -23,14 +23,11 @@ int main(int argc, char* argv[])
   Objeto *objt_dos = new Objeto("M","m");
   Objeto *arrObj[2];
   arrObj[0]=objt_dos;
-  cout<<arrObj[0]->getNombre()<<endl<<endl;
+  cout<<objt_dos->getNombre()<<endl;
+  cout<<arrObj[0]->getNombre()<<endl;
+  arrObj[0]->setNombre("W");
+  cout<<objt_dos->getNombre()<<endl;
 
-
-  /*Objeto *objt;
-  objt = new Objeto();
-  Objeto ob("a","b",HEALTH,34);
-  objt = &ob;
-  delete objt;*/
   /*string line;
   ifstream myFile;//objeto ifstream
   vector<string> tokens;//Donde se van a guardar los elementos de las líneas

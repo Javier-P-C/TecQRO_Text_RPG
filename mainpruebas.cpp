@@ -35,7 +35,10 @@ int main(int argc, char* argv[])
   Objeto *objt_dos = new Objeto("M","m");
   Objeto *arrObj[2];
   arrObj[0]=objt_dos;
-  cout<<arrObj[0]->getNombre()<<endl<<endl;
+  cout<<objt_dos->getNombre()<<endl;
+  cout<<arrObj[0]->getNombre()<<endl;
+  arrObj[0]->setNombre("W");
+  cout<<objt_dos->getNombre()<<endl;
 
   //Mandar un objeto para manipularlo en una funcion
   Objeto objt2("R","r");
