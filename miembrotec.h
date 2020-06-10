@@ -38,7 +38,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
 MiembroTec::MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string position)
            :Personaje(name,description,visibility)
 {
-  tipoPersonaje="miembro Tec";
+  tipoPersonaje = 3;
   matricula = id;
   posicion = position;
   this->area = area;
@@ -48,7 +48,7 @@ MiembroTec::MiembroTec(string name, string description, bool visibility,string i
 MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,string position)
            :Personaje(name,description)
 {
-  tipoPersonaje="miembro Tec";
+  tipoPersonaje = 3;
   matricula = id;
   posicion = position;
   this->area = area;
@@ -58,7 +58,7 @@ MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,st
 MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
            :Personaje(name)
 {
-  tipoPersonaje="miembro Tec";
+  tipoPersonaje = 3;
   matricula = id;
   posicion = position;
   this->area = area;
@@ -69,7 +69,7 @@ MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
 MiembroTec::MiembroTec(string id,AreaTec area,string position)
            :Personaje("---")
 {
-  tipoPersonaje="miembro Tec";
+  tipoPersonaje = 3;
   matricula = id;
   posicion = position;
   this->area = area;
@@ -79,7 +79,7 @@ MiembroTec::MiembroTec(string id,AreaTec area,string position)
 
 MiembroTec::MiembroTec()
 {
-  tipoPersonaje="miembro Tec";
+  tipoPersonaje = 3;
   matricula = "";
   posicion = "";
   area = NAR;

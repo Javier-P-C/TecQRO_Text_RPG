@@ -43,7 +43,7 @@ class Enemigo : public Personaje
 Enemigo::Enemigo(string name,TipoEnemigo enemy)
         :Personaje(name)
 {
-  tipoPersonaje="enemigo";
+  tipoPersonaje = 2;
   Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
@@ -92,7 +92,7 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
 Enemigo::Enemigo(TipoEnemigo enemy)
         :Personaje("---")
 {
-  tipoPersonaje="enemigo";
+  tipoPersonaje = 2;
   Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
@@ -141,7 +141,7 @@ Enemigo::Enemigo(TipoEnemigo enemy)
 Enemigo::Enemigo(string name,string description,TipoEnemigo enemy)
         :Personaje(name,description)
 {
-  tipoPersonaje="enemigo";
+  tipoPersonaje = 2;
   enemigo = enemy;
   if(enemigo==BOSS)
   {

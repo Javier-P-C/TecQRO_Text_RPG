@@ -35,7 +35,7 @@ class Animal : public Personaje //gato, perro, ave
 Animal::Animal(string name,Especie specie)
       :Personaje(name)
 {
-  tipoPersonaje="animal";
+  tipoPersonaje = 1;
   Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
@@ -61,7 +61,7 @@ Animal::Animal(string name,Especie specie)
 Animal::Animal(Especie specie)
        :Personaje("---")
 {
-  tipoPersonaje="animal";
+  tipoPersonaje = 1;
   Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
   setSalud(&puntosAjuste);
@@ -88,7 +88,7 @@ Animal::Animal(Especie specie)
 Animal::Animal(string name)
       :Personaje(name)
 {
-  tipoPersonaje="animal";
+  tipoPersonaje = 1;
   hostilidad = false;
   especie = NA;
 }
@@ -96,7 +96,7 @@ Animal::Animal(string name)
 Animal::Animal()
        :Personaje()
 {
-  tipoPersonaje="animal";
+  tipoPersonaje = 1;
   especie = NA;
   hostilidad = false;
 }

@@ -13,7 +13,7 @@ class Personaje
 {
   protected:
   string descripcion; //Descripcion corta del personaje
-  string tipoPersonaje;
+  int tipoPersonaje; //animal(1),enemigo(2),miembro Tec(3)
 
   private:
   float salud; //Puntos de vida
@@ -32,6 +32,7 @@ class Personaje
   float getSalud(); //Manda el valor de salud
   void CambiarVisibilidad(); //Cambia de false a true y viceversa la visibilidad
   bool getVisibilidad(); //Manda el valor de visibilidad
+  char getTipoPersonaje();
 
   //Constructores
   Personaje(string name); //Usa los parametros recibidos, provee descripcion generica, vuelve visible al personaje, salud al 100
@@ -156,6 +157,11 @@ void Personaje::CambiarVisibilidad()
 bool Personaje::getVisibilidad()
 {
   return visibilidad;
+}
+
+char Personaje::getTipoPersonaje()
+{
+  return tipoPersonaje;
 }
 
 #endif

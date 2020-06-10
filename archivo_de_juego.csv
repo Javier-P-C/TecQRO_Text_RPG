@@ -1,0 +1,16 @@
+4,Espada,Muy buena,40
+3,2,Rodigo,A01701456,alumno
+e,f,g,h
+i,j,k,l
+o,p,q,r
+s,t,u,v
+/*-----------------------------------------
+          Instrucciones archivos
+-------------------------------------------
+-Declarar Personajes:
+  Animales: int_tipoPersonaje,int_enum_tipoAnimal
+  Enemigo: char_tipoPersonaje,int_enum_tipoEnemigo
+  Miembro Tec: char_tipoPersonaje,int_enum_AreaTec,string_nombre,string_matricula,string_posicion
+-Declarar Objetos:
+  Objeto: int_tipoPuntos,string_nombre,string descripcion,float_cantPuntos
+*/

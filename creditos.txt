@@ -1,0 +1,4 @@
+Este es una prueba
+ de como sirve la 
+  lectura de textos 
+   en c++
