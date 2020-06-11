@@ -8,7 +8,7 @@
 using namespace std;
 using namespace listasrpg;
 
-class Jugador : MiembroTec
+class Jugador : public MiembroTec
 {
   private:
   //Stats normales
@@ -89,12 +89,14 @@ Puntos Jugador::Atacar()
 void Jugador::getStats() //Enlista las estadísticas del jugador
 {
   cout<<endl<<endl<<"-----------------"<<endl;
-  cout<<endl<<endl<<"---ESTADÍSTICAS--"<<endl;
-  cout<<endl<<endl<<"-----------------"<<endl;
+  cout<<"---ESTADÍSTICAS--";
+  cout<<endl<<"-----------------"<<endl;
   cout<<"Inteligencia: "<<inteligencia<<endl;
   cout<<"Carisma: "<<carisma<<endl;
   cout<<"Destreza: "<<destreza<<endl;
-  cout<<endl<<endl<<"-TEC-ESTADÍSTICAS-"<<endl;
+  cout<<"------------------";
+  cout<<endl<<"-TEC-ESTADÍSTICAS-"<<endl;
+  cout<<"------------------"<<endl;
   cout<<"Sentido Humano: "<<sentidoHumano<<endl;
   cout<<"Espíritu Emprendedor: "<<espirituEmprendedor<<endl;
   cout<<"Integridad Académica: "<<integridadAcademica<<endl;

@@ -12,6 +12,8 @@
   +Antes del objeto debes especificar el nombre del escenario donde se va a cargar y el número de objetos que hay declarados. Ambas cosas separadas por comas.
 -Declarar Escenarios:
   Escenario: string_nombre!string_descripcion
+-Declarar un Jugador
+  Jugador: string_nombre,string_descripcion,srtring_matricula,AreaTec_area(Mayusculas),string_posicion,float_inteligencia,float_carisma,float_destreza,float_sentidoHumano,float_espirituEmprendedor,float_integridadAcademica
 */
 
 #include <iostream>
@@ -37,6 +39,20 @@ using namespace listasrpg;
 
 int main(int argc, char* argv[])
 {
+
+  /*cout<<endl<<endl<<"............................................"<<endl;
+  cout<<"Bienvenido a: TEC QRO: UNA AVENTURA DE ROL"<<endl;
+  cout<<"............................................"<<endl;
+
+  //Menu
+  cout<<"1.Jugar"<<endl;
+  cout<<"2.Créditos"<<endl;
+  cout<<"3.Comandos del juego"<<endl;
+  cout<<"4.Tutorial"<<endl;
+  cout<<"............................................"<<endl<<endl;*/
+
+  //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv",".csv");
+
   Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
   
 

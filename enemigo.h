@@ -260,7 +260,7 @@ void Enemigo::getDescripcion()
   Personaje::getDescripcion();
   cout<<"ENEMIGO: "<<getstrEnemigo()<<endl;
   cout<<"SALUD: "<<getSalud()<<endl;
-  cout<<"-----------------"<<endl<<endl;
+  cout<<"-----------------"<<endl;
 }
 
 string Enemigo::getstrEnemigo()

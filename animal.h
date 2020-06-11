@@ -128,7 +128,7 @@ void Animal::getDescripcion()
   {
     cout<<"No"<<endl;
   }
-  cout<<"-----------------"<<endl<<endl;
+  cout<<"-----------------"<<endl;
 }
 
 void Animal::DeterminarHostilidad(Puntos* spirit_pt)

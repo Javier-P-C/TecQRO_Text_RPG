@@ -98,7 +98,7 @@ void MiembroTec::getDescripcion()
   cout<<"Área: "<<getstrArea()<<endl;
   cout<<"Posición: "<<posicion<<endl;
   cout<<"Mátricula: "<<matricula<<endl;;
-  cout<<"-----------------"<<endl<<endl;
+  cout<<"-----------------"<<endl;
 }
 
 string MiembroTec::getstrArea()
