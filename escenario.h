@@ -38,6 +38,7 @@ class Escenario
   void getBrujula();
   void AgregarBrujula(string direccion,Escenario *lugar);
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
+  void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
 
 
   //Constructores
@@ -107,7 +108,7 @@ void Escenario::getPersonajes()
     {
       if (individuos[i]->getVisibilidad()==true)
       {
-        aux<<"+"<<individuos[i]->getTipoPersonaje()<<endl;
+        aux<<"+"<<individuos[i]->getstrTipoPersonaje()<<endl;
       }
     }
     aux<<endl;
@@ -124,19 +125,19 @@ void Escenario::AgregarPersonaje(Personaje *per)
 {
   if (contP!=4)
   {
-    if(per->getTipoPersonaje()=='a')
+    if(per->getTipoPersonaje()==1)
     {
       individuos[contP] = new Animal();
       individuos[contP] = per;
       contP++;
     }
-    else if(per->getTipoPersonaje()=='b')
+    else if(per->getTipoPersonaje()==2)
     {
       individuos[contP] = new Enemigo();
       individuos[contP] = per;
       contP++;
     }
-    else if(per->getTipoPersonaje()=='c')
+    else if(per->getTipoPersonaje()==3)
     {
       individuos[contP] = new MiembroTec();
       individuos[contP] = per;
@@ -144,12 +145,12 @@ void Escenario::AgregarPersonaje(Personaje *per)
     }
     else
     {
-      cout<<"Personaje no especificado, no se pudo agregar a individuos[]"<<endl;
+      cout<<"Personaje no especificado, no se pudo agregar a individuos[] en clase Escenario()"<<endl;
     }
   }
   else
   {
-    cout<<"ERROR:Arreglo individuos[] lleno, no se puede agregar personaje "<<per->getTipoPersonaje()<<endl;
+    cout<<"ERROR:Arreglo individuos[] lleno, no se puede agregar personaje "<<per->getTipoPersonaje()<<" en clase Escenario()"<<endl;
   }
 }
 
@@ -188,7 +189,7 @@ void Escenario::AgregarObjetos(Objeto *articulo)
   }
   else
   {
-    cout<<"ERROR:Arreglo objts[] lleno, no se puede agregar objeto"<<endl;
+    cout<<"ERROR:Arreglo objts[] lleno, no se puede agregar objeto en clase Escenario()"<<endl;
   }
 }
 
@@ -212,7 +213,7 @@ void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
   }
   else
   {
-    cout<<"ERROR: No se pudo agregar escenario a la brujula de '"<<nombre<<"' porque la direccion no corresponde con ninguno de los puntos cardinales"<<endl;
+    cout<<"ERROR: No se pudo agregar escenario a la brujula de '"<<nombre<<"' porque la direccion no corresponde con ninguno de los puntos cardinales. Clase Escenario()"<<endl;
   }
 }
 
@@ -240,17 +241,14 @@ void Escenario::getBrujula()
 
 void Escenario::CargarObjetos(string archivo)
 {
-  cout<<"Check 4"<<endl;
   string line;
   int count = 0;
   ifstream myFile;//objeto ifstream
   vector<string> tokens;//Donde se van a guardar los elementos de las líneas
-  cout<<"Check 5"<<endl;
   myFile.open(archivo);
   if (myFile.is_open())//Comprueba que está abierto el archivo
   {
     bool encontrado = false;
-    cout<<"Check 6"<<endl;
     do
     {
       getline(myFile,line);
@@ -264,7 +262,7 @@ void Escenario::CargarObjetos(string archivo)
 
     if (encontrado == false)
     {
-      cout<<endl<<"ERROR: Nombre de escenario,"<<nombre<<", no encontrado en archivo para carga de objetos"<<endl<<endl;
+      cout<<endl<<"ERROR: Nombre de escenario,"<<nombre<<", no encontrado en archivo para carga de objetos. Clase Escenario()"<<endl<<endl;
       goto exit; //20 líneas abajo
     }
     count = stoi(tokens[1]);
@@ -275,19 +273,86 @@ void Escenario::CargarObjetos(string archivo)
       getline(myFile,line);
       tokens = split(line, ',');
       tipoP = static_cast<TipoPuntos>(stoi(tokens[0]));
-      cout<<"Llegue"<<endl;
+      //cout<<"Llegue"<<endl; //Línea para debuguear
       objeto = new Objeto(tokens[1],tokens[2],tipoP,stof(tokens[3]));
       AgregarObjetos(objeto);
     }
   }
   else
   {
-    cout<<"ERROR: Archivo para carga de objetos no encontrado"<<endl;
+    cout<<"ERROR: Archivo para carga de objetos no encontrado en clase Escenario()"<<endl;
   }
   
   exit: myFile.close();
-  cout<<"Cerrado"<<endl;
-  getObjetos();
+  //cout<<"Cerrado"<<endl; //Línea para debuguear
+}
+
+void Escenario::CargarPersonajes(string archivo)
+{
+  string line;
+  int count = 0;
+  ifstream myFile;//objeto ifstream
+  vector<string> tokens;//Donde se van a guardar los elementos de las líneas
+  myFile.open(archivo);
+  if (myFile.is_open())//Comprueba que está abierto el archivo
+  {
+    bool encontrado = false;
+    
+    do
+    {
+      getline(myFile,line);
+      tokens = split(line, ',');
+      if (tokens[0]==nombre)
+      {
+        encontrado = true;
+      }
+      //cout<<tokens[0]<<endl; //Línea para debuguear
+    }while((tokens[0]!=nombre) && !myFile.eof());
+    
+    if (encontrado == false)
+    {
+      cout<<endl<<"ERROR: Nombre de escenario, "<<nombre<< ", no encontrado en archivo para carga de personajes. Escenario()"<<endl<<endl;
+      goto exit; //40 líneas abajo
+    }
+    count = stoi(tokens[1]);
+    for (int i=0;i<count;i++)
+    {
+      Personaje* per;
+      getline(myFile,line);
+      tokens = split(line, ',');
+      switch(stoi(tokens[0]))
+      {
+        case 1: 
+        {
+          Especie especie = static_cast<Especie>(stoi(tokens[1]));
+          per = new Animal(especie);
+          AgregarPersonaje(per);
+          break;
+        }
+        case 2: 
+        {
+          TipoEnemigo enemy = static_cast<TipoEnemigo>(stoi(tokens[1]));
+          per = new Enemigo(enemy);
+          AgregarPersonaje(per);
+          break;
+        }
+        case 3: 
+        {
+          AreaTec area = static_cast<AreaTec>(stoi(tokens[1]));
+          per = new MiembroTec(tokens[2],tokens[3],area,tokens[4]);
+          AgregarPersonaje(per);
+          break;
+        }
+      }
+    }
+  }
+  else
+  {
+    cout<<"ERROR: No se pudo abrir archivo para carga de personajes en clase Escenario()"<<endl;
+  }
+  
+  exit: myFile.close();
+  //cout<<"Cerrado"<<endl; //Línea para debuguear
 }
 
 #endif

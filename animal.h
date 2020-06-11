@@ -2,6 +2,7 @@
 #define ANIMAL_H
 
 #include <iostream>
+#include <sstream>
 
 #include "personaje.h"
 
@@ -9,7 +10,7 @@
 class Animal : public Personaje //gato, perro, ave
 {
   private:
-  Especie especie;
+  Especie especie; //Ir a rpg.h para mayor información de Especie
   bool hostilidad;
   
   public:
@@ -17,10 +18,12 @@ class Animal : public Personaje //gato, perro, ave
   void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();//Sobrecarga del original
   void Hablar();
+  string getstrTipoPersonaje();
   string getstrEspecie();//Manda un string en base a la especie
   bool getHostilidad();
   Puntos Acariciar(); //Puede dar puntos de sentido humano o daño dependideno del animal
   Puntos Atacar();
+
 
   //Constructores
   Animal(string name,Especie specie);//Usa los parametros, salud a 50
@@ -236,6 +239,13 @@ Puntos Animal::Atacar()
     pt.setUso("disminuir");
     return pt;
   }
+}
+
+string Animal::getstrTipoPersonaje()
+{
+  stringstream aux;
+  aux<<"Animal ("<<getstrEspecie()<<")";
+  return aux.str();
 }
 
 #endif

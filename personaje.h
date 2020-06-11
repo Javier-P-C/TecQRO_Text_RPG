@@ -24,6 +24,7 @@ class Personaje
   virtual Puntos Atacar() = 0; //Manda los puntos de daño
   virtual void Hablar()=0; //Imprime dialogo
   virtual void Huir()=0; //Acaba con la interacción con el jugador
+  virtual string getstrTipoPersonaje()=0;//Manda el tipo de Personaje en forma de string, sirve para cuando Escenario() lista a los personajes en getPersonajes()
   virtual void DamageReceived(Puntos *pt); //Llama al metodo para bajar la salud y manda un mensaje al jugador, recibe los puntos que vienen de los ataques de enemigos
   virtual void getDescripcion(); //Muestra los atributos relevantes del personaje
   string getNombre(); //Manda el nombre del personaje
@@ -31,7 +32,7 @@ class Personaje
   float getSalud(); //Manda el valor de salud
   void CambiarVisibilidad(); //Cambia de false a true y viceversa la visibilidad
   bool getVisibilidad(); //Manda el valor de visibilidad
-  char getTipoPersonaje();
+  int getTipoPersonaje();
 
   //Constructores
   Personaje(string name); //Usa los parametros recibidos, provee descripcion generica, vuelve visible al personaje, salud al 100
@@ -158,7 +159,7 @@ bool Personaje::getVisibilidad()
   return visibilidad;
 }
 
-char Personaje::getTipoPersonaje()
+int Personaje::getTipoPersonaje()
 {
   return tipoPersonaje;
 }

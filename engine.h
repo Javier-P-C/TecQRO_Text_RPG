@@ -27,27 +27,32 @@ class Engine
   private:
   Escenario *scenes[cantScenes]; //Se establece la cantidad de escenarios del juego
   Escenario *sceneActual;
+  //Jugador();
   public:
-  void CargarEscenarios(string archivo);
-  void CargarObjetos(string archivo);//Usa un archivo para cargarle los objetos al arreglo de escenarios
+  void CargarEscenarios(string archivo);//Usa un archivo para cargar los escenarios del juego
+  void CargarObjetos(string archivo);//Usa un archivo para cargarle los objetos al arreglo de Escenario
+  void CargarPersonajes(string archivo);//Usa un archivo para cargarle los personajes al arreglo de Escenario
 
   //Constructores
-  Engine(string archivoEscenarios,string objetosFile);
+  Engine(string archivoEscenarios,string objetosFile,string personajesFile);
   Engine();
 
   //Destructor
   ~Engine();
 };
 
-Engine::Engine(string escenariosFile,string objetosFile)
+Engine::Engine(string escenariosFile,string objetosFile,string personajesFile)
 {
   CargarEscenarios(escenariosFile);
-  cout<<"Check 1"<<endl;
   CargarObjetos(objetosFile);
+  CargarPersonajes(personajesFile);
 }
 
 Engine::Engine()
 {
+  CargarEscenarios("plantilla_carga_escenarios.csv");
+  CargarObjetos("plantilla_carga_objetos.csv");
+  CargarPersonajes("plantilla_carga_personajes.csv");
   cout<<"Se ha creado una partida sin datos"<<endl;
 }
 
@@ -85,16 +90,29 @@ void Engine::CargarEscenarios(string archivo)
   {
     cout<<scenes[i]->getNombre()<<", "<<scenes[i]->getDescripcion()<<endl<<endl;
   }*/
+  cout<<"Fin de carga de escenarios"<<endl;
 }
 
 void Engine::CargarObjetos(string archivo)
 {
-  cout<<"Check 2"<<endl;
   for(int i=0;i<cantScenes;i++)
   {
+    //cout<<"Check a."<<i<<endl; //Línea para debuguear
     scenes[i]->CargarObjetos(archivo);
-    cout<<"Check a."<<i<<endl;
+    //cout<<"Check b."<<i<<endl; //Línea para debuguear
   }
+  cout<<"Fin de carga de objetos"<<endl;
+}
+
+void Engine::CargarPersonajes(string archivo)
+{
+  for(int i=0;i<cantScenes;i++)
+  {
+    //cout<<"Check a."<<i<<endl; //Línea para debuguear
+    scenes[i]->CargarPersonajes(archivo);
+    //cout<<"Check b."<<i<<endl; //Línea para debuguear
+  }
+  cout<<"Fin de carga de personajes"<<endl;
 }
 
 #endif

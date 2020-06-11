@@ -2,6 +2,7 @@
 #define ENEMIGO_H
 
 #include <iostream>
+#include <sstream>
 
 #include "personaje.h"
 
@@ -11,10 +12,10 @@ using namespace std;
 class Enemigo : public Personaje
 {
   private:
-  TipoEnemigo enemigo;
-  AreaTec debilidad1;
-  AreaTec debilidad2;
-  AreaTec fortaleza1;
+  TipoEnemigo enemigo; //Ir a rpgh.h para mayor información de TipoEnemigo
+  AreaTec debilidad1; //AreaTec es el área de estudio (ir a rpg.h para mayor información)
+  AreaTec debilidad2; //Las debilidades indican que pierden reciben más daño si se enfrentan a alguien de esta area
+  AreaTec fortaleza1; //Las fortalezas indican que hacen más daño si se enfrentan a alguien de esta area
   AreaTec fortaleza2;
   AreaTec fortaleza3;
 
@@ -25,6 +26,7 @@ class Enemigo : public Personaje
   void Hablar(); //Imprime dialogo
   void getDescripcion();
   void Huir();//Acaba con la interacción con el jugador puede tirar un objeto
+  string getstrTipoPersonaje();
   void DamageReceived(Puntos *pt);//Recibe puntos de daño y dependiendo de la debilidad del enemigo los aumenta
   string getstrEnemigo(); //Pasa los TipoEnemigo a string
 
@@ -157,8 +159,8 @@ Enemigo::Enemigo(string name,string description,TipoEnemigo enemy)
 Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enemy)
         :Personaje(name,description,visibility)
 {
+  tipoPersonaje = 2;
   enemigo=enemy;
- enemigo = enemy;
   if(enemigo==BOSS)
   {
     debilidad1 = NAR;
@@ -173,6 +175,7 @@ Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enem
 Enemigo::Enemigo()
         :Personaje()
 {
+  tipoPersonaje = 2;
   debilidad1 = NAR;
   debilidad2 = NAR;
   fortaleza1 = NAR;
@@ -316,6 +319,13 @@ void Enemigo::DamageReceived(Puntos *pt)
   }
   setSalud(pt);
   cout<<"El "<<getstrEnemigo()<<" ha recibido daño, salud: "<<getSalud()<<"/100"<<endl;
+}
+
+string Enemigo::getstrTipoPersonaje()
+{
+  stringstream aux;
+  aux<<"Enemigo ("<<getstrEnemigo()<<")";
+  return aux.str();
 }
 
 #endif

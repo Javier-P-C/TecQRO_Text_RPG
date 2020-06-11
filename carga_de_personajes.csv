@@ -5,10 +5,7 @@ Canchas de Tenis,0
 Salón de Congresos,0
 Edificio 9,0
 Arquitectura,0
-Residencias,3
-5,esp1,filosa,4
-5,esp2,filosa,4
-5,esp3,filosa,4
+Residencias,0
 Borrego Cósmico,0
 Estacionamiento,0
 Food Station,0
@@ -17,15 +14,10 @@ OXXO,0
 Salida,0
 Humanidades y Ciencias Sociales,0
 Ingenieria,0
-Biotecnología,0
+Biotecnología,3
+3,3,Pedro,LM422336,profesor
+2,0
+1,2
 Biblioteca,2
-5,espada1,filosa,6
-5,espada2,filosa,8
-adg
-asdf
-g
-dsfg
-sdf
-gsdf
-
-int_tipoPuntos,string_nombre,string descripcion,float_cantPuntos
+1,3
+2,4

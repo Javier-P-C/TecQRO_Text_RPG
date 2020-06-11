@@ -2,6 +2,7 @@
 #define MIEMBROTEC_H
 
 #include <iostream>
+#include <sstream>
 
 #include "personaje.h"
 
@@ -13,13 +14,14 @@ class MiembroTec : public Personaje //NPC's y el jugador
   private:
   string matricula;
   string posicion; //alumno, profesor, directivo
-  AreaTec area;
+  AreaTec area; //Area de estudio (ir a rpg.h para mayor información)
   bool player;
 
   public:
   void Hablar();
   void Huir();
   void getDescripcion();
+  string getstrTipoPersonaje();
   virtual Puntos Atacar();
   string getstrArea();
   AreaTec getArea();
@@ -187,6 +189,13 @@ Puntos MiembroTec::Atacar()
 {
   Puntos pt(NP,0);
   return pt;
+}
+
+string MiembroTec::getstrTipoPersonaje()
+{
+  stringstream aux;
+  aux<<"Miembro Tec ("<<getstrArea()<<")";
+  return aux.str();
 }
 
 #endif
