@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   myFile.open("creditos.txt");//Abre el archivo
   if (myFile.is_open()) 
   {
-    while(!myFile.eof())
+    while(!myFile.eof()) //Mientras el archivo no haya acabado
     {
       getline(myFile,line);
       cout<<line<<endl;

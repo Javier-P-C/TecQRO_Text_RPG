@@ -22,7 +22,6 @@ class Personaje
 
   public:
   virtual Puntos Atacar() = 0; //Manda los puntos de daño
-  //virtual float Batalla()=0; //Crea la batalla entre el jugador
   virtual void Hablar()=0; //Imprime dialogo
   virtual void Huir()=0; //Acaba con la interacción con el jugador
   virtual void DamageReceived(Puntos *pt); //Llama al metodo para bajar la salud y manda un mensaje al jugador, recibe los puntos que vienen de los ataques de enemigos

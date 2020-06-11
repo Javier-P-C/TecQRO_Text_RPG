@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "utility.h"
+
 #include "personaje.h"
 #include "animal.h"
 #include "objeto.h"
@@ -12,6 +14,9 @@
 #include "jugador.h"
 #include "miembrotec.h"
 #include "rpg.h"
+
+using namespace std;
+using namespace listasrpg;
 
 class Escenario
 {
@@ -32,6 +37,7 @@ class Escenario
   void AgregarObjetos(Objeto *articulo); //Imprime la lista de los objetos visibles
   void getBrujula();
   void AgregarBrujula(string direccion,Escenario *lugar);
+  void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
 
 
   //Constructores
@@ -145,7 +151,6 @@ void Escenario::AgregarPersonaje(Personaje *per)
   {
     cout<<"ERROR:Arreglo individuos[] lleno, no se puede agregar personaje "<<per->getTipoPersonaje()<<endl;
   }
-  contP++;
 }
 
 void Escenario::getObjetos()
@@ -178,14 +183,13 @@ void Escenario::AgregarObjetos(Objeto *articulo)
   {
     objts[contOb] = new Objeto();
     objts[contOb] = articulo;
-    contOb++;
     cout<<"Objeto agregado a "<<nombre<<endl;
+    contOb++;
   }
   else
   {
     cout<<"ERROR:Arreglo objts[] lleno, no se puede agregar objeto"<<endl;
   }
-  contOb++;
 }
 
 void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
@@ -232,6 +236,58 @@ void Escenario::getBrujula()
     aux<<"------------------"<<endl;
   }
   cout<<aux.str();
+}
+
+void Escenario::CargarObjetos(string archivo)
+{
+  cout<<"Check 4"<<endl;
+  string line;
+  int count = 0;
+  ifstream myFile;//objeto ifstream
+  vector<string> tokens;//Donde se van a guardar los elementos de las líneas
+  cout<<"Check 5"<<endl;
+  myFile.open(archivo);
+  if (myFile.is_open())//Comprueba que está abierto el archivo
+  {
+    bool encontrado = false;
+    cout<<"Check 6"<<endl;
+    do
+    {
+      getline(myFile,line);
+      tokens = split(line, ',');
+      if (tokens[0]==nombre)
+      {
+        encontrado = true;
+      }
+      //cout<<tokens[0]<<endl; //Línea para debuguear
+    }while((tokens[0]!=nombre) && !myFile.eof());
+
+    if (encontrado == false)
+    {
+      cout<<endl<<"ERROR: Nombre de escenario,"<<nombre<<", no encontrado en archivo para carga de objetos"<<endl<<endl;
+      goto exit; //20 líneas abajo
+    }
+    count = stoi(tokens[1]);
+    for (int i=0;i<count;i++)
+    {
+      TipoPuntos tipoP;
+      Objeto *objeto;
+      getline(myFile,line);
+      tokens = split(line, ',');
+      tipoP = static_cast<TipoPuntos>(stoi(tokens[0]));
+      cout<<"Llegue"<<endl;
+      objeto = new Objeto(tokens[1],tokens[2],tipoP,stof(tokens[3]));
+      AgregarObjetos(objeto);
+    }
+  }
+  else
+  {
+    cout<<"ERROR: Archivo para carga de objetos no encontrado"<<endl;
+  }
+  
+  exit: myFile.close();
+  cout<<"Cerrado"<<endl;
+  getObjetos();
 }
 
 #endif
