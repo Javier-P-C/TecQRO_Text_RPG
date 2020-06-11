@@ -25,7 +25,7 @@ const unsigned cantScenes = 18; //Cantidad de escenarios que tiene el juego, lo 
 class Engine
 {
   private:
-  Escenario *scenes[cantScenes]; //Se establece la cantidad de escenarios del juego
+  Escenario *scenes[18]; //Se establece la cantidad de escenarios del juego
   Escenario *sceneActual;
   Jugador *player;
   public:
@@ -35,6 +35,10 @@ class Engine
   void CrearJugador();//Si es una partida nueva se manda a este menú para hacer al jugador
   void MostrarJugador();
   void CargarJugador(string archivo);
+  void Guardar();//Guarda los datos del jugador 
+  void MostrarTodo();
+  void Comandos();
+  void Moverse(string direccion);
 
   //Constructores
   Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile);
@@ -51,6 +55,7 @@ Engine::Engine(string escenariosFile,string objetosFile,string personajesFile,st
   CargarObjetos(objetosFile);
   CargarPersonajes(personajesFile);
   CargarJugador(jugadorFile);
+  sceneActual=scenes[8];//Lugar donde inicia el jugador; Borrego Cósmico
 }
 
 Engine::Engine(string escenariosFile,string objetosFile,string personajesFile)
@@ -59,6 +64,7 @@ Engine::Engine(string escenariosFile,string objetosFile,string personajesFile)
   CargarObjetos(objetosFile);
   CargarPersonajes(personajesFile);
   CrearJugador();
+  sceneActual=scenes[8];//Lugar donde inicia el jugador; Borrego Cósmico
 }
 
 Engine::Engine()
@@ -71,6 +77,14 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+  /*
+  for(int i=0;i<cantScenes;i++)
+  {
+    delete scenes[i];
+  }
+  //cout<<"Check "<<endl;
+  delete player;
+  delete sceneActual;*/
 }
 
 void Engine::CargarEscenarios(string archivo)
@@ -231,10 +245,83 @@ void Engine::CargarJugador(string archivo)
   myFile.open(archivo);
   if(myFile.is_open())
   {
-    player = new Jugador();
+    AreaTec tipoTec;
+    getline(myFile,line);
+    tokens = split(line, ',');
+    tipoTec = static_cast<AreaTec>(stoi(tokens[3]));
+    player = new Jugador(tokens[0],tokens[1],tokens[2],tipoTec,tokens[4],stof(tokens[5]),stof(tokens[6]),stof(tokens[7]),stof(tokens[8]),stof(tokens[9]),stof(tokens[10]));
+  }
+  else
+  {
+    cout<<"ERROR: No se pudo abrir el archivo para carga del jugador en Engine()."<<endl;
+  }
+  cout<<"Fin de carga de jugador"<<endl;
+  MostrarJugador();
+}
+
+void Engine::Guardar()
+{
+  int opcion;
+  cout<<"Si continua se sobrescribiran los datos de la partida. No podrá deshacerlo. ¿Desea continuar?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
+  cin>>opcion;
+  if (opcion==1)
+  {
+    ofstream myFile;
+    myFile.open("jugador_guardado.csv");
+    if(myFile.is_open())
+    {
+      int estudios = player->getArea();
+      myFile<<player->getNombre()<<","<<player->getAtributoDescripcion()<<","<<player->getMatricula()<<","<<estudios<<","<<player->getPosicion()<<","<<player->getInteligencia()<<","<<player->getCarisma()<<","<<player->getDestreza()<<","<<player->getSentidoHumano()<<","<<player->getEspirituEmprendedor()<<","<<player->getIntegridadAcademica();
+    }
+    else
+    {
+      cout<<"ERROR: No se pudo guardar Engine()."<<endl;
+    }
+    myFile.close();
+  }
+  else{cout<<"No se ha guardado."<<endl;}
+  cout<<"Proceso terminado"<<endl;
+}
+
+void Engine::MostrarTodo()
+{
+  for (int i=0;i<cantScenes;i++)
+  {
+    scenes[i]->getPersonajes();
+  }
+  for (int i=0;i<cantScenes;i++)
+  {
+    scenes[i]->getObjetos();
+  }
+  for (int i=0;i<cantScenes;i++)
+  {
+    scenes[i]->printContadores();
   }
 }
 
-//string name, string description,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad
+void Engine::Comandos()
+{
+  string comando;
+  cout<<sceneActual->getNombre()<<endl;
+  cout<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
+  cin>>comando;
+  cout<<comando;
+  if (comando!="NORTE"||"SUR"||"ESTE"||"OESTE")
+  {
+    Moverse(comando);
+    cout<<"1"<<endl;
+  }
+  else if(comando=="MIRAR")
+  {
+    cout<<sceneActual->getDescripcion()<<endl;
+    cout<<"2"<<endl;
+  }
+  cout<<"3"<<endl;
+}
+
+void Engine::Moverse(string direccion)
+{
+
+}
 
 #endif

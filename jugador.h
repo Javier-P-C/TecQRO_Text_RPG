@@ -30,6 +30,13 @@ class Jugador : public MiembroTec
   void setSentidoHumano(Puntos *pt);
   void setEspirituEmprendedor(Puntos *pt);
   void setIntegridadAcademica(Puntos *pt);
+  float getInteligencia();
+  float getCarisma();
+  float getDestreza();
+  float getSentidoHumano();
+  float getEspirituEmprendedor();
+  float getIntegridadAcademica();
+  void CambiarStamina();
 
   //Constructores
   Jugador(string name, string description,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad);
@@ -76,6 +83,12 @@ Puntos Jugador::Atacar()
     {
       pt.SubirPuntos(2+(int)(inteligencia/10)+(int)(carisma/10)+(int)(destreza/10));
       cout<<"David Noel te ha bendecido con un rayo emprendedor, has emprendido un ataque contundente al enemigo."<<endl;
+      
+    }
+    else
+    {
+      pt.SubirPuntos(((int)(sentidoHumano/10)+(int)(espirituEmprendedor/10)+(int)(integridadAcademica/10))/2);
+      cout<<"Has golpeado al enemigo."<<endl;
     }
   }
   else
@@ -111,10 +124,12 @@ void Jugador::setInteligencia(Puntos *pt)
     if (pt->getUso()=="disminuir")
     {
       inteligencia-=pt->getValor();
+      cout<<"Se te han bajado "<<pt->getValor()<<"puntos de inteligencia."<<endl;
     }
     else if(pt->getUso()=="aumentar")
     {
       inteligencia+=pt->getValor();
+      cout<<"Se te han subido "<<pt->getValor()<<"puntos de inteligencia."<<endl;
     }
     else if(pt->getUso()=="neutro")
     {
@@ -123,10 +138,12 @@ void Jugador::setInteligencia(Puntos *pt)
   }
   if (inteligencia>50)
   {
+    cout<<"No puedes subir más la inteligancia."<<endl;
     inteligencia = 50;
   }
   if (inteligencia<0)
   {
+    cout<<"No puedes bajar más la inteligancia."<<endl;
     inteligencia = 0;
   }
 }
@@ -138,22 +155,26 @@ void Jugador::setCarisma(Puntos *pt)
     if (pt->getUso()=="disminuir")
     {
       carisma-=pt->getValor();
+      cout<<"Se te han bajado "<<pt->getValor()<<"puntos de carisma."<<endl;
     }
     else if(pt->getUso()=="aumentar")
     {
       carisma+=pt->getValor();
+      cout<<"Se te han subido "<<pt->getValor()<<" puntos de carisma."<<endl;
     }
     else if(pt->getUso()=="neutro")
     {
-      cout<<"No hay efecto en el carisma"<<endl;
+      cout<<"No hay efecto en el carisma."<<endl;
     }
   }
   if (carisma>50)
   {
+    cout<<"No puedes subir más el carisma."<<endl;
     carisma = 50;
   }
   if (carisma<0)
   {
+    cout<<"No puedes bajar más el carisma"<<endl;
     carisma = 0;
   }
 }
@@ -164,23 +185,27 @@ void Jugador::setDestreza(Puntos *pt)
   {
     if (pt->getUso()=="disminuir")
     {
+      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de destreza."<<endl;
       destreza-=pt->getValor();
     }
     else if(pt->getUso()=="aumentar")
     {
+      cout<<"Se te han subido "<<pt->getValor()<<" puntos de destreza."<<endl;
       destreza+=pt->getValor();
     }
     else if(pt->getUso()=="neutro")
     {
-      cout<<"No hay efecto en el carisma"<<endl;
+      cout<<"No hay efecto en la destreza"<<endl;
     }
   }
   if (destreza>50)
   {
+    cout<<"No puedes subir más la destreza"<<endl;
     destreza = 50;
   }
   if (destreza<0)
   {
+    cout<<"No puedes bajar más la destreza"<<endl;
     destreza = 0;
   }
 }
@@ -191,23 +216,27 @@ void Jugador::setSentidoHumano(Puntos *pt)
   {
     if (pt->getUso()=="disminuir")
     {
+      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de sentido humano."<<endl;
       sentidoHumano-=pt->getValor();
     }
     else if(pt->getUso()=="aumentar")
     {
+      cout<<"Se te han subido "<<pt->getValor()<<" puntos de sentido humano."<<endl;
       sentidoHumano+=pt->getValor();
     }
     else if(pt->getUso()=="neutro")
     {
-      cout<<"No hay efecto en el carisma"<<endl;
+      cout<<"No hay efecto en el sentido humano."<<endl;
     }
   }
   if (sentidoHumano>50)
   {
+    cout<<"No puedes subir más el sentido humano"<<endl;
     sentidoHumano = 50;
   }
   if (sentidoHumano<0)
   {
+    cout<<"No puedes bajar más el sentido humano"<<endl;
     sentidoHumano = 0;
   }
 }
@@ -218,23 +247,28 @@ void Jugador::setEspirituEmprendedor(Puntos *pt)
   {
     if (pt->getUso()=="disminuir")
     {
+      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de espíritu emprendedor."<<endl;
+      sentidoHumano-=pt->getValor();
       espirituEmprendedor-=pt->getValor();
     }
     else if(pt->getUso()=="aumentar")
     {
+      cout<<"Se te han subido "<<pt->getValor()<<"puntos de espíritu emprendedor."<<endl;
       espirituEmprendedor+=pt->getValor();
     }
     else if(pt->getUso()=="neutro")
     {
-      cout<<"No hay efecto en el carisma"<<endl;
+      cout<<"No hay efecto en el espíritu emprendedor."<<endl;
     }
   }
   if (espirituEmprendedor>50)
   {
+    cout<<"No puedes subir más el espíritu emprendedor."<<endl;
     espirituEmprendedor = 50;
   }
   if (espirituEmprendedor<0)
   {
+    cout<<"No puedes bajar más el espíritu emprendedor."<<endl;
     espirituEmprendedor = 0;
   }
 }
@@ -245,25 +279,65 @@ void Jugador::setIntegridadAcademica(Puntos *pt)
   {
     if (pt->getUso()=="disminuir")
     {
+      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de integridad académica."<<endl;
       integridadAcademica-=pt->getValor();
     }
     else if(pt->getUso()=="aumentar")
     {
+      cout<<"Se te han subido "<<pt->getValor()<<" puntos de integridad académica."<<endl;
       integridadAcademica+=pt->getValor();
     }
     else if(pt->getUso()=="neutro")
     {
-      cout<<"No hay efecto en el carisma"<<endl;
+      cout<<"No hay efecto en la integridad académica."<<endl;
     }
   }
   if (integridadAcademica>50)
   {
+    cout<<"No puedes subir más la integridad académica."<<endl;
     integridadAcademica = 50;
   }
   if (integridadAcademica<0)
   {
+    cout<<"No puedes bajar más la integridad académica."<<endl;
     integridadAcademica = 0;
   }
+}
+
+float Jugador::getInteligencia()
+{
+  return inteligencia;
+}
+
+float Jugador::getCarisma()
+{
+  return carisma;
+}
+
+float Jugador::getDestreza()
+{
+  return destreza;
+}
+
+float Jugador::getSentidoHumano()
+{
+  return sentidoHumano;
+}
+
+float Jugador::getEspirituEmprendedor()
+{
+  return espirituEmprendedor;
+}
+
+float Jugador::getIntegridadAcademica()
+{
+  return integridadAcademica;
+}
+
+void Jugador::CambiarStamina()
+{
+  if(stamina==true){stamina = false;}
+  else{stamina = true;}
 }
 
 #endif

@@ -21,6 +21,7 @@ class Puntos
   string getUso();
   void setUso(string use);
   void getPropiedades();
+  string getstrTipoPuntos();
 
   //Constructores
   Puntos(TipoPuntos tipo, float cantidad); //Usa los parametros para los atributos
@@ -90,7 +91,60 @@ void Puntos::BajarPuntos(float disminucion)
 
 void Puntos::getPropiedades()
 {
-  cout<<tipoP<<","<<valor<<","<<uso<<endl;
+  if(uso=="aumentar")
+  {
+    cout<<"Aumenta "<<valor<<" puntos de "<<getstrTipoPuntos()<<endl;
+  }
+  else if(uso=="disminuir")
+  {
+    cout<<"Disminuye "<<valor<<" puntos de "<<getstrTipoPuntos()<<endl;
+  }
+  else if(uso=="neutro")
+  {
+    cout<<"Son "<<valor<<" puntos neutros de "<<getstrTipoPuntos()<<endl;
+  }
+  else
+  {
+    cout<<"Error en uso de puntos"<<endl;
+  }
+}
+
+string Puntos::getstrTipoPuntos()
+{
+  string str;
+  if(tipoP==HEALTH)
+  {
+    str = "salud";
+  }
+  else if(tipoP==SPIRIT)
+  {
+    str = "espíritu emprendedor";
+  }
+  else if(tipoP==SENSE)
+  {
+    str = "sentido humano";
+  }
+  else if(tipoP==INTEGRITY)
+  {
+    str = "integridad académica";
+  }
+  else if(tipoP==CHARM)
+  {
+    str = "carisma";
+  }
+  else if(tipoP==INTELLIGENCE)
+  {
+    str = "inteligencia";
+  }
+  else if(tipoP==SKILL)
+  {
+    str = "destreza";
+  }
+  else
+  {
+    str="NA";
+  }
+  return str;
 }
 
 #endif

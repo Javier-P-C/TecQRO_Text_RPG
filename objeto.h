@@ -109,8 +109,10 @@ bool Objeto::getVisibilidad()
 
 void Objeto::getPropiedades()
 {
-  cout<<nombre<<","<<descripcion<<endl;
+  cout<<"*********************************"<<endl;
+  cout<<"Nombre del objeto: "<<nombre<<endl<<"Descripción: "<<descripcion<<endl;
   bonificacion.getPropiedades();
+  cout<<"*********************************"<<endl;
 }
 
 #endif

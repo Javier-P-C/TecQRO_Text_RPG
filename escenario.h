@@ -23,7 +23,7 @@ class Escenario
   private:
   string nombre;
   string descripcion;
-  int contP,contOb; //Contadores personajes, objetos
+  int unsigned contP,contOb; //Contadores personajes, objetos
   Personaje *individuos[4];
   Objeto *objts[2];
   Escenario *brujula[4]; //Guarda los escenarios contiguos [0]=NORTE, [1]=SUR, [2]=ESTE, [3]=OESTE
@@ -39,6 +39,7 @@ class Escenario
   void AgregarBrujula(string direccion,Escenario *lugar);
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
+  void printContadores();
 
 
   //Constructores
@@ -71,16 +72,26 @@ Escenario::Escenario()
 
 Escenario::~Escenario()
 {
+  if(contP>4){contP=4;}
+  else if(contP<0){contP=0;}
+  if(contOb>2){contOb=2;}
+  else if(contOb<0){contOb=0;}
+  cout<<"contadores"<<contP<<","<<contOb<<endl;
+  cout<<"Destructor de Escenario fue llamado"<<endl;
   for(int i=0;i<contP;i++)
   {
+    cout<<"Check a"<<endl;
     delete individuos[i];
   }
+  cout<<"Check 1"<<endl;
   for (int i=0;i<contOb;i++)
   {
-    delete objts[contOb];
+    delete objts[i];
   }
+  cout<<"Check 2"<<endl;
   for (int i=0;i<4;i++)
   {
+    cout<<"Check 3"<<endl;
     delete brujula[i];
   }
   contP = 0;
@@ -130,18 +141,21 @@ void Escenario::AgregarPersonaje(Personaje *per)
       individuos[contP] = new Animal();
       individuos[contP] = per;
       contP++;
+      //cout<<contP<<endl;
     }
     else if(per->getTipoPersonaje()==2)
     {
       individuos[contP] = new Enemigo();
       individuos[contP] = per;
       contP++;
+      //cout<<contP<<endl;
     }
     else if(per->getTipoPersonaje()==3)
     {
       individuos[contP] = new MiembroTec();
       individuos[contP] = per;
       contP++;
+      //cout<<contP<<endl;
     }
     else
     {
@@ -186,6 +200,7 @@ void Escenario::AgregarObjetos(Objeto *articulo)
     objts[contOb] = articulo;
     cout<<"Objeto agregado a "<<nombre<<endl;
     contOb++;
+    //cout<<contOb<<endl;
   }
   else
   {
@@ -353,6 +368,11 @@ void Escenario::CargarPersonajes(string archivo)
   
   exit: myFile.close();
   //cout<<"Cerrado"<<endl; //Línea para debuguear
+}
+
+void Escenario::printContadores()
+{
+  cout<<contP<<"-"<<contOb<<endl;
 }
 
 #endif

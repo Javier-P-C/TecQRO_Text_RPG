@@ -51,10 +51,16 @@ int main(int argc, char* argv[])
   cout<<"4.Tutorial"<<endl;
   cout<<"............................................"<<endl<<endl;*/
 
-  //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv",".csv");
+  Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
+  //partida.Guardar();
+  //partida.MostrarTodo();
+  partida.Comandos();
+  partida.~Engine();
 
-  Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
+  //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
   
+  //Objeto objt("t","t",HEALTH,9);
+  //objt.getPropiedades();
 
   return 0;
 }

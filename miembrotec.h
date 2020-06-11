@@ -25,6 +25,8 @@ class MiembroTec : public Personaje //NPC's y el jugador
   virtual Puntos Atacar();
   string getstrArea();
   AreaTec getArea();
+  string getMatricula();
+  string getPosicion();
 
   //Constructores
   MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string posicion);
@@ -196,6 +198,16 @@ string MiembroTec::getstrTipoPersonaje()
   stringstream aux;
   aux<<"Miembro Tec ("<<getstrArea()<<")";
   return aux.str();
+}
+
+string MiembroTec::getMatricula()
+{
+  return matricula;
+}
+
+string MiembroTec::getPosicion()
+{
+  return posicion;
 }
 
 #endif

@@ -33,6 +33,7 @@ class Personaje
   void CambiarVisibilidad(); //Cambia de false a true y viceversa la visibilidad
   bool getVisibilidad(); //Manda el valor de visibilidad
   int getTipoPersonaje();
+  string getAtributoDescripcion(); //Solo devuelve el valor de descripcion
 
   //Constructores
   Personaje(string name); //Usa los parametros recibidos, provee descripcion generica, vuelve visible al personaje, salud al 100
@@ -162,6 +163,11 @@ bool Personaje::getVisibilidad()
 int Personaje::getTipoPersonaje()
 {
   return tipoPersonaje;
+}
+
+string Personaje::getAtributoDescripcion()
+{
+  return descripcion;
 }
 
 #endif
