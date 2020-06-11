@@ -18,7 +18,7 @@ class Escenario
   private:
   string nombre;
   string descripcion;
-  int contP,contOb;
+  int contP,contOb; //Contadores personajes, objetos
   Personaje *individuos[4];
   Objeto *objts[2];
   Escenario *brujula[4]; //Guarda los escenarios contiguos [0]=NORTE, [1]=SUR, [2]=ESTE, [3]=OESTE
@@ -60,10 +60,6 @@ Escenario::Escenario()
   descripcion = "";
   contP = 0;
   contOb = 0;
-  for (int i=0;i<4;i++)
-  {
-    brujula[i] = new Escenario();
-  }
 }
 
 Escenario::~Escenario()
@@ -149,6 +145,7 @@ void Escenario::AgregarPersonaje(Personaje *per)
   {
     cout<<"ERROR:Arreglo individuos[] lleno, no se puede agregar personaje "<<per->getTipoPersonaje()<<endl;
   }
+  contP++;
 }
 
 void Escenario::getObjetos()
@@ -188,6 +185,7 @@ void Escenario::AgregarObjetos(Objeto *articulo)
   {
     cout<<"ERROR:Arreglo objts[] lleno, no se puede agregar objeto"<<endl;
   }
+  contOb++;
 }
 
 void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
@@ -216,7 +214,24 @@ void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
 
 void Escenario::getBrujula()
 {
-  
+  stringstream aux;
+  aux<<"------------------"<<endl;
+  aux<<"Los cuartos cercanos son: "<<endl;
+  for (int i=0;i<4;i++)
+  {
+    if (brujula[i]!=NULL)
+    {
+      switch(i)
+      {
+        case 0: aux<<"Norte: "<<brujula[i]->getNombre()<<endl;
+        case 1: aux<<"Sur: "<<brujula[i]->getNombre()<<endl;
+        case 2: aux<<"Este: "<<brujula[i]->getNombre()<<endl;
+        case 3: aux<<"Oeste: "<<brujula[i]->getNombre()<<endl;
+      }
+    }
+    aux<<"------------------"<<endl;
+  }
+  cout<<aux.str();
 }
 
 #endif

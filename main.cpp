@@ -1,3 +1,16 @@
+/*-----------------------------------------
+          Instrucciones archivos
+-------------------------------------------
+-Declarar Personajes:
+  Animales: int_tipoPersonaje,int_enum_tipoAnimal
+  Enemigo: char_tipoPersonaje,int_enum_tipoEnemigo
+  Miembro Tec: char_tipoPersonaje,int_enum_AreaTec,string_nombre,string_matricula,string_posicion
+-Declarar Objetos:
+  Objeto: int_tipoPuntos,string_nombre,string descripcion,float_cantPuntos
+-Declarar Escenarios:
+  Escenario: string_nombre!string_descripcion
+*/
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -20,41 +33,36 @@ using namespace listasrpg;
 
 int main(int argc, char* argv[])
 {
-  Objeto *objt_dos = new Objeto("M","m");
-  Objeto *arrObj[2];
-  arrObj[0]=objt_dos;
-  cout<<objt_dos->getNombre()<<endl;
-  cout<<arrObj[0]->getNombre()<<endl;
-  arrObj[0]->setNombre("W");
-  cout<<objt_dos->getNombre()<<endl;
-
-  /*string line;
+  string line;
+  int cont = 0;
   ifstream myFile;//objeto ifstream
   vector<string> tokens;//Donde se van a guardar los elementos de las líneas
-  Escenario *scene;
-  myFile.open("archivo_de_juego.csv");//Abre el archivo
+  Escenario *scene[18];
+  myFile.open("carga_de_escenarios.csv");//Abre el archivo
   if (myFile.is_open())//Comprueba que está abierto el archivo
   {
     getline(myFile,line);
-		tokens = split(line, ',');
-    scene = new Escenario(tokens[1],tokens[2],tipoP,stof(tokens[3]));
+    tokens = split(line, '!');
+    cont = stoi(tokens[0]);
+    for(int i=0;i<cont;i++)
+    {
+      getline(myFile,line);
+      tokens = split(line, '!');
+      cout<<"Llegue"<<endl;
+      scene[i] = new Escenario(tokens[0],tokens[1]);
+      cout<<scene[i]->getNombre()<<endl;
+    }
   }
   else
   {
     cout<<"Error"<<endl;
   }
-  objt->getPropiedades();*/
-  
+  myFile.close();
+  for (int i=0;i<cont;i++)
+  {
+    cout<<scene[i]->getNombre()<<", "<<scene[i]->getDescripcion()<<endl<<endl;
+  }
+  scene[3]->getObjetos();
+  scene[3]->getPersonajes();
   return 0;
 }
-
-/*-----------------------------------------
-          Instrucciones archivos
--------------------------------------------
--Declarar Personajes:
-  Animales: int_tipoPersonaje,int_enum_tipoAnimal
-  Enemigo: char_tipoPersonaje,int_enum_tipoEnemigo
-  Miembro Tec: char_tipoPersonaje,int_enum_AreaTec,string_nombre,string_matricula,string_posicion
--Declarar Objetos:
-  Objeto: int_tipoPuntos,string_nombre,string descripcion,float_cantPuntos
-*/

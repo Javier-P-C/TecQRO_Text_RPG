@@ -116,6 +116,7 @@ int main(int argc, char* argv[])
   {
     cout<<"Error"<<endl;
   }
+  myFile.close();
   per->Huir();*/
 
   /////////////////////////////////////////////////////////
@@ -139,12 +140,30 @@ int main(int argc, char* argv[])
   {
     cout<<"Error"<<endl;
   }
+  myFile.close();
   objt->getPropiedades();*/
   
   ////////////////////////////////////////////////////////
 
-  //Sacar los datos de un Escenario por medio de un archivo
-
+  /*//Sacar los datos de un Escenario por medio de un archivo
+  //Este ejemplo funciona al leer un archivo con una línea con los parametros de un Escenario divididos con comas
+  string line;
+  ifstream myFile;//objeto ifstream
+  vector<string> tokens;//Donde se van a guardar los elementos de las líneas
+  Escenario *scene;
+  myFile.open("archivo_de_juego.csv");//Abre el archivo
+  if (myFile.is_open())//Comprueba que está abierto el archivo
+  {
+    getline(myFile,line);
+		tokens = split(line, '!');
+    scene = new Escenario(tokens[0],tokens[1]);
+  }
+  else
+  {
+    cout<<"Error"<<endl;
+  }
+  cout<<scene->getNombre()<<", "<<scene->getDescripcion()<<endl;
+  myFile.close();*/
 
   return 0;
 }
