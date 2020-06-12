@@ -26,20 +26,20 @@ class Escenario
   int unsigned contP,contOb; //Contadores personajes, objetos
   Personaje *individuos[4];
   Objeto *objts[2];
-  Escenario *brujula[4]; //Guarda los escenarios contiguos [0]=NORTE, [1]=SUR, [2]=ESTE, [3]=OESTE
+  //Escenario *brujula[4]; //Guarda los escenarios contiguos [0]=NORTE, [1]=SUR, [2]=ESTE, [3]=OESTE
 
   public:
-  string getNombre();
-  string getDescripcion();
+  string getNombre();//Manda el atributo nombre del escenario
+  string getDescripcion();//Manda el atributo descripcion del escenario
   void getPersonajes(); //Imprime la lista de los personajes visibles
   void AgregarPersonaje(Personaje *per);
-  void getObjetos();
-  void AgregarObjetos(Objeto *articulo); //Imprime la lista de los objetos visibles
+  void getObjetos();//Imprime la lista de los objetos visibles
+  void AgregarObjetos(Objeto *articulo); //Se agrega un objeto al escenario
   void getBrujula(); //Muestra los cuartos cercanos
   void AgregarBrujula(string direccion,Escenario *lugar);
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
-  void printContadores();
+  void printContadores(); //Imprime el valor de los contadores contOb y contP
 
 
   //Constructores
@@ -80,19 +80,15 @@ Escenario::~Escenario()
   cout<<"Destructor de Escenario fue llamado"<<endl;
   for(int i=0;i<contP;i++)
   {
-    cout<<"Check a"<<endl;
     delete individuos[i];
   }
-  cout<<"Check 1"<<endl;
   for (int i=0;i<contOb;i++)
   {
     delete objts[i];
   }
-  cout<<"Check 2"<<endl;
   for (int i=0;i<4;i++)
   {
-    cout<<"Check 3"<<endl;
-    delete brujula[i];
+    //delete brujula[i];
   }
   contP = 0;
   contOb = 0;
@@ -141,21 +137,21 @@ void Escenario::AgregarPersonaje(Personaje *per)
       individuos[contP] = new Animal();
       individuos[contP] = per;
       contP++;
-      //cout<<contP<<endl;
+      //cout<<contP<<endl;//Línea para debuguear
     }
     else if(per->getTipoPersonaje()==2)
     {
       individuos[contP] = new Enemigo();
       individuos[contP] = per;
       contP++;
-      //cout<<contP<<endl;
+      //cout<<contP<<endl;//Línea para debuguear
     }
     else if(per->getTipoPersonaje()==3)
     {
       individuos[contP] = new MiembroTec();
       individuos[contP] = per;
       contP++;
-      //cout<<contP<<endl;
+      //cout<<contP<<endl;//Línea para debuguear
     }
     else
     {
@@ -198,9 +194,9 @@ void Escenario::AgregarObjetos(Objeto *articulo)
   {
     objts[contOb] = new Objeto();
     objts[contOb] = articulo;
-    cout<<"Objeto agregado a "<<nombre<<endl;
+    //cout<<"Objeto agregado a "<<nombre<<endl; //Línea para debuguear
     contOb++;
-    //cout<<contOb<<endl;
+    //cout<<contOb<<endl; //Línea para debuguear
   }
   else
   {
@@ -208,7 +204,7 @@ void Escenario::AgregarObjetos(Objeto *articulo)
   }
 }
 
-void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
+/*void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
 {
   if(direccion=="norte")
   {
@@ -234,7 +230,7 @@ void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
   {
     cout<<"ERROR: No se pudo agregar escenario a la brújula de '"<<nombre<<"' porque la direccion no corresponde con ninguno de los puntos cardinales. Clase Escenario()"<<endl;
   }
-}
+}*/
 
 /*void Escenario::getBrujula()
 {

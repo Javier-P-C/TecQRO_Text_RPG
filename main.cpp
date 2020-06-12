@@ -14,6 +14,8 @@
   Escenario: string_nombre!string_descripcion
 -Declarar un Jugador
   Jugador: string_nombre,string_descripcion,srtring_matricula,AreaTec_area(Mayusculas),string_posicion,float_inteligencia,float_carisma,float_destreza,float_sentidoHumano,float_espirituEmprendedor,float_integridadAcademica
+
+//////La opción de brújula no lo permite la memoria del sitema, se queda pendiente para actualizaciones (Cuando entiendo como pedirle memoria al sitema) (Última versión con brújula: Último commit de 11 de junio 2020 en github)
 -Declarar la Brujula de los escenarios (Los cuartos contiguos)
   -Para que el programa sepa que empieza la declaración de una brújula se pone STOP,string_NombreDelEscenario
   -Luego se pone el identificador de dirección (Norte-0, Sur-1, Este-2, Oeste-3) y el nombre del escenario de corresponde a esa dirección
@@ -59,8 +61,8 @@ int main(int argc, char* argv[])
 
   Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
   //partida.Guardar();
-  //partida.MostrarTodo();
-  partida.Comandos();
+  //partida.MostrarTodo(); //Nos aseguramos que la carga haya sido correcta
+  //partida.Comandos();
   partida.~Engine();
 
   //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");

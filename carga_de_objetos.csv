@@ -1,20 +1,33 @@
-Estadio Borregos,0
+Estadio Borregos,1
+7,Spikes de atletismo,Los mejores tenis para correr en pista de tartán,6
 Cancha de fútbol,0
-Prepa Tec,0
-Canchas de Tenis,0
-Salón de Congresos,0
-Edificio 9,0
-Arquitectura,0
+Prepa Tec,1
+3,Mochila,Lleva todo lo que necesites en el Tec,6
+Canchas de Tenis,1
+7,Raqueta,Objeto perfecto para disfrutar un día con amigos
+Salón de Congresos,1
+2,Beca,Una gran beca conlleva una gran responsbilidad,10
+Edificio 9,1
+4,Prevencio Informa,Un pequeño papel informativo con las mejores consejos estudiantiles,10
+Arquitectura,1
+5,Pluma,No vayas a la guerra sin fusil,4
 Residencias,0
 Borrego Cósmico,0
 Estacionamiento,0
 Food Station,0
 Punto Azul,0
-OXXO,0
+OXXO,1
+5,Cafe,La bebida perfecta par empezar el día,8
 Salida,0
-Humanidades y Ciencias Sociales,0
-Ingenieria,0
-Biotecnología,0
-Biblioteca,2
-5,espada1,filosa,6
-5,espada2,filosa,8
+Humanidades y Ciencias Sociales,1
+3,Sudadera del Tec,Un atuendo para mostrar al mundo tu alma máter,7
+Ingenieria,1
+6,Calculadora,No te preocupes por los cálculos mentales,7
+Biotecnología,1
+4,Credencial del Tec,Una llave a todas las facilidades del Tec,5
+Biblioteca,1
+6,Libro,El conocimiento es poder,8
+
+Objeto: int_tipoPuntos,string_nombre,string descripcion,float_cantPuntos
+  +Antes del objeto debes especificar el nombre del escenario donde se va a cargar y el número de objetos que hay declarados. Ambas cosas separadas por comas.
+enum variantes_de_puntos {NP,HEALTH,SPIRIT,SENSE,INTEGRITY,CHARM,INTELLIGENCE,SKILL}; //0-7

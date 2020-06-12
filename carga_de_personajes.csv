@@ -1,24 +1,53 @@
-Estadio Borregos,0
-Cancha de fútbol,0
-Prepa Tec,0
-Canchas de Tenis,0
-Salón de Congresos,0
-Edificio 9,0
-Arquitectura,0
-Residencias,0
-Borrego Cósmico,0
-Estacionamiento,0
-Food Station,0
-Punto Azul,0
-OXXO,0
-Salida,0
-Humanidades y Ciencias Sociales,0
-Ingenieria,0
-Biotecnología,3
-3,3,Pedro,LM422336,profesor
-2,0
+Estadio Borregos,3
 1,2
-Biblioteca,2
+3,1,Israel,A01705899,alumno
+3,0,Adrián Landeros,LA01237458,profesor
+Cancha de fútbol,2
+3,2,Erika,A01703894,alumno
+2,1
+Prepa Tec,2
+3,0,Coutiño,D1000000,directivo
+1,1
+Canchas de Tenis,2
+3,3,Luisa,LM00475934,profesor
 1,3
+Salón de Congresos,1
+3,2,Gaby Pérez,D200000000,directivo
+Edificio 9,2
+3,5,Alexa,A01206457,alumno
+3,4,Jorge,A01706413,alumno
+Arquitectura,2
+3,1,Alejandra,A01203687,alumno
+3,1,Lalo,LK34579621,profesor
+Residencias,1
+2,3
+3,6,Mau G,A01701554,alumno
+Borrego Cósmico,1
+1,3
+Estacionamiento,3
+1,1
+1,2
+2,2
+Food Station,2
+3,4,Agustín,LI45031594,profesor
+3,6,Ana Sofía,A01707195,alumno
+Punto Azul,0
+OXXO,2
+1,1
+1,3
+Salida,2
+1,2
+2,2
+Humanidades y Ciencias Sociales,2
+3,5,Jack,A01703983,alumno
 2,4
-
+Ingenieria,2
+3,3,Pedro óscar Pérez Murueta,LM422336,profesor
+2,3
+Biotecnología,3
+2,1
+1,2
+3,1,La K-CD,A01701738,alumno
+Biblioteca,2
+2,4
+3,2,DLuna,A01701545,alumno
