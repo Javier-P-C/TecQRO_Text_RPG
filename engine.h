@@ -39,12 +39,12 @@ class Engine
   void MostrarTodo();
   void Comandos();
   void Moverse(string direccion);
-  Escenario* getDireccion(string nombre_lugar);
-  void CargarBrujula(string archivo);
+  //Escenario* getDireccion(string nombre_lugar);
+  //void CargarBrujula(string archivo);
   
 
   //Constructores
-  Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile,string brujulaFile);
+  Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile);
   Engine(string escenariosFile,string objetosFile,string personajesFile);
   Engine();
 
@@ -52,13 +52,13 @@ class Engine
   ~Engine();
 };
 
-Engine::Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile,string brujulaFile)
+Engine::Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile)
 {
   CargarEscenarios(escenariosFile);
   CargarObjetos(objetosFile);
   CargarPersonajes(personajesFile);
   CargarJugador(jugadorFile);
-  CargarBrujula(brujulaFile);
+  //CargarBrujula(brujulaFile);
   sceneActual=scenes[8];//Lugar donde inicia el jugador; Borrego Cósmico
   MostrarJugador();
 }
@@ -83,14 +83,15 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-  /*
-  for(int i=0;i<cantScenes;i++)
+  
+  /*for(int i=0;i<cantScenes;i++)
   {
     delete scenes[i];
   }
   //cout<<"Check "<<endl;
   delete player;
   delete sceneActual;*/
+  //Segmentation fault (core dumped)
 }
 
 void Engine::CargarEscenarios(string archivo)
@@ -332,7 +333,7 @@ void Engine::Moverse(string direccion)
   }*/
 }
 
-Escenario* Engine::getDireccion(string nombre_lugar)
+/*Escenario* Engine::getDireccion(string nombre_lugar)
 {
   for (int i=0;i<cantScenes;i++)
   {
@@ -347,9 +348,9 @@ Escenario* Engine::getDireccion(string nombre_lugar)
   }
   cout<<"No se encontro nombre en scenes* [], Engine()"<<endl;
   return scenes[8];
-}
+}*/
 
-void Engine::CargarBrujula(string archivo)
+/*void Engine::CargarBrujula(string archivo)
 {
   cout<<"CARGANDO"<<endl;
   for(int i=0;i<cantScenes;i++)
@@ -404,13 +405,13 @@ void Engine::CargarBrujula(string archivo)
     cout<<"Cerrado"<<endl;
   }
 
-  for(int i=0;i<cantScenes;i++)
+  for(int i=0;i<cantScenes;i++) //Segmentation fault (core dumped)
   {
     cout<<i<<endl;
-    scenes[i]->getBrujula();
+    //scenes[i]->getBrujula();
   }
 
   cout<<"Carga de brújula finalizada"<<endl;
-}
+}*/
 
 #endif

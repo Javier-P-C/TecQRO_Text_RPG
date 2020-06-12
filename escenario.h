@@ -232,11 +232,11 @@ void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
   }
   else
   {
-    cout<<"ERROR: No se pudo agregar escenario a la brujula de '"<<nombre<<"' porque la direccion no corresponde con ninguno de los puntos cardinales. Clase Escenario()"<<endl;
+    cout<<"ERROR: No se pudo agregar escenario a la brújula de '"<<nombre<<"' porque la direccion no corresponde con ninguno de los puntos cardinales. Clase Escenario()"<<endl;
   }
 }
 
-void Escenario::getBrujula()
+/*void Escenario::getBrujula()
 {
   stringstream aux;
   aux<<"------------------"<<endl;
@@ -253,7 +253,7 @@ void Escenario::getBrujula()
   }
   aux<<"------------------"<<endl;
   cout<<aux.str();
-}
+}*/
 
 void Escenario::CargarObjetos(string archivo)
 {
