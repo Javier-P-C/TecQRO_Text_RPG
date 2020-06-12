@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
   Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
   //partida.Guardar();
   //partida.MostrarTodo();
-  //partida.Comandos();
+  partida.Comandos();
   partida.~Engine();
 
   //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");

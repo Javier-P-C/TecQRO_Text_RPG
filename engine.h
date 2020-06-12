@@ -20,7 +20,7 @@
 using namespace std;
 using namespace listasrpg;
 
-const unsigned cantScenes = 19; //Cantidad de escenarios que tiene el juego, lo puse afuera porque se ocupa mucho en esta clase y evita errores al cambiar la cantidad de escenarios
+const unsigned cantScenes = 18; //Cantidad de escenarios que tiene el juego, lo puse afuera porque se ocupa mucho en esta clase y evita errores al cambiar la cantidad de escenarios
 
 class Engine
 {
@@ -38,7 +38,7 @@ class Engine
   void Guardar();//Guarda los datos del jugador 
   void MostrarTodo();
   void Comandos();
-  void Moverse(string direccion);
+  void Moverse();
   //Escenario* getDireccion(string nombre_lugar);
   //void CargarBrujula(string archivo);
   
@@ -307,30 +307,42 @@ void Engine::MostrarTodo()
 
 void Engine::Comandos()
 {
+  cout<<"Bienvenido al Tecnológico de Monterrey Campus Querétaro"<<endl;
   string comando;
-  cout<<"Se encuentra en: "<<sceneActual->getNombre()<<endl;
-  cout<<sceneActual->getDescripcion()<<endl;
-  cout<<endl<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
-  cin>>comando;
-  cout<<endl;
-  cout<<sceneActual->getDescripcion()<<endl;
-  if ((comando=="NORTE")||(comando=="SUR")||(comando=="ESTE")||(comando=="OESTE"))
+  while(comando!="SALIR")
   {
-    Moverse(comando);
+    cout<<endl<<"Estás en "<<sceneActual->getNombre()<<endl;
+    cout<<endl<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
+    cin>>comando;
+    cout<<endl;
+    if (comando=="MOVERSE")
+    {
+      Moverse();
+    }
+    else if(comando=="MIRAR")
+    {
+      cout<<sceneActual->getDescripcion()<<endl;
+      sceneActual->getPersonajes();
+      sceneActual->getObjetos();
+    }
+    else if(comando=="AYUDA")
+    {
+      cout<<"MIRAR - Ver los alrededores"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
+    }
   }
-  else if(comando=="MIRAR")
-  {
-    cout<<sceneActual->getDescripcion()<<endl;
-  }
-  
 }
 
-void Engine::Moverse(string direccion)
+void Engine::Moverse()
 {
-  /*if(dirección=="NORTE")
+  int opcion;
+  cout<<endl<<"¿Adonde quieres ir?"<<endl;
+  for (int i=0;i<cantScenes;i++)
   {
-    sceneActual=sceneActual[]
-  }*/
+    cout<<i<<": "<<scenes[i]->getNombre()<<endl;
+  }
+  cin>>opcion;
+  cout<<endl;
+  sceneActual=scenes[opcion];
 }
 
 /*Escenario* Engine::getDireccion(string nombre_lugar)
