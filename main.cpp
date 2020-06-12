@@ -14,7 +14,13 @@
   Escenario: string_nombre!string_descripcion
 -Declarar un Jugador
   Jugador: string_nombre,string_descripcion,srtring_matricula,AreaTec_area(Mayusculas),string_posicion,float_inteligencia,float_carisma,float_destreza,float_sentidoHumano,float_espirituEmprendedor,float_integridadAcademica
+-Declarar la Brujula de los escenarios (Los cuartos contiguos)
+  -Para que el programa sepa que empieza la declaración de una brújula se pone STOP,string_NombreDelEscenario
+  -Luego se pone el identificador de dirección (Norte-0, Sur-1, Este-2, Oeste-3) y el nombre del escenario de corresponde a esa dirección
+  int_identificador,string_nombre
 */
+
+//Caso correcto, caso nulo y caso incorrecto
 
 #include <iostream>
 #include <sstream>
@@ -51,16 +57,65 @@ int main(int argc, char* argv[])
   cout<<"4.Tutorial"<<endl;
   cout<<"............................................"<<endl<<endl;*/
 
-  Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
+  Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv","carga_brujula_escenarios.csv");
   //partida.Guardar();
   //partida.MostrarTodo();
   partida.Comandos();
-  partida.~Engine();
+  //partida.~Engine();
 
   //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
   
-  //Objeto objt("t","t",HEALTH,9);
-  //objt.getPropiedades();
+  
+  /*Escenario *scene;
+  scene = new Escenario("Residencias","DESCRIPCION");
 
+  string line;
+  int count = 0;
+  ifstream myFile;//objeto ifstream
+  vector<string> tokens;//Donde se van a guardar los elementos de las líneas
+  myFile.open("carga_brujula_escenarios.csv");
+  if (myFile.is_open())//Comprueba que está abierto el archivo
+  {
+    bool encontrado = false;
+    
+    do
+    {
+      getline(myFile,line);
+      tokens = split(line, ',');
+      if ((tokens[0]=="STOP")&&(tokens[1]==scene->getNombre()))
+      {
+        encontrado = true;
+      }
+      //cout<<tokens[0]<<endl; //Línea para debuguear
+    }while(((tokens[0]!="STOP")||(tokens[1]!=scene->getNombre())) && !myFile.eof());
+    
+    if (encontrado == false)
+    {
+      cout<<endl<<"ERROR: Nombre de escenario, no encontrado en archivo para cargar brújula. Escenario()"<<endl<<endl;
+      goto exit; //40 líneas abajo
+    }
+    for(int i=0;i<4;i++)
+    {
+      getline(myFile,line);
+      tokens = split(line, ',');
+      Escenario *lugar;
+      lugar= partida.getDireccion(tokens[1]);
+      string dir;
+      cout<<"CheckR"<<tokens[0]<<endl;
+      if(stoi(tokens[0])==0){dir="norte";}
+      else if(stoi(tokens[0])==1){dir="sur";}
+      else if(stoi(tokens[0])==2){dir="este";}
+      else if(stoi(tokens[0])==3){dir="oeste";}
+      scene->AgregarBrujula(dir,lugar);
+    }
+    cout<<"CheckM"<<endl;
+    scene->getBrujula();
+  }
+  else
+  {
+    cout<<"Archivo no encontrado"<<endl;
+  }
+  exit: myFile.close();
+  cout<<"Cerrado"<<endl;*/
   return 0;
 }

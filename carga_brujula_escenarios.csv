@@ -1,0 +1,95 @@
+STOP,Estadio Borregos
+0,NULL
+1,Canchas de Tenis
+2,Cancha de fútbol
+3,NULL
+STOP,Cancha de fútbol
+0,NULL
+1,Salón de Congresos
+2,Prepa Tec
+3,Estadio Borregos
+STOP,Prepa Tec
+0,NULL
+1,Edificio 9
+2,NULL
+3,Cancha de fútbol
+STOP,Canchas de Tenis
+0,Estadio Borregos
+1,Residencias
+2,Salón de Congresos
+3,NULL
+STOP,Salón de Congresos
+0,Cancha de fútbol
+1,Borrego Cósmico
+2,Edificio 9
+3,Canchas de Tenis
+STOP,Edificio 9
+0,Prepa Tec
+1,Estacionamiento
+2,Arquitectura
+3,Salón de Congresos
+STOP,Arquitectura
+0,NULL
+1,Food Station
+2,NULL
+3,Edificio 9
+STOP,Residencias
+0,Canchas de Tenis
+1,Punto Azul
+2,Borrego Cósmico
+3,NULL
+STOP,Borrego Cósmico
+0,Salón de Congresos
+1,OXXO
+2,Estacionamiento
+3,Residencias
+STOP,Estacionamiento
+0,Edificio 9
+1,Salida
+2,Food Station
+3,Borrego Cósmico
+STOP,Food Station
+0,Arquitectura
+1,NULL
+2,NULL
+3,Estacionamiento
+STOP,Punto Azul
+0,Residencias
+1,Humanidades y Ciencias Sociales
+2,OXXO
+3,NULL
+STOP,OXXO
+0,Borrego Cósmico
+1,Ingenieria
+2,Salida
+3,Punto Azul
+STOP,Salida
+0,Estacionamiento
+1,Biotecnología
+2,NULL
+3,OXXO
+STOP,Humanidades y Ciencias Sociales
+0,Punto Azul
+1,Biblioteca
+2,Ingenieria
+3,NULL
+STOP,Ingenieria
+0,OXXO
+1,NULL
+2,Biotecnología
+3,Humanidades y Ciencias Sociales
+STOP,Biotecnología
+0,Salida
+1,NULL
+2,NULL
+3,Ingenieria
+STOP,Biblioteca
+0,Humanidades y Ciencias Sociales
+1,NULL
+2,NULL
+3,NULL
+STOP,NULL
+0,NULL
+1,NULL
+2,NULL
+3,NULL

@@ -20,12 +20,12 @@
 using namespace std;
 using namespace listasrpg;
 
-const unsigned cantScenes = 18; //Cantidad de escenarios que tiene el juego, lo puse afuera porque se ocupa mucho en esta clase y evita errores al cambiar la cantidad de escenarios
+const unsigned cantScenes = 19; //Cantidad de escenarios que tiene el juego, lo puse afuera porque se ocupa mucho en esta clase y evita errores al cambiar la cantidad de escenarios
 
 class Engine
 {
   private:
-  Escenario *scenes[18]; //Se establece la cantidad de escenarios del juego
+  Escenario *scenes[cantScenes]; //Se establece la cantidad de escenarios del juego
   Escenario *sceneActual;
   Jugador *player;
   public:
@@ -39,9 +39,12 @@ class Engine
   void MostrarTodo();
   void Comandos();
   void Moverse(string direccion);
+  Escenario* getDireccion(string nombre_lugar);
+  void CargarBrujula(string archivo);
+  
 
   //Constructores
-  Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile);
+  Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile,string brujulaFile);
   Engine(string escenariosFile,string objetosFile,string personajesFile);
   Engine();
 
@@ -49,13 +52,15 @@ class Engine
   ~Engine();
 };
 
-Engine::Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile)
+Engine::Engine(string escenariosFile,string objetosFile,string personajesFile,string jugadorFile,string brujulaFile)
 {
   CargarEscenarios(escenariosFile);
   CargarObjetos(objetosFile);
   CargarPersonajes(personajesFile);
   CargarJugador(jugadorFile);
+  CargarBrujula(brujulaFile);
   sceneActual=scenes[8];//Lugar donde inicia el jugador; Borrego Cósmico
+  MostrarJugador();
 }
 
 Engine::Engine(string escenariosFile,string objetosFile,string personajesFile)
@@ -63,6 +68,7 @@ Engine::Engine(string escenariosFile,string objetosFile,string personajesFile)
   CargarEscenarios(escenariosFile);
   CargarObjetos(objetosFile);
   CargarPersonajes(personajesFile);
+  //CargarBrujula(brujulaFile);
   CrearJugador();
   sceneActual=scenes[8];//Lugar donde inicia el jugador; Borrego Cósmico
 }
@@ -117,7 +123,7 @@ void Engine::CargarEscenarios(string archivo)
   {
     cout<<scenes[i]->getNombre()<<", "<<scenes[i]->getDescripcion()<<endl<<endl;
   }*/
-  cout<<"Fin de carga de escenarios"<<endl;
+  cout<<"Carga de escenarios finalizada"<<endl;
 }
 
 void Engine::CargarObjetos(string archivo)
@@ -128,7 +134,7 @@ void Engine::CargarObjetos(string archivo)
     scenes[i]->CargarObjetos(archivo);
     //cout<<"Check b."<<i<<endl; //Línea para debuguear
   }
-  cout<<"Fin de carga de objetos"<<endl;
+  cout<<"Carga de objetos finalizada"<<endl;
 }
 
 void Engine::CargarPersonajes(string archivo)
@@ -139,7 +145,7 @@ void Engine::CargarPersonajes(string archivo)
     scenes[i]->CargarPersonajes(archivo);
     //cout<<"Check b."<<i<<endl; //Línea para debuguear
   }
-  cout<<"Fin de carga de personajes"<<endl;
+  cout<<"Carga de personajes finalizada"<<endl;
 }
 
 void Engine::CrearJugador()
@@ -255,8 +261,7 @@ void Engine::CargarJugador(string archivo)
   {
     cout<<"ERROR: No se pudo abrir el archivo para carga del jugador en Engine()."<<endl;
   }
-  cout<<"Fin de carga de jugador"<<endl;
-  MostrarJugador();
+  cout<<"Carga de jugador finalizada"<<endl;
 }
 
 void Engine::Guardar()
@@ -302,26 +307,110 @@ void Engine::MostrarTodo()
 void Engine::Comandos()
 {
   string comando;
-  cout<<sceneActual->getNombre()<<endl;
-  cout<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
+  cout<<"Se encuentra en: "<<sceneActual->getNombre()<<endl;
+  cout<<sceneActual->getDescripcion()<<endl;
+  cout<<endl<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
   cin>>comando;
-  cout<<comando;
-  if (comando!="NORTE"||"SUR"||"ESTE"||"OESTE")
+  cout<<endl;
+  cout<<sceneActual->getDescripcion()<<endl;
+  if ((comando=="NORTE")||(comando=="SUR")||(comando=="ESTE")||(comando=="OESTE"))
   {
     Moverse(comando);
-    cout<<"1"<<endl;
   }
   else if(comando=="MIRAR")
   {
     cout<<sceneActual->getDescripcion()<<endl;
-    cout<<"2"<<endl;
   }
-  cout<<"3"<<endl;
+  
 }
 
 void Engine::Moverse(string direccion)
 {
+  /*if(dirección=="NORTE")
+  {
+    sceneActual=sceneActual[]
+  }*/
+}
 
+Escenario* Engine::getDireccion(string nombre_lugar)
+{
+  for (int i=0;i<cantScenes;i++)
+  {
+    //cout<<scenes[i]->getNombre()<<endl; //Línea para debuguear
+    if(scenes[i]->getNombre()==nombre_lugar)
+    {
+      cout<<"Dirección encontrada"<<endl;
+      //scenes[i]->printContadores();
+      cout<<"Envio: "<<scenes[i]<<endl;
+      return scenes[i];
+    }
+  }
+  cout<<"No se encontro nombre en scenes* [], Engine()"<<endl;
+  return scenes[8];
+}
+
+void Engine::CargarBrujula(string archivo)
+{
+  cout<<"CARGANDO"<<endl;
+  for(int i=0;i<cantScenes;i++)
+  {
+    string line;
+    int count = 0;
+    ifstream myFile;//objeto ifstream
+    vector<string> tokens;//Donde se van a guardar los elementos de las líneas
+    myFile.open(archivo);
+    if (myFile.is_open())//Comprueba que está abierto el archivo
+    {
+      bool encontrado = false;
+      
+      do
+      {
+        getline(myFile,line);
+        tokens = split(line, ',');
+        if ((tokens[0]=="STOP")&&(tokens[1]==scenes[i]->getNombre()))
+        {
+          encontrado = true;
+        }
+        //cout<<tokens[0]<<endl; //Línea para debuguear
+      }while(((tokens[0]!="STOP")||(tokens[1]!=scenes[i]->getNombre())) && !myFile.eof());
+      cout<<scenes[i]->getNombre()<<endl;
+      if (encontrado == false)
+      {
+        cout<<endl<<"ERROR: Nombre de escenario, no encontrado en archivo para cargar brújula. Escenario()"<<endl<<endl;
+        goto exit; //40 líneas abajo
+      }
+      for(int i=0;i<4;i++)
+      {
+        getline(myFile,line);
+        tokens = split(line, ',');
+        Escenario *lugar;
+        cout<<"TokenName: "<<tokens[1];
+        lugar= getDireccion(tokens[1]);
+        cout<<lugar<<endl;
+        string dir;
+        if(stoi(tokens[0])==0){dir="norte";}
+        else if(stoi(tokens[0])==1){dir="sur";}
+        else if(stoi(tokens[0])==2){dir="este";}
+        else if(stoi(tokens[0])==3){dir="oeste";}
+        cout<<dir<<endl;
+        scenes[i]->AgregarBrujula(dir,lugar);
+      }
+    }
+    else
+    {
+      cout<<"Archivo no encontrado"<<endl;
+    }
+    exit: myFile.close();
+    cout<<"Cerrado"<<endl;
+  }
+
+  for(int i=0;i<cantScenes;i++)
+  {
+    cout<<i<<endl;
+    scenes[i]->getBrujula();
+  }
+
+  cout<<"Carga de brújula finalizada"<<endl;
 }
 
 #endif

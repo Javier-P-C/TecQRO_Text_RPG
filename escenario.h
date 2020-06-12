@@ -35,7 +35,7 @@ class Escenario
   void AgregarPersonaje(Personaje *per);
   void getObjetos();
   void AgregarObjetos(Objeto *articulo); //Imprime la lista de los objetos visibles
-  void getBrujula();
+  void getBrujula(); //Muestra los cuartos cercanos
   void AgregarBrujula(string direccion,Escenario *lugar);
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
@@ -56,10 +56,10 @@ Escenario::Escenario(string name, string description)
   descripcion = description;
   contP = 0;
   contOb = 0;
-  for (int i=0;i<4;i++)
+  /*for (int i=0;i<4;i++)
   {
     brujula[i] = new Escenario();
-  }
+  }*/
 }
 
 Escenario::Escenario()
@@ -212,18 +212,22 @@ void Escenario::AgregarBrujula(string direccion,Escenario *lugar)
 {
   if(direccion=="norte")
   {
+    cout<<"Recibido"<<lugar->getNombre()<<lugar;
     brujula[0] = lugar;
   }
   else if(direccion=="sur")
   {
+    lugar->getNombre();
     brujula[1] = lugar;
   }
   else if(direccion=="este")
   {
+    lugar->getNombre();
     brujula[2] = lugar;
   }
   else if(direccion=="oeste")
   {
+    lugar->getNombre();
     brujula[3] = lugar;
   }
   else
@@ -236,21 +240,18 @@ void Escenario::getBrujula()
 {
   stringstream aux;
   aux<<"------------------"<<endl;
-  aux<<"Los cuartos cercanos son: "<<endl;
+  aux<<nombre<<"Los cuartos cercanos son: "<<endl;
   for (int i=0;i<4;i++)
   {
-    if (brujula[i]!=NULL)
+    switch(i)
     {
-      switch(i)
-      {
-        case 0: aux<<"Norte: "<<brujula[i]->getNombre()<<endl;
-        case 1: aux<<"Sur: "<<brujula[i]->getNombre()<<endl;
-        case 2: aux<<"Este: "<<brujula[i]->getNombre()<<endl;
-        case 3: aux<<"Oeste: "<<brujula[i]->getNombre()<<endl;
-      }
+      case 0: aux<<"Norte: "<<brujula[i]->getNombre()<<endl; break;
+      case 1: aux<<"Sur: "<<brujula[i]->getNombre()<<endl; break;
+      case 2: aux<<"Este: "<<brujula[i]->getNombre()<<endl; break;
+      case 3: aux<<"Oeste: "<<brujula[i]->getNombre()<<endl; break;
     }
-    aux<<"------------------"<<endl;
   }
+  aux<<"------------------"<<endl;
   cout<<aux.str();
 }
 
