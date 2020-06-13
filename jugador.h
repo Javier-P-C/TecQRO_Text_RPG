@@ -22,7 +22,7 @@ class Jugador : public MiembroTec
   bool stamina; //Permite usar su ataque especial una vez por combate
 
   public:
-  Puntos Atacar();
+  Puntos Atacar();//Los puntos aumentan su valor dependiendo de las stats del jugador
   void getStats(); //Enlista las estadísticas del jugador
   void setInteligencia(Puntos *pt);
   void setCarisma(Puntos *pt);
@@ -37,6 +37,7 @@ class Jugador : public MiembroTec
   float getEspirituEmprendedor();
   float getIntegridadAcademica();
   void CambiarStamina();
+  bool getStamina();
 
   //Constructores
   Jugador(string name, string description,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad);
@@ -55,6 +56,7 @@ Jugador::Jugador(string name, string description, string id,AreaTec area,string 
   sentidoHumano = sentido;
   espirituEmprendedor = espiritu;
   integridadAcademica = integridad;
+  stamina=true;
 }
 Jugador::Jugador()
         :MiembroTec()
@@ -65,6 +67,7 @@ Jugador::Jugador()
   sentidoHumano = 0;
   espirituEmprendedor = 0;
   integridadAcademica = 0;
+  stamina=false;
 }
 
 Jugador::~Jugador()
@@ -338,6 +341,11 @@ void Jugador::CambiarStamina()
 {
   if(stamina==true){stamina = false;}
   else{stamina = true;}
+}
+
+bool Jugador::getStamina()
+{
+  return stamina;
 }
 
 #endif

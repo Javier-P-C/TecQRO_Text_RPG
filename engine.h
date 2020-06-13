@@ -42,6 +42,7 @@ class Engine
   void Comandos();//Recibe las intrucciones del jugador
   void Moverse();//Cambia el escenario Actual
   void InteractuarConPersonaje();//Controla el impacto del jugador en los personajes y viceversa
+  void Batalla();//Coordina las batallas entre player e interaccionP
   //Escenario* getDireccion(string nombre_lugar);
   //void CargarBrujula(string archivo);
   
@@ -334,7 +335,8 @@ void Engine::Comandos()
       int op;
       while(op!=3)
       {
-        cout<<"¿Con qué quieres interactuar?"<<endl<<"1.Personajes"<<endl<<"2.Objetos"<<endl<<"3.Ir atrás"<<endl;
+        cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+        cout<<"¿Con qué quieres interactuar?"<<endl<<"1.Personajes"<<endl<<"2.Objetos"<<endl<<"3.Ir atrás"<<endl<<"Presiona un número de las opciones"<<endl;
         cin>>op;
         cout<<endl;
         if(op==1)
@@ -376,7 +378,7 @@ void Engine::Comandos()
     }
     else if(comando=="AYUDA")
     {
-      cout<<"MIRAR - Ver los alrededores"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
+      cout<<"MIRAR - Ver los alrededores"<<endl<<"INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
     }
   }
   cout<<endl<<"PARTIDA TERMINADA"<<endl;
@@ -404,7 +406,37 @@ void Engine::InteractuarConPersonaje()
   }
   else  if(interaccionP->getTipoPersonaje()==2)//Enemigo
   {
-
+    int aux1;
+    regreso:cout<<"¿Seguro que quieres interactuar con un enemigo?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
+    cin>>aux1;
+    cout<<endl;
+    if (aux1==1)
+    {
+      int aux2;
+      interaccionP->getDescripcion();
+      cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+      cin>>aux2;
+      cout<<endl;
+      interaccionP->Hablar();
+      cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+      cin>>aux2;
+      cout<<endl;
+      cout<<"COMIENZA LA BATALLA"<<endl;
+      Batalla();
+    }
+    else if (aux1==2)
+    {
+      cout<<"++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+      cout<<"++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+      cout<<"Has decidido esperar a que se vaya el enemigo"<<endl;
+      cout<<"++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+      cout<<"++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+    }
+    else
+    {
+      cout<<"||||Opción no válida||||"<<endl;
+      goto regreso;//Arriba, la segunda línea del "else if" en el que estamos
+    }
   }
   else if(interaccionP->getTipoPersonaje()==3)//MiembroTec
   {
@@ -433,6 +465,45 @@ void Engine::InteractuarConPersonaje()
   cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
   interaccionP->Huir();
   cout<<"La interacción con "<<interaccionP->getstrTipoPersonaje()<<" ha terminado."<<endl<<endl;
+}
+
+void Engine::Batalla()
+{
+  int aux1,aux2;
+  Puntos auxP;
+  while((player->getVisibilidad()==true)&&(interaccionP->getVisibilidad()==true))
+  {
+    cout<<"¿Qué quieres hacer?"<<endl<<"1.Atacar"<<endl<<"2.Huir"<<endl;
+    cin>>aux1;
+    if(aux1==1)
+    {
+      /*auxP=player->Atacar();
+      interaccionP->*/
+    }
+    else if(aux1==2)
+    {
+      cout<<endl<<"||||||-HAS HUIDO-||||||| "<<endl;
+      player->CambiarVisibilidad();
+    }
+    else
+    {
+      cout<<"Usaste una opción no válida, no has atacado"<<endl;
+    }
+  }
+  cout<<"BATALLA FINALIZADA"<<endl;
+  cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+  cin>>aux2;
+  cout<<endl;
+  cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
+  if(!(player->getStamina()))
+  {
+    player->CambiarStamina();
+  }
+  if(!(player->getVisibilidad()))
+  {
+    player->CambiarVisibilidad();
+  }
+  cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
 }
 
 #endif

@@ -254,7 +254,7 @@ void Enemigo::Hablar()
     cout<<getstrEnemigo()<<": Deja de mirarme *eructo* solo essszz agua..."<<endl;
   }
   else if(enemigo==BOSS)
-  cout<<getstrEnemigo()<<": >:| *No parece muy contento*"<<endl;
+  cout<<getstrEnemigo()<<": (ง'̀-'́)ง *No parece muy contento*"<<endl;
 }
 
 void Enemigo::getDescripcion()

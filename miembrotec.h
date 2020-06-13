@@ -19,7 +19,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
 
   public:
   void Hablar();
-  void Huir();
+  virtual void Huir();
   void getDescripcion();
   string getstrTipoPersonaje();
   virtual Puntos Atacar();
@@ -172,7 +172,7 @@ void MiembroTec::Hablar()
     }
     else if(area==SALUD)
     {
-      cout<<posicion<<": No, no sé que tienes aún no me graduo. ¿Por qué siempre me pasa esto?"<<endl;
+      cout<<posicion<<": No, no sé que tienes, aún no me graduo. ¿Por qué siempre me pasa esto?"<<endl;
     }
   }
   if (player==true)
