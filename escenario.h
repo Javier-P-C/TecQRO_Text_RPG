@@ -42,6 +42,8 @@ class Escenario
   void printContadores(); //Imprime el valor de los contadores contOb y contP
   Personaje* DireccionPersonaje(int num);//Le manda el personaje que necesite Engine()
   bool DisponibilidadPersonajes();//Manda un true si al menos un personaje está visible si no manda un false
+  Objeto* DireccionObjeto(int num);//Le manda la dirección del objeto al jugador
+  bool DisponibilidadObjetos();
 
   //Constructores
   Escenario(string name, string description);
@@ -394,6 +396,23 @@ bool Escenario::DisponibilidadPersonajes()
     {
       return true;
     }
+  }
+  return false;
+}
+
+Objeto* Escenario::DireccionObjeto(int num)
+{
+  Objeto* objt;
+  objt=objts[num];
+  return objt;
+}
+
+bool Escenario::DisponibilidadObjetos()
+{
+  if(contOb==0){return false;}
+  for (int i=0;i<contP;i++)
+  {
+    if (objts[i]->getVisibilidad()==true){return true;}
   }
   return false;
 }

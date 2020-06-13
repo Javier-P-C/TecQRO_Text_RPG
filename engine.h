@@ -46,6 +46,7 @@ class Engine
   void Batalla();//Coordina las batallas entre player e interaccionP
   void GameOver();//Termina la Partida
   void Recompensa(int num);//Sube puntos como recompensa de batalla o interactuar con animales
+  void InteractuarConObjeto();//Puedes pedir descripcion o recoger los objetos
   
 
   //Constructores
@@ -357,9 +358,14 @@ void Engine::Comandos()
         {
           int op2;
           sceneActual->getObjetos();
-          cout<<"Escribe el número del Objeto con el que quieras interactuar: ";
-          cin>>op2;
-          cout<<endl;
+          if(sceneActual->DisponibilidadObjetos())
+          {
+            cout<<"Escribe el número del Objeto con el que quieras interactuar: ";
+            cin>>op2;
+            cout<<endl;
+            interaccionO = sceneActual->DireccionObjeto(op2);
+            InteractuarConObjeto();
+          }
         }
         else if(op==3){}
         else
@@ -372,6 +378,10 @@ void Engine::Comandos()
     else if(comando=="STATS")
     {
       player->getStats();
+    }
+    else if(comando=="INVENTARIO")
+    {
+      player->MostrarInventario();
     }
     else if(comando=="GUARDAR")
     {
@@ -673,6 +683,29 @@ void Engine::Recompensa(int num)
     player->setDestreza(pt3);
   }
   cout<<"ooooooooooooooooooooooooooooooooooooooooo"<<endl;
+}
+
+void Engine::InteractuarConObjeto()
+{
+  int desicion,auxiliar;
+  while(desicion!=3)
+  {
+    cout<<"¿Qué quieres hacer con este objeto?"<<endl<<"1.Agregar al Inventario (Solo puedes llevar 5 objetos)"<<endl<<"2.Ver descripción"<<endl<<"3.Ir atrás"<<endl;
+    cin>>desicion;
+    cout<<endl;
+    if (desicion==1)
+    {
+      player->AgregarInventario(interaccionO);
+      interaccionO->CambiarVisibilidad();
+    }
+    else if(desicion==2)
+    {
+      interaccionO->getPropiedades();
+    }
+    cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+    cin>>auxiliar;
+    cout<<endl;
+  }
 }
 
 #endif

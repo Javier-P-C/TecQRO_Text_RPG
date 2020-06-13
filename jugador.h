@@ -20,24 +20,28 @@ class Jugador : public MiembroTec
   float espirituEmprendedor;
   float integridadAcademica;
   bool stamina; //Permite usar su ataque especial una vez por combate
+  Objeto *inventario[5];
+  int contInventario;
 
   public:
   Puntos Atacar();//Los puntos aumentan su valor dependiendo de las stats del jugador
   void getStats(); //Enlista las estadísticas del jugador
-  void setInteligencia(Puntos pt);
-  void setCarisma(Puntos pt);
-  void setDestreza(Puntos pt);
-  void setSentidoHumano(Puntos pt);
-  void setEspirituEmprendedor(Puntos pt);
-  void setIntegridadAcademica(Puntos pt);
-  float getInteligencia();
-  float getCarisma();
-  float getDestreza();
-  float getSentidoHumano();
-  float getEspirituEmprendedor();
-  float getIntegridadAcademica();
-  void CambiarStamina();
-  bool getStamina();
+  void setInteligencia(Puntos pt);//Usa Puntos() para cambiar atributo
+  void setCarisma(Puntos pt);//Usa Puntos() para cambiar atributo
+  void setDestreza(Puntos pt);//Usa Puntos() para cambiar atributo
+  void setSentidoHumano(Puntos pt);//Usa Puntos() para cambiar atributo
+  void setEspirituEmprendedor(Puntos pt);//Usa Puntos() para cambiar atributo
+  void setIntegridadAcademica(Puntos pt);//Usa Puntos() para cambiar atributo
+  float getInteligencia(); //Manda valor float de atributo
+  float getCarisma();//Manda valor float de atributo
+  float getDestreza();//Manda valor float de atributo
+  float getSentidoHumano();//Manda valor float de atributo
+  float getEspirituEmprendedor();//Manda valor float de atributo
+  float getIntegridadAcademica();//Manda valor float de atributo
+  void CambiarStamina();//Pasa atributo stamina de true a false y viceversa
+  bool getStamina();//Manda el valor actual de stamina, se usa para los combates Engine::Batalla()
+  void AgregarInventario(Objeto *objt);//Recibe la dirección de un objeto para agregarlo a inventario[]
+  void MostrarInventario();//Muestra los nombres de todos los objetos que tienes guardados
 
   //Constructores
   Jugador(string name, string description,string id,AreaTec area,string posicion,float intel,float charm,float skill,float sentido,float espiritu,float integridad);
@@ -57,6 +61,7 @@ Jugador::Jugador(string name, string description, string id,AreaTec area,string 
   espirituEmprendedor = espiritu;
   integridadAcademica = integridad;
   stamina=true;
+  contInventario=0;
 }
 Jugador::Jugador()
         :MiembroTec()
@@ -68,6 +73,7 @@ Jugador::Jugador()
   espirituEmprendedor = 0;
   integridadAcademica = 0;
   stamina=false;
+  contInventario=0;
 }
 
 Jugador::~Jugador()
@@ -349,6 +355,30 @@ void Jugador::CambiarStamina()
 bool Jugador::getStamina()
 {
   return stamina;
+}
+
+void Jugador::AgregarInventario(Objeto *objt)
+{
+  if (contInventario<5) 
+  {
+    inventario[0]=objt;
+    contInventario++;
+    cout<<"Se guardó objeto en el inventario."<<endl;
+  }
+  else
+  {
+    cout<<"No se pudo guardar objeto, el inventario está lleno."<<endl;
+  }
+}
+
+void Jugador::MostrarInventario()
+{
+  cout<<"En tu inventario tienes:"<<endl;
+  for(int i=0;i<contInventario;i++)
+  {
+    cout<<"-"<<inventario[i]->getNombre()<<endl;
+  }
+  if(contInventario==0){cout<<"- Nada"<<endl;}
 }
 
 #endif
