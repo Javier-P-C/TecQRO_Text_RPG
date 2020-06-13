@@ -39,10 +39,9 @@ class Engine
   void CargarJugador(string archivo); //Carga los datos de player desde un archivo
   void Guardar();//Guarda los datos de player en un archivo
   void MostrarTodo();//Impreme Objetos, Personajes y escenas, se usa para debuguear
-  void Comandos();
-  void Moverse();
-  void InteractuarConPersonaje();
-  //void Interacción();
+  void Comandos();//Recibe las intrucciones del jugador
+  void Moverse();//Cambia el escenario Actual
+  void InteractuarConPersonaje();//Controla el impacto del jugador en los personajes y viceversa
   //Escenario* getDireccion(string nombre_lugar);
   //void CargarBrujula(string archivo);
   
