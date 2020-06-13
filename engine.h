@@ -338,7 +338,7 @@ void Engine::Comandos()
       while(op!=3)
       {
         cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
-        cout<<"¿Con qué quieres interactuar?"<<endl<<"1.Personajes"<<endl<<"2.Objetos"<<endl<<"3.Ir atrás"<<endl<<"Presiona un número de las opciones"<<endl;
+        cout<<"¿Con qué quieres INTERACTUAR?"<<endl<<"1.Personajes"<<endl<<"2.Objetos"<<endl<<"3.Ir atrás"<<endl<<"Presiona un número de las opciones"<<endl;
         cin>>op;
         cout<<endl;
         if(op==1)
@@ -389,7 +389,7 @@ void Engine::Comandos()
     }
     else if(comando=="AYUDA")
     {
-      cout<<"MIRAR - Ver los alrededores"<<endl<<"INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<"INVENTARIO - Despliega tu inventario"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
+      cout<<"MIRAR - Ver los alrededores"<<endl<<"INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
     }
   }
   cout<<endl<<"PARTIDA TERMINADA"<<endl;
@@ -641,6 +641,7 @@ void Engine::GameOver()
   if (aux==1)
   {
     Guardar();
+    exit(EXIT_SUCCESS);
   }
   else if(aux==2)
   {
@@ -690,13 +691,14 @@ void Engine::InteractuarConObjeto()
   int desicion,auxiliar;
   while(desicion!=3)
   {
-    cout<<"¿Qué quieres hacer con este objeto?"<<endl<<"1.Agregar al Inventario (Solo puedes llevar 5 objetos)"<<endl<<"2.Ver descripción"<<endl<<"3.Ir atrás"<<endl;
+    cout<<"¿Qué quieres HACER con este objeto?"<<endl<<"1.Agregar al Inventario (Solo puedes llevar 5 objetos)"<<endl<<"2.Ver descripción"<<endl<<"3.Ir atrás"<<endl;
     cin>>desicion;
     cout<<endl;
     if (desicion==1)
     {
       player->AgregarInventario(interaccionO);
       interaccionO->CambiarVisibilidad();
+      desicion=3;
     }
     else if(desicion==2)
     {

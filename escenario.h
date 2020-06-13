@@ -174,6 +174,7 @@ void Escenario::getObjetos()
   {
     aux<<"-----------------"<<endl;
     aux<<"En '"<<nombre<<"' puedes ver los siguientes objetos: "<<endl;
+    //cout<<contOb<<endl;
     for (int i=0;i<contOb;i++)
     {
       if (objts[i]->getVisibilidad()==true)
@@ -199,7 +200,7 @@ void Escenario::AgregarObjetos(Objeto *articulo)
     objts[contOb] = articulo;
     //cout<<"Objeto agregado a "<<nombre<<endl; //Línea para debuguear
     contOb++;
-    //cout<<contOb<<endl; //Línea para debuguear
+    //cout<<""<CONTADOR: <<contOb<<endl; //Línea para debuguear
   }
   else
   {
@@ -410,7 +411,7 @@ Objeto* Escenario::DireccionObjeto(int num)
 bool Escenario::DisponibilidadObjetos()
 {
   if(contOb==0){return false;}
-  for (int i=0;i<contP;i++)
+  for (int i=0;i<contOb;i++)
   {
     if (objts[i]->getVisibilidad()==true){return true;}
   }

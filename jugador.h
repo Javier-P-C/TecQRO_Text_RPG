@@ -83,6 +83,27 @@ Jugador::~Jugador()
 Puntos Jugador::Atacar()
 {
   int opcion;
+  /*float Tinteligencia=inteligencia;
+  float Tcarisma=carisma;
+  float Tdestreza=destreza;
+  float Tsentido=sentidoHumano;
+  float Tespiritu=espirituEmprendedor;
+  float Tintegridad=integridadAcademica;
+  cout<<"Preparado"<<endl;
+  for (int i=0;i<contInventario;i++)//Agregar las bonificaciones de los objetos en el inventrario
+  {
+    Puntos auxpt;
+    cout<<"Giro"<<i<<endl;
+    auxpt=inventario[i]->getPuntos();
+    if(auxpt.getTipoP()==SPIRIT){Tespiritu+=auxpt.getValor();}
+    else if(auxpt.getTipoP()==SENSE){Tsentido+=auxpt.getValor();}
+    else if(auxpt.getTipoP()==INTEGRITY){Tintegridad+=auxpt.getValor();}
+    else if(auxpt.getTipoP()==CHARM){Tcarisma+=auxpt.getValor();}
+    else if(auxpt.getTipoP()==INTELLIGENCE){Tinteligencia+=auxpt.getValor();}
+    else if(auxpt.getTipoP()==SKILL){Tdestreza+=auxpt.getValor();}
+    cout<<"Acaba"<<endl;
+  }*/
+  //cout<<"Sale"<<endl;
   Puntos pt(HEALTH,8);
   if (stamina==true)
   {
@@ -363,7 +384,7 @@ void Jugador::AgregarInventario(Objeto *objt)
   {
     inventario[0]=objt;
     contInventario++;
-    cout<<"Se guardó objeto en el inventario."<<endl;
+    cout<<contInventario<<"Se guardó objeto en el inventario."<<endl;
   }
   else
   {
