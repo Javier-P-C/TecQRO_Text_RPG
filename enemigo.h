@@ -24,9 +24,9 @@ class Enemigo : public Personaje
   Puntos Atacar(AreaTec tipoAl); //Enemigos que no son Bosses usan este metodo
   //virtual float Batalla()=0; //Crea la batalla entre el jugador
   void Hablar(); //Imprime dialogo
-  void getDescripcion();
+  void getDescripcion();//Imprime una descripción del personaje usando sus atributos
   void Huir();//Acaba con la interacción con el jugador puede tirar un objeto
-  string getstrTipoPersonaje();
+  string getstrTipoPersonaje();//Manda un string derivado del enum variante_de_enemigo (Ir a rpg.h para mayor información)
   void DamageReceived(Puntos *pt);//Recibe puntos de daño y dependiendo de la debilidad del enemigo los aumenta
   string getstrEnemigo(); //Pasa los TipoEnemigo a string
 
@@ -191,7 +191,9 @@ Puntos Enemigo::Atacar()
 {
   if(enemigo!=BOSS)
   {
-    //Mandar error
+    cout<<"Error en uso de ataque"<<endl;
+    Puntos pt;
+    return pt;
   }
   Puntos pt(HEALTH,25);
   pt.setUso("disminuir");

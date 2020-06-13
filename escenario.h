@@ -344,6 +344,12 @@ void Escenario::CargarPersonajes(string archivo)
         case 2: 
         {
           TipoEnemigo enemy = static_cast<TipoEnemigo>(stoi(tokens[1]));
+          if (enemy==BOSS)
+          {
+            per = new Enemigo(tokens[2],tokens[3],enemy);
+            AgregarPersonaje(per);
+            break;
+          }
           per = new Enemigo(enemy);
           AgregarPersonaje(per);
           break;

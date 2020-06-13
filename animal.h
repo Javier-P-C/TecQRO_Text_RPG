@@ -17,12 +17,12 @@ class Animal : public Personaje //gato, perro, ave
   void DeterminarHostilidad(Puntos* spirit_pt); //Recibe los puntos de sentido humano del jugador
   void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();//Sobrecarga del original
-  void Hablar();
-  string getstrTipoPersonaje();
+  void Hablar(); //Imorime diálogo
+  string getstrTipoPersonaje();//Manda un string que derivad del enum Especie (Ir a rpg.h para más información)
   string getstrEspecie();//Manda un string en base a la especie
   bool getHostilidad();
   Puntos Acariciar(); //Puede dar puntos de sentido humano o daño dependideno del animal
-  Puntos Atacar();
+  Puntos Atacar();//Mandas puntos de salud con uso "disminuir"
 
 
   //Constructores

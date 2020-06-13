@@ -5,6 +5,8 @@
 -Declarar Personajes:
   Animales: int_tipoPersonaje(1),int_enum_tipoAnimal
   Enemigo: int_tipoPersonaje(2),int_enum_tipoEnemigo
+        -Si quieres declara un BOSS se hace de la siguiente manera
+        BOSS: int_tipoPersonaje(2),int_enum_tipoEnemigo,string_nombre,string_descripcion
   Miembro Tec: int_tipoPersonaje(3),int_enum_AreaTec,string_nombre,string_matricula,string_posicion
   +Antes del personaje debes especificar el nombre del escenario donde se va a cargar y el número de personajes que hay declarados. Ambas cosas separadas por comas.
 -Declarar Objetos:
@@ -62,7 +64,7 @@ int main(int argc, char* argv[])
   Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
   //partida.Guardar();
   //partida.MostrarTodo(); //Nos aseguramos que la carga haya sido correcta
-  //partida.Comandos();
+  partida.Comandos();
   partida.~Engine();
 
   //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
