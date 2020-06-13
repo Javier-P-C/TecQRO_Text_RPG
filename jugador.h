@@ -84,6 +84,7 @@ Puntos Jugador::Atacar()
     cin>>opcion;
     if (opcion==2)
     {
+      cout<<"========================"<<endl;
       pt.SubirPuntos(2+(int)(inteligencia/10)+(int)(carisma/10)+(int)(destreza/10));
       cout<<endl<<"David Noel te ha bendecido con un rayo emprendedor, has emprendido un ataque contundente al enemigo."<<endl;
       CambiarStamina();
@@ -108,6 +109,7 @@ void Jugador::getStats() //Enlista las estadísticas del jugador
   cout<<endl<<endl<<"-----------------"<<endl;
   cout<<"---ESTADÍSTICAS--";
   cout<<endl<<"-----------------"<<endl;
+  cout<<"Vida: "<<getSalud()<<endl;
   cout<<"Inteligencia: "<<inteligencia<<endl;
   cout<<"Carisma: "<<carisma<<endl;
   cout<<"Destreza: "<<destreza<<endl;

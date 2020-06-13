@@ -45,8 +45,7 @@ class Engine
   void InteractuarConPersonaje();//Controla el impacto del jugador en los personajes y viceversa
   void Batalla();//Coordina las batallas entre player e interaccionP
   void GameOver();//Termina la Partida
-  //Escenario* getDireccion(string nombre_lugar);
-  //void CargarBrujula(string archivo);
+  void Recompensa(int num);//Sube puntos si se gana una batalla
   
 
   //Constructores
@@ -469,6 +468,10 @@ void Engine::InteractuarConPersonaje()
   cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
   interaccionP->Huir();
   cout<<"La interacción con "<<interaccionP->getstrTipoPersonaje()<<" ha terminado."<<endl<<endl;
+  cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+  int auxn;
+  cin>>auxn;
+  cout<<endl;
 }
 
 void Engine::Batalla()
@@ -498,7 +501,7 @@ void Engine::Batalla()
     }
 
     //Turno del NPC's
-    if(aux1!=2)
+    if((aux1!=2) && (interaccionP->getSalud()>0))
     {
       if(interaccionP->getTipoPersonaje()==2) //Enemigo
       {
@@ -537,6 +540,7 @@ void Engine::Batalla()
   cin>>aux2;
   cout<<endl;
   
+  //Ajustes Finales
   if(!(player->getStamina()))
   {
     player->CambiarStamina();
@@ -548,6 +552,10 @@ void Engine::Batalla()
   if(player->getSalud()<=0)
   {
     GameOver();
+  }
+  if(interaccionP->getSalud()==0)
+  {
+    Recompensa(interaccionP->getTipoPersonaje());
   }
 }
 
@@ -571,6 +579,37 @@ void Engine::GameOver()
     cout<<endl<<"Opción no válida"<<endl;
     goto opcion_valida; //Inicio del método
   }
+}
+
+void Engine::Recompensa(int num)
+{
+  cout<<"oooooooooooooooooooooooooooooo"<<endl;
+  cout<<"Por ganar la batalla recibes bonificaciones"<<endl;
+  if (num==2)
+  {
+    Puntos pt1(SPIRIT,3);
+    pt1.setUso("aumentar");
+    Puntos pt2(SENSE,3);
+    pt2.setUso("aumentar");
+    Puntos pt3(INTEGRITY,3);
+    pt3.setUso("aumentar");
+    player->setEspirituEmprendedor(pt1);
+    player->setSentidoHumano(pt2);
+    player->setIntegridadAcademica(pt3);
+  }
+  else if(num==1)
+  {
+    Puntos pt1(CHARM,3);
+    pt1.setUso("aumentar");
+    Puntos pt2(INTELLIGENCE,3);
+    pt2.setUso("aumentar");
+    Puntos pt3(SKILL,3);
+    pt3.setUso("aumentar");
+    player->setCarisma(pt1);
+    player->setInteligencia(pt2);
+    player->setDestreza(pt3);
+  }
+  cout<<"oooooooooooooooooooooooooooooo"<<endl;
 }
 
 #endif
