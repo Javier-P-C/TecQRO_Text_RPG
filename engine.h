@@ -500,6 +500,9 @@ void Engine::Batalla()
 
     if(player->getSalud()==0)
     {
+      cout<<endl<<"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"<<endl;
+      cout<<"Has muerto, hoy los borregos llorarán tu pérdida."<<endl;
+      cout<<"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"<<endl<<endl;
       player->CambiarVisibilidad();
     }
   }
@@ -518,7 +521,6 @@ void Engine::Batalla()
   {
     player->CambiarVisibilidad();
   }
-  cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
   if(player->getSalud()<=0)
   {
     GameOver();
