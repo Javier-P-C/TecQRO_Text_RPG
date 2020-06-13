@@ -28,7 +28,8 @@ class Engine
   Escenario *scenes[cantScenes]; //Se establece la cantidad de escenarios del juego
   Escenario *sceneActual; //El escenario con el que se interactua
   Jugador *player; //Jugador
-  Personaje *interaccion[2]; //Guarda al jugador y otro personaje
+  Personaje *interaccionP; //Guarda al jugador y otro personaje
+  Objeto *interaccionO; //Guarda al jugador y otro personaje
   public:
   void CargarEscenarios(string archivo);//Usa un archivo para cargar los escenarios del juego
   void CargarObjetos(string archivo);//Usa un archivo para cargarle los objetos al arreglo de Escenario
@@ -40,6 +41,7 @@ class Engine
   void MostrarTodo();//Impreme Objetos, Personajes y escenas, se usa para debuguear
   void Comandos();
   void Moverse();
+  void InteractuarConPersonaje();
   //void Interacción();
   //Escenario* getDireccion(string nombre_lugar);
   //void CargarBrujula(string archivo);
@@ -321,9 +323,53 @@ void Engine::Comandos()
     }
     else if(comando=="MIRAR")
     {
+      cout<<"============================="<<endl;
+      cout<<sceneActual->getNombre()<<endl;
       cout<<sceneActual->getDescripcion()<<endl;
       sceneActual->getPersonajes();
       sceneActual->getObjetos();
+      cout<<"============================="<<endl;
+    }
+    else if(comando=="INTERACTUAR")
+    {
+      int op;
+      while(op!=3)
+      {
+        cout<<"¿Con qué quieres interactuar?"<<endl<<"1.Personajes"<<endl<<"2.Objetos"<<endl<<"3.Ir atrás"<<endl;
+        cin>>op;
+        cout<<endl;
+        if(op==1)
+        {
+          int op2;
+          sceneActual->getPersonajes();
+          if(sceneActual->DisponibilidadPersonajes())
+          {
+            cout<<"Escribe el número del Personaje con el que quieras interactuar: ";
+            cin>>op2;
+            cout<<endl;
+            interaccionP=sceneActual->DireccionPersonaje(op2);
+            InteractuarConPersonaje();
+          }
+        }
+        else if(op==2)
+        {
+          int op2;
+          sceneActual->getObjetos();
+          cout<<"Escribe el número del Objeto con el que quieras interactuar: ";
+          cin>>op2;
+          cout<<endl;
+        }
+        else if(op==3){}
+        else
+        {
+          cout<<"Opción no válida"<<endl;
+        }
+      }
+      op=0;
+    }
+    else if(comando=="STATS")
+    {
+      player->getStats();
     }
     else if(comando=="GUARDAR")
     {
@@ -331,7 +377,7 @@ void Engine::Comandos()
     }
     else if(comando=="AYUDA")
     {
-      cout<<"MIRAR - Ver los alrededores"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
+      cout<<"MIRAR - Ver los alrededores"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
     }
   }
   cout<<endl<<"PARTIDA TERMINADA"<<endl;
@@ -350,6 +396,44 @@ void Engine::Moverse()
   sceneActual=scenes[opcion];
 }
 
+void Engine::InteractuarConPersonaje()
+{
+  int desicion;
+  if(interaccionP->getTipoPersonaje()==1)//Animal
+  {
 
+  }
+  else  if(interaccionP->getTipoPersonaje()==2)//Enemigo
+  {
+
+  }
+  else if(interaccionP->getTipoPersonaje()==3)//MiembroTec
+  {
+    while (desicion!=3)
+    {
+      cout<<"¿Qué interacción quieres tener con este personaje?"<<endl<<"1.Hablar"<<endl<<"2.Ver descripción"<<endl<<"3.Ninguna"<<endl;
+      cin>>desicion;
+      if(desicion==1)
+      {
+        cout<<endl<<"======================"<<endl;
+        interaccionP->Hablar();
+         cout<<"======================"<<endl<<endl;
+      }
+      else if(desicion==2)
+      {
+        interaccionP->getDescripcion();
+      }
+      else if(desicion==3){}
+      else
+      {
+        cout<<"Opción no válida"<<endl;
+        desicion=0;
+      }
+    }
+  } 
+  cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+  interaccionP->Huir();
+  cout<<"La interacción con "<<interaccionP->getstrTipoPersonaje()<<" ha terminado."<<endl<<endl;
+}
 
 #endif

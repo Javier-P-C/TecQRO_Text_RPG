@@ -40,7 +40,8 @@ class Escenario
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
   void printContadores(); //Imprime el valor de los contadores contOb y contP
-
+  Personaje* DireccionPersonaje(int num);//Le manda el personaje que necesite Engine()
+  bool DisponibilidadPersonajes();
 
   //Constructores
   Escenario(string name, string description);
@@ -115,7 +116,7 @@ void Escenario::getPersonajes()
     {
       if (individuos[i]->getVisibilidad()==true)
       {
-        aux<<"+"<<individuos[i]->getstrTipoPersonaje()<<endl;
+        aux<<"("<<i<<")"<<individuos[i]->getstrTipoPersonaje()<<endl;
       }
     }
     aux<<endl;
@@ -123,7 +124,7 @@ void Escenario::getPersonajes()
   else
   {
     aux<<endl<<"-----------------"<<endl;
-    aux<<"No hay nadie en este lugar."<<endl;
+    aux<<"No hay nadie en este lugar."<<endl<<endl;
   }
   cout<<aux.str();
 }
@@ -170,12 +171,12 @@ void Escenario::getObjetos()
   if(contOb>0)
   {
     aux<<"-----------------"<<endl;
-    aux<<"Puedes ver los siguientes objetos: "<<endl;
+    aux<<"En '"<<nombre<<"' puedes ver los siguientes objetos: "<<endl;
     for (int i=0;i<contOb;i++)
     {
       if (objts[i]->getVisibilidad()==true)
       {
-        aux<<"-"<<objts[i]->getNombre()<<endl;
+        aux<<"("<<i<<")"<<objts[i]->getNombre()<<endl;
       }
     }
     aux<<endl;
@@ -183,7 +184,7 @@ void Escenario::getObjetos()
   else
   {
     aux<<"-----------------"<<endl;
-    aux<<"No ves objetos que puedas recoger."<<endl;
+    aux<<"En '"<<nombre<<"' no ves objetos que puedas recoger."<<endl;
   }
   cout<<aux.str();
 }
@@ -376,6 +377,25 @@ void Escenario::CargarPersonajes(string archivo)
 void Escenario::printContadores()
 {
   cout<<contP<<"-"<<contOb<<endl;
+}
+
+Personaje* Escenario::DireccionPersonaje(int num)
+{
+  Personaje* per;
+  per=individuos[num];
+  return per;
+}
+
+bool Escenario::DisponibilidadPersonajes()
+{
+  for (int i=0;i<contP;i++)
+  {
+    if (individuos[i]->getVisibilidad()==true)
+    {
+      return true;
+    }
+  }
+  return false;
 }
 
 #endif

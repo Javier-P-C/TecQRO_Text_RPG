@@ -112,7 +112,7 @@ string MiembroTec::getstrArea()
   }
   else if(area==CIENCIAS_SOCIALES)
   {
-    ar = "ciencias Sociales";
+    ar = "ciencias sociales";
   }
   else if(area==ESTUDIOS_CREATIVOS)
   {
@@ -144,7 +144,7 @@ AreaTec MiembroTec::getArea()
 
 void MiembroTec::Hablar()
 {
-  if (posicion=="directivo"||"profesor")
+  if ((posicion=="directivo")||(posicion=="profesor"))
   {
     cout<<posicion<<": Saludos joven, que tenga un buen día."<<endl;
   }
