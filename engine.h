@@ -389,7 +389,7 @@ void Engine::Comandos()
     }
     else if(comando=="AYUDA")
     {
-      cout<<"MIRAR - Ver los alrededores"<<endl<<"INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
+      cout<<"MIRAR - Ver los alrededores"<<endl<<"INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario"<<endl<<"MOVERSE - Cambiar de escenario"<<endl<<"STATS - Despliega tus estadísticas"<<"INVENTARIO - Despliega tu inventario"<<endl<<"GUARDAR - Guardar progreso del personaje"<<endl<<"SALIR - Terminar el juego"<<endl;
     }
   }
   cout<<endl<<"PARTIDA TERMINADA"<<endl;
