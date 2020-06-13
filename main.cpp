@@ -65,7 +65,8 @@ int main(int argc, char* argv[])
   //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
   //partida.Guardar();
   //partida.MostrarTodo(); //Nos aseguramos que la carga haya sido correcta
-  partida.Comandos();
+  //partida.Comandos();
+  partida.GameOver();
   partida.~Engine();
   
   return 0;

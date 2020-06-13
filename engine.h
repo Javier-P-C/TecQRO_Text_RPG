@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <stdlib.h>
 
 #include "utility.h"
 
@@ -43,6 +44,7 @@ class Engine
   void Moverse();//Cambia el escenario Actual
   void InteractuarConPersonaje();//Controla el impacto del jugador en los personajes y viceversa
   void Batalla();//Coordina las batallas entre player e interaccionP
+  void GameOver();//Termina la Partida
   //Escenario* getDireccion(string nombre_lugar);
   //void CargarBrujula(string archivo);
   
@@ -504,6 +506,32 @@ void Engine::Batalla()
     player->CambiarVisibilidad();
   }
   cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
+  /*if(player->getSalud()<=0)
+  {
+
+  }*/
+}
+
+void Engine::GameOver()
+{
+  int aux;
+  opcion_valida: cout<<"Has perdido, la partida se cerrará. ¿Quiéres guardar las estadísticas de tu personaje?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
+  cin>>aux;
+  cout<<endl;
+  if (aux==1)
+  {
+    Guardar();
+  }
+  else if(aux==2)
+  {
+    cout<<endl<<"Se cerró sin guardar"<<endl;
+    exit(EXIT_SUCCESS);
+  }
+  else
+  {
+    cout<<endl<<"Opción no válida"<<endl;
+    goto opcion_valida; //Inicio del método
+  }
 }
 
 #endif
