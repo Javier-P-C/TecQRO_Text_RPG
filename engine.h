@@ -45,7 +45,7 @@ class Engine
   void InteractuarConPersonaje();//Controla el impacto del jugador en los personajes y viceversa
   void Batalla();//Coordina las batallas entre player e interaccionP
   void GameOver();//Termina la Partida
-  void Recompensa(int num);//Sube puntos si se gana una batalla
+  void Recompensa(int num);//Sube puntos como recompensa de batalla o interactuar con animales
   
 
   //Constructores
@@ -400,10 +400,64 @@ void Engine::Moverse()
 
 void Engine::InteractuarConPersonaje()
 {
-  int desicion;
+  int desicion,aux;
   if(interaccionP->getTipoPersonaje()==1)//Animal
   {
+    while (desicion!=4)
+    {
+      cout<<"*Los animales te pueden atacar si tu Sentido Humano es muy bajo*"<<endl;
+      cout<<"¿Qué interacción quieres tener con este personaje?"<<endl<<"1.Hablar"<<endl<<"2.Ver descripción"<<endl<<"3.Acariciarlo"<<endl<<"4.Ninguna"<<endl;
+      cin>>desicion;
 
+      Animal *auxA=(Animal*)interaccionP;
+      Puntos auxP(SENSE,player->getSentidoHumano());
+      auxA->DeterminarHostilidad(auxP);
+      if(auxA->getHostilidad())
+      {
+        int aux2;
+        interaccionP->getDescripcion();
+        cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+        cin>>aux2;
+        cout<<endl;
+        interaccionP->Hablar();
+        cout<<"Parece que no le caiste bien"<<endl<<endl;
+        cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+        cin>>aux2;
+        cout<<endl;
+        cout<<"COMIENZA LA BATALLA"<<endl;
+        Batalla();
+        desicion = 4;
+      }
+      else if(desicion==1)
+      {
+        cout<<endl;
+        interaccionP->Hablar();
+        cout<<endl;
+      }
+      else if(desicion==2)
+      {
+        interaccionP->getDescripcion();
+      }
+      else if(desicion==3)
+      {
+        Puntos pt = auxA->Acariciar();//Fue modificado el uso original de los puntos que envia Acariciar() para adaptarlo a la primera versión del juego
+        if(pt.getTipoP()==HEALTH)
+        {
+          player->DamageReceived(pt);
+        }
+        else if(pt.getTipoP()==SENSE)
+        {
+          cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+          cin>>aux;
+          cout<<endl;
+          Recompensa(1);
+        }
+        desicion = 4;
+      }
+      cout<<"Presione cualquier NÚMERO para continuar"<<endl;
+      cin>>aux;
+      cout<<endl;
+    } 
   }
 
   else  if(interaccionP->getTipoPersonaje()==2)//Enemigo
@@ -516,12 +570,20 @@ void Engine::Batalla()
         }
         else
         {
-          cout<<"Más despacio velocista"<<endl;
           auxP=auxE->Atacar(player->getArea());
           player->DamageReceived(auxP);
           cout<<endl;
         }
       }
+
+      else if (interaccionP->getTipoPersonaje()==1)//Animal
+      {
+        cout<<"..........................."<<endl;
+        cout<<endl<<"El animal te ha atacado"<<endl;
+        auxP=interaccionP->Atacar();
+        player->DamageReceived(auxP);
+        cout<<endl;
+      } 
     }
     
     //auxP = interaccionP->Atacar();
@@ -555,6 +617,7 @@ void Engine::Batalla()
   }
   if(interaccionP->getSalud()==0)
   {
+    cout<<"¡¡¡¡GANASTE LA BATALLA!!!!"<<endl;
     Recompensa(interaccionP->getTipoPersonaje());
   }
 }
@@ -562,7 +625,7 @@ void Engine::Batalla()
 void Engine::GameOver()
 {
   int aux;
-  opcion_valida: cout<<endl<<"Has perdido, la partida se cerrará. ¿Quiéres guardar las estadísticas de tu personaje?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
+  opcion_valida: cout<<endl<<"Has perdido; la partida se cerrará. ¿Quiéres guardar las estadísticas de tu personaje?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
   cin>>aux;
   cout<<endl;
   if (aux==1)
@@ -583,8 +646,8 @@ void Engine::GameOver()
 
 void Engine::Recompensa(int num)
 {
-  cout<<"oooooooooooooooooooooooooooooo"<<endl;
-  cout<<"Por ganar la batalla recibes bonificaciones"<<endl;
+  cout<<"ooooooooooooooooooooooooooooooooooooooooo"<<endl;
+  cout<<"Recibes bonificaciones"<<endl;
   if (num==2)
   {
     Puntos pt1(SPIRIT,3);
@@ -609,7 +672,7 @@ void Engine::Recompensa(int num)
     player->setInteligencia(pt2);
     player->setDestreza(pt3);
   }
-  cout<<"oooooooooooooooooooooooooooooo"<<endl;
+  cout<<"ooooooooooooooooooooooooooooooooooooooooo"<<endl;
 }
 
 #endif

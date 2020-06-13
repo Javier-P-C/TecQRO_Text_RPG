@@ -92,7 +92,7 @@ Puntos Jugador::Atacar()
     else
     {
       pt.SubirPuntos(((int)(sentidoHumano/10)+(int)(espirituEmprendedor/10)+(int)(integridadAcademica/10))/2);
-      cout<<endl<<"Has golpeado al enemigo."<<endl;
+      cout<<endl<<"Has golpeado al atacante."<<endl;
     }
   }
   else
@@ -130,12 +130,12 @@ void Jugador::setInteligencia(Puntos pt)
     if (pt.getUso()=="disminuir")
     {
       inteligencia-=pt.getValor();
-      cout<<"Se te han bajado "<<pt.getValor()<<"puntos de inteligencia."<<endl;
+      cout<<"Se te han bajado "<<pt.getValor()<<" puntos de inteligencia."<<endl;
     }
     else if(pt.getUso()=="aumentar")
     {
       inteligencia+=pt.getValor();
-      cout<<"Se te han subido "<<pt.getValor()<<"puntos de inteligencia."<<endl;
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de inteligencia."<<endl;
     }
     else if(pt.getUso()=="neutro")
     {
@@ -259,7 +259,7 @@ void Jugador::setEspirituEmprendedor(Puntos pt)
     }
     else if(pt.getUso()=="aumentar")
     {
-      cout<<"Se te han subido "<<pt.getValor()<<"puntos de espíritu emprendedor."<<endl;
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de espíritu emprendedor."<<endl;
       espirituEmprendedor+=pt.getValor();
     }
     else if(pt.getUso()=="neutro")

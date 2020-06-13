@@ -32,7 +32,7 @@ class Escenario
   string getNombre();//Manda el atributo nombre del escenario
   string getDescripcion();//Manda el atributo descripcion del escenario
   void getPersonajes(); //Imprime la lista de los personajes visibles
-  void AgregarPersonaje(Personaje *per);
+  void AgregarPersonaje(Personaje *per);//Se agrega un personaje al escenario
   void getObjetos();//Imprime la lista de los objetos visibles
   void AgregarObjetos(Objeto *articulo); //Se agrega un objeto al escenario
   void getBrujula(); //Muestra los cuartos cercanos
@@ -41,7 +41,7 @@ class Escenario
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
   void printContadores(); //Imprime el valor de los contadores contOb y contP
   Personaje* DireccionPersonaje(int num);//Le manda el personaje que necesite Engine()
-  bool DisponibilidadPersonajes();
+  bool DisponibilidadPersonajes();//Manda un true si al menos un personaje está visible si no manda un false
 
   //Constructores
   Escenario(string name, string description);

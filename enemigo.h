@@ -299,7 +299,10 @@ string Enemigo::getstrEnemigo()
 void Enemigo::Huir()
 {
   cout<<"El "<<getstrEnemigo()<<" ha huido"<<endl;
-  CambiarVisibilidad();
+  if(getVisibilidad())
+  {
+    CambiarVisibilidad();
+  }
 }
 
 void Enemigo::DamageReceived(Puntos pt)

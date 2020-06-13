@@ -14,15 +14,16 @@ class Animal : public Personaje //gato, perro, ave
   bool hostilidad;
   
   public:
-  void DeterminarHostilidad(Puntos spirit_pt); //Recibe los puntos de sentido humano del jugador
+  void DeterminarHostilidad(Puntos sense_pt); //Recibe los puntos de sentido humano del jugador
   void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();//Sobrecarga del original
   void Hablar(); //Imorime diálogo
   string getstrTipoPersonaje();//Manda un string que derivad del enum Especie (Ir a rpg.h para más información)
   string getstrEspecie();//Manda un string en base a la especie
-  bool getHostilidad();
+  bool getHostilidad();//Manda el valor del atributoo hostilidad
   Puntos Acariciar(); //Puede dar puntos de sentido humano o daño dependideno del animal
   Puntos Atacar();//Mandas puntos de salud con uso "disminuir"
+  void DamageReceived(Puntos pt);//Administra el daño recibido
 
 
   //Constructores
@@ -111,7 +112,10 @@ Animal::~Animal()
 void Animal::Huir()
 {
   cout<<"El "<<getstrEspecie()<<" ha huido"<<endl;
-  CambiarVisibilidad();
+  if(getVisibilidad())
+  {
+    CambiarVisibilidad();
+  }
 }
 
 void Animal::getDescripcion()
@@ -131,11 +135,11 @@ void Animal::getDescripcion()
   cout<<"-----------------"<<endl;
 }
 
-void Animal::DeterminarHostilidad(Puntos spirit_pt)
+void Animal::DeterminarHostilidad(Puntos sense_pt)
 {
-  if (especie==(GATO||AVE))
+  if (especie==GATO)
   {
-    if (spirit_pt.getValor()<25)
+    if (sense_pt.getValor()<25)
     {
       hostilidad = true;
     }
@@ -146,9 +150,20 @@ void Animal::DeterminarHostilidad(Puntos spirit_pt)
   }
   else if (especie==PERRO)
   {
-    if (spirit_pt.getValor()<15)
+    if (sense_pt.getValor()<15)
     {
       hostilidad = true;
+    }
+    else
+    {
+      hostilidad = false;
+    }
+  }
+  else if(especie==AVE)
+  {
+    if (sense_pt.getValor()<=0)
+    {
+      hostilidad = false;
     }
     else
     {
@@ -193,12 +208,13 @@ Puntos Animal::Acariciar()
   else if(especie==PERRO)
   {
     cout<<"Has alegrado al perro."<<endl;
-    Puntos pt(SPIRIT,5);
+    Puntos pt(SENSE,5);
     pt.setUso("aumentar");
     return pt;
   }
   else if(especie==AVE)
   {
+    CambiarVisibilidad();
     cout<<"El ave se ha ido."<<endl;
     Puntos pt(NP,0);
     Huir();
@@ -246,6 +262,16 @@ string Animal::getstrTipoPersonaje()
   stringstream aux;
   aux<<"Animal ("<<getstrEspecie()<<")";
   return aux.str();
+}
+
+void Animal::DamageReceived(Puntos pt)
+{
+  setSalud(pt);
+  cout<<"El "<<getstrEspecie()<<" ha recibido daño, salud: "<<getSalud()<<"/100"<<endl;
+  if(getSalud()==0)
+  {
+    CambiarVisibilidad();
+  }
 }
 
 #endif
