@@ -406,6 +406,7 @@ void Engine::InteractuarConPersonaje()
   {
 
   }
+
   else  if(interaccionP->getTipoPersonaje()==2)//Enemigo
   {
     int aux1;
@@ -440,6 +441,7 @@ void Engine::InteractuarConPersonaje()
       goto regreso;//Arriba, la segunda línea del "else if" en el que estamos
     }
   }
+
   else if(interaccionP->getTipoPersonaje()==3)//MiembroTec
   {
     while (desicion!=3)
@@ -481,6 +483,9 @@ void Engine::Batalla()
     {
       /*auxP=player->Atacar();
       interaccionP->*/
+      Puntos *pt=new Puntos(HEALTH,100);
+      pt->setUso("disminuir");
+      player->DamageReceived(pt);
     }
     else if(aux1==2)
     {
@@ -491,12 +496,20 @@ void Engine::Batalla()
     {
       cout<<"Usaste una opción no válida, no has atacado"<<endl;
     }
+    
+
+    if(player->getSalud()==0)
+    {
+      player->CambiarVisibilidad();
+    }
   }
+
   cout<<"BATALLA FINALIZADA"<<endl;
   cout<<"Presione cualquier NÚMERO para continuar"<<endl;
   cin>>aux2;
   cout<<endl;
   cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
+  
   if(!(player->getStamina()))
   {
     player->CambiarStamina();
@@ -506,16 +519,16 @@ void Engine::Batalla()
     player->CambiarVisibilidad();
   }
   cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
-  /*if(player->getSalud()<=0)
+  if(player->getSalud()<=0)
   {
-
-  }*/
+    GameOver();
+  }
 }
 
 void Engine::GameOver()
 {
   int aux;
-  opcion_valida: cout<<"Has perdido, la partida se cerrará. ¿Quiéres guardar las estadísticas de tu personaje?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
+  opcion_valida: cout<<endl<<"Has perdido, la partida se cerrará. ¿Quiéres guardar las estadísticas de tu personaje?"<<endl<<"1.Sí"<<endl<<"2.No"<<endl;
   cin>>aux;
   cout<<endl;
   if (aux==1)
