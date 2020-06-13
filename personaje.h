@@ -25,10 +25,10 @@ class Personaje
   virtual void Hablar()=0; //Imprime dialogo
   virtual void Huir()=0; //Acaba con la interacción con el jugador
   virtual string getstrTipoPersonaje()=0;//Manda el tipo de Personaje en forma de string, sirve para cuando Escenario() lista a los personajes en getPersonajes()
-  virtual void DamageReceived(Puntos *pt); //Llama al metodo para bajar la salud y manda un mensaje al jugador, recibe los puntos que vienen de los ataques de enemigos
+  virtual void DamageReceived(Puntos pt); //Llama al metodo para bajar la salud y manda un mensaje al jugador, recibe los puntos que vienen de los ataques de enemigos
   virtual void getDescripcion(); //Muestra los atributos relevantes del personaje
   string getNombre(); //Manda el nombre del personaje
-  void setSalud(Puntos *pt); //Cambia los puntos de salud dependiendo de si son de daño o de cura
+  void setSalud(Puntos pt); //Cambia los puntos de salud dependiendo de si son de daño o de cura
   float getSalud(); //Manda el valor de salud
   void CambiarVisibilidad(); //Cambia de false a true y viceversa la visibilidad
   bool getVisibilidad(); //Manda el valor de visibilidad
@@ -92,7 +92,7 @@ Personaje::~Personaje()
   cout<<nombre<<" ha huido"<<endl;
 }*/
   
-void Personaje::DamageReceived(Puntos *pt)
+void Personaje::DamageReceived(Puntos pt)
 {
   setSalud(pt);
   cout<<nombre<<" ha recibido daño, salud: "<<salud<<"/100"<<endl;
@@ -111,19 +111,19 @@ string Personaje::getNombre()
   return nombre;
 }
 
-void Personaje::setSalud(Puntos *pt)
+void Personaje::setSalud(Puntos pt)
 {
-  if (pt->getTipoP()==HEALTH)
+  if (pt.getTipoP()==HEALTH)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      salud-=pt->getValor();
+      salud-=pt.getValor();
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      salud+=pt->getValor();
+      salud+=pt.getValor();
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en la salud"<<endl;
     }

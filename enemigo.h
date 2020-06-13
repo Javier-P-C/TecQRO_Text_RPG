@@ -27,7 +27,7 @@ class Enemigo : public Personaje
   void getDescripcion();//Imprime una descripción del personaje usando sus atributos
   void Huir();//Acaba con la interacción con el jugador puede tirar un objeto
   string getstrTipoPersonaje();//Manda un string derivado del enum variante_de_enemigo (Ir a rpg.h para mayor información)
-  void DamageReceived(Puntos *pt);//Recibe puntos de daño y dependiendo de la debilidad del enemigo los aumenta
+  void DamageReceived(Puntos pt);//Recibe puntos de daño y dependiendo de la debilidad del enemigo los aumenta
   string getstrEnemigo(); //Pasa los TipoEnemigo a string
 
   //Constructores
@@ -48,7 +48,7 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
   tipoPersonaje = 2;
   Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
-  setSalud(&puntosAjuste);
+  setSalud(puntosAjuste);
   puntosAjuste.~Puntos();
   enemigo=enemy;
 
@@ -97,7 +97,7 @@ Enemigo::Enemigo(TipoEnemigo enemy)
   tipoPersonaje = 2;
   Puntos puntosAjuste(HEALTH,50);
   puntosAjuste.setUso("disminuir");
-  setSalud(&puntosAjuste);
+  setSalud(puntosAjuste);
   puntosAjuste.~Puntos();
   enemigo=enemy;
 
@@ -301,23 +301,23 @@ void Enemigo::Huir()
   CambiarVisibilidad();
 }
 
-void Enemigo::DamageReceived(Puntos *pt)
+void Enemigo::DamageReceived(Puntos pt)
 {
   if((debilidad1||debilidad2)==(NEGOCIOS||SALUD))
   {
-    pt->SubirPuntos(5);
+    pt.SubirPuntos(5);
   }
   else if((debilidad1||debilidad2)==(CIENCIAS_SOCIALES||SALUD))
   {
-    pt->SubirPuntos(5);
+    pt.SubirPuntos(5);
   }
   else if((debilidad1||debilidad2)==(CIENCIAS_SOCIALES||ESTUDIOS_CREATIVOS))
   {
-    pt->SubirPuntos(5);
+    pt.SubirPuntos(5);
   }
   else if((debilidad1||debilidad2)==(AMBIENTE_CONSTRUIDO||INGENIERIAS))
   {
-    pt->SubirPuntos(5);
+    pt.SubirPuntos(5);
   }
   setSalud(pt);
   cout<<"El "<<getstrEnemigo()<<" ha recibido daño, salud: "<<getSalud()<<"/100"<<endl;

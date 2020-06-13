@@ -483,8 +483,8 @@ void Engine::Batalla()
     {
       /*auxP=player->Atacar();
       interaccionP->*/
-      Puntos *pt=new Puntos(HEALTH,100);
-      pt->setUso("disminuir");
+      Puntos pt(HEALTH,100);
+      pt.setUso("disminuir");
       player->DamageReceived(pt);
     }
     else if(aux1==2)
@@ -511,7 +511,6 @@ void Engine::Batalla()
   cout<<"Presione cualquier NÚMERO para continuar"<<endl;
   cin>>aux2;
   cout<<endl;
-  cout<<player->getVisibilidad()<<"-"<<player->getStamina()<<endl;
   
   if(!(player->getStamina()))
   {

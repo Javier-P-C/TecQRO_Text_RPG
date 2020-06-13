@@ -24,12 +24,12 @@ class Jugador : public MiembroTec
   public:
   Puntos Atacar();//Los puntos aumentan su valor dependiendo de las stats del jugador
   void getStats(); //Enlista las estadísticas del jugador
-  void setInteligencia(Puntos *pt);
-  void setCarisma(Puntos *pt);
-  void setDestreza(Puntos *pt);
-  void setSentidoHumano(Puntos *pt);
-  void setEspirituEmprendedor(Puntos *pt);
-  void setIntegridadAcademica(Puntos *pt);
+  void setInteligencia(Puntos pt);
+  void setCarisma(Puntos pt);
+  void setDestreza(Puntos pt);
+  void setSentidoHumano(Puntos pt);
+  void setEspirituEmprendedor(Puntos pt);
+  void setIntegridadAcademica(Puntos pt);
   float getInteligencia();
   float getCarisma();
   float getDestreza();
@@ -120,21 +120,21 @@ void Jugador::getStats() //Enlista las estadísticas del jugador
   cout<<"-----------------"<<endl<<endl;
 }
   
-void Jugador::setInteligencia(Puntos *pt)
+void Jugador::setInteligencia(Puntos pt)
 {
-  if (pt->getTipoP()==INTELLIGENCE)
+  if (pt.getTipoP()==INTELLIGENCE)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      inteligencia-=pt->getValor();
-      cout<<"Se te han bajado "<<pt->getValor()<<"puntos de inteligencia."<<endl;
+      inteligencia-=pt.getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<"puntos de inteligencia."<<endl;
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      inteligencia+=pt->getValor();
-      cout<<"Se te han subido "<<pt->getValor()<<"puntos de inteligencia."<<endl;
+      inteligencia+=pt.getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<"puntos de inteligencia."<<endl;
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en la inteligencia"<<endl;
     }
@@ -151,21 +151,21 @@ void Jugador::setInteligencia(Puntos *pt)
   }
 }
 
-void Jugador::setCarisma(Puntos *pt)
+void Jugador::setCarisma(Puntos pt)
 {
-  if (pt->getTipoP()==CHARM)
+  if (pt.getTipoP()==CHARM)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      carisma-=pt->getValor();
-      cout<<"Se te han bajado "<<pt->getValor()<<"puntos de carisma."<<endl;
+      carisma-=pt.getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<"puntos de carisma."<<endl;
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      carisma+=pt->getValor();
-      cout<<"Se te han subido "<<pt->getValor()<<" puntos de carisma."<<endl;
+      carisma+=pt.getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de carisma."<<endl;
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en el carisma."<<endl;
     }
@@ -182,21 +182,21 @@ void Jugador::setCarisma(Puntos *pt)
   }
 }
 
-void Jugador::setDestreza(Puntos *pt)
+void Jugador::setDestreza(Puntos pt)
 {
-  if (pt->getTipoP()==SKILL)
+  if (pt.getTipoP()==SKILL)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de destreza."<<endl;
-      destreza-=pt->getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<" puntos de destreza."<<endl;
+      destreza-=pt.getValor();
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      cout<<"Se te han subido "<<pt->getValor()<<" puntos de destreza."<<endl;
-      destreza+=pt->getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de destreza."<<endl;
+      destreza+=pt.getValor();
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en la destreza"<<endl;
     }
@@ -213,21 +213,21 @@ void Jugador::setDestreza(Puntos *pt)
   }
 }
 
-void Jugador::setSentidoHumano(Puntos *pt)
+void Jugador::setSentidoHumano(Puntos pt)
 {
-  if (pt->getTipoP()==SENSE)
+  if (pt.getTipoP()==SENSE)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de sentido humano."<<endl;
-      sentidoHumano-=pt->getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<" puntos de sentido humano."<<endl;
+      sentidoHumano-=pt.getValor();
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      cout<<"Se te han subido "<<pt->getValor()<<" puntos de sentido humano."<<endl;
-      sentidoHumano+=pt->getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de sentido humano."<<endl;
+      sentidoHumano+=pt.getValor();
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en el sentido humano."<<endl;
     }
@@ -244,22 +244,22 @@ void Jugador::setSentidoHumano(Puntos *pt)
   }
 }
 
-void Jugador::setEspirituEmprendedor(Puntos *pt)
+void Jugador::setEspirituEmprendedor(Puntos pt)
 {
-  if (pt->getTipoP()==SPIRIT)
+  if (pt.getTipoP()==SPIRIT)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de espíritu emprendedor."<<endl;
-      sentidoHumano-=pt->getValor();
-      espirituEmprendedor-=pt->getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<" puntos de espíritu emprendedor."<<endl;
+      sentidoHumano-=pt.getValor();
+      espirituEmprendedor-=pt.getValor();
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      cout<<"Se te han subido "<<pt->getValor()<<"puntos de espíritu emprendedor."<<endl;
-      espirituEmprendedor+=pt->getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<"puntos de espíritu emprendedor."<<endl;
+      espirituEmprendedor+=pt.getValor();
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en el espíritu emprendedor."<<endl;
     }
@@ -276,21 +276,21 @@ void Jugador::setEspirituEmprendedor(Puntos *pt)
   }
 }
 
-void Jugador::setIntegridadAcademica(Puntos *pt)
+void Jugador::setIntegridadAcademica(Puntos pt)
 {
-  if (pt->getTipoP()==INTEGRITY)
+  if (pt.getTipoP()==INTEGRITY)
   {
-    if (pt->getUso()=="disminuir")
+    if (pt.getUso()=="disminuir")
     {
-      cout<<"Se te han bajado "<<pt->getValor()<<" puntos de integridad académica."<<endl;
-      integridadAcademica-=pt->getValor();
+      cout<<"Se te han bajado "<<pt.getValor()<<" puntos de integridad académica."<<endl;
+      integridadAcademica-=pt.getValor();
     }
-    else if(pt->getUso()=="aumentar")
+    else if(pt.getUso()=="aumentar")
     {
-      cout<<"Se te han subido "<<pt->getValor()<<" puntos de integridad académica."<<endl;
-      integridadAcademica+=pt->getValor();
+      cout<<"Se te han subido "<<pt.getValor()<<" puntos de integridad académica."<<endl;
+      integridadAcademica+=pt.getValor();
     }
-    else if(pt->getUso()=="neutro")
+    else if(pt.getUso()=="neutro")
     {
       cout<<"No hay efecto en la integridad académica."<<endl;
     }

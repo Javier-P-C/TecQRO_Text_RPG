@@ -14,7 +14,7 @@ class Animal : public Personaje //gato, perro, ave
   bool hostilidad;
   
   public:
-  void DeterminarHostilidad(Puntos* spirit_pt); //Recibe los puntos de sentido humano del jugador
+  void DeterminarHostilidad(Puntos spirit_pt); //Recibe los puntos de sentido humano del jugador
   void Huir(); //Acaba con la interacción con el jugador puede tirar un objeto
   void getDescripcion();//Sobrecarga del original
   void Hablar(); //Imorime diálogo
@@ -41,7 +41,7 @@ Animal::Animal(string name,Especie specie)
   tipoPersonaje = 1;
   Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
-  setSalud(&puntosAjuste);
+  setSalud(puntosAjuste);
   puntosAjuste.~Puntos();
   hostilidad = false;
   if(specie==GATO)
@@ -67,7 +67,7 @@ Animal::Animal(Especie specie)
   tipoPersonaje = 1;
   Puntos puntosAjuste(HEALTH,75);
   puntosAjuste.setUso("disminuir");
-  setSalud(&puntosAjuste);
+  setSalud(puntosAjuste);
   puntosAjuste.~Puntos();
   hostilidad = false;
   
@@ -131,11 +131,11 @@ void Animal::getDescripcion()
   cout<<"-----------------"<<endl;
 }
 
-void Animal::DeterminarHostilidad(Puntos* spirit_pt)
+void Animal::DeterminarHostilidad(Puntos spirit_pt)
 {
   if (especie==(GATO||AVE))
   {
-    if (spirit_pt->getValor()<25)
+    if (spirit_pt.getValor()<25)
     {
       hostilidad = true;
     }
@@ -146,7 +146,7 @@ void Animal::DeterminarHostilidad(Puntos* spirit_pt)
   }
   else if (especie==PERRO)
   {
-    if (spirit_pt->getValor()<15)
+    if (spirit_pt.getValor()<15)
     {
       hostilidad = true;
     }
