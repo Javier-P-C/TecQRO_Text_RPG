@@ -85,20 +85,21 @@ Puntos Jugador::Atacar()
     if (opcion==2)
     {
       pt.SubirPuntos(2+(int)(inteligencia/10)+(int)(carisma/10)+(int)(destreza/10));
-      cout<<"David Noel te ha bendecido con un rayo emprendedor, has emprendido un ataque contundente al enemigo."<<endl;
-      
+      cout<<endl<<"David Noel te ha bendecido con un rayo emprendedor, has emprendido un ataque contundente al enemigo."<<endl;
+      CambiarStamina();
     }
     else
     {
       pt.SubirPuntos(((int)(sentidoHumano/10)+(int)(espirituEmprendedor/10)+(int)(integridadAcademica/10))/2);
-      cout<<"Has golpeado al enemigo."<<endl;
+      cout<<endl<<"Has golpeado al enemigo."<<endl;
     }
   }
   else
   {
     pt.SubirPuntos(((int)(sentidoHumano/10)+(int)(espirituEmprendedor/10)+(int)(integridadAcademica/10))/2);
-    cout<<"Has golpeado al enemigo."<<endl;
+    cout<<endl<<"Has golpeado al enemigo."<<endl;
   }
+  pt.setUso("disminuir");
   return pt;
 }
 

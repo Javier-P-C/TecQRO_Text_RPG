@@ -316,7 +316,7 @@ void Engine::Comandos()
   while(comando!="SALIR")
   {
     cout<<endl<<"Estás en "<<sceneActual->getNombre()<<endl;
-    cout<<endl<<"***Ecriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
+    cout<<endl<<"***Escriba un comando o escriba AYUDA para desplegar la lista de comandos***"<<endl;
     cin>>comando;
     cout<<endl;
     if (comando=="MOVERSE")
@@ -477,15 +477,14 @@ void Engine::Batalla()
   Puntos auxP;
   while((player->getVisibilidad()==true)&&(interaccionP->getVisibilidad()==true))
   {
+    //Turno del jugador
     cout<<"¿Qué quieres hacer?"<<endl<<"1.Atacar"<<endl<<"2.Huir"<<endl;
     cin>>aux1;
     if(aux1==1)
     {
-      /*auxP=player->Atacar();
-      interaccionP->*/
-      Puntos pt(HEALTH,100);
-      pt.setUso("disminuir");
-      player->DamageReceived(pt);
+      cout<<"..........................."<<endl;
+      auxP=player->Atacar();
+      interaccionP->DamageReceived(auxP);
     }
     else if(aux1==2)
     {
@@ -494,10 +493,36 @@ void Engine::Batalla()
     }
     else
     {
+      cout<<"..........................."<<endl;
       cout<<"Usaste una opción no válida, no has atacado"<<endl;
     }
-    
 
+    //Turno del NPC's
+    if(aux1!=2)
+    {
+      if(interaccionP->getTipoPersonaje()==2) //Enemigo
+      {
+        cout<<"..........................."<<endl;
+        cout<<endl<<"El enemigo te ha golpeado"<<endl;
+        Enemigo *auxE = (Enemigo*)interaccionP;
+        if(auxE->getEnemigo()==BOSS)
+        {
+          auxP=auxE->Atacar();
+          player->DamageReceived(auxP);
+          cout<<endl;
+        }
+        else
+        {
+          cout<<"Más despacio velocista"<<endl;
+          auxP=auxE->Atacar(player->getArea());
+          player->DamageReceived(auxP);
+          cout<<endl;
+        }
+      }
+    }
+    
+    //auxP = interaccionP->Atacar();
+    //Comprobar Salud
     if(player->getSalud()==0)
     {
       cout<<endl<<"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"<<endl;

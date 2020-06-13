@@ -29,6 +29,7 @@ class Enemigo : public Personaje
   string getstrTipoPersonaje();//Manda un string derivado del enum variante_de_enemigo (Ir a rpg.h para mayor información)
   void DamageReceived(Puntos pt);//Recibe puntos de daño y dependiendo de la debilidad del enemigo los aumenta
   string getstrEnemigo(); //Pasa los TipoEnemigo a string
+  TipoEnemigo getEnemigo();
 
   //Constructores
   Enemigo(string name,TipoEnemigo enemy);
@@ -321,6 +322,10 @@ void Enemigo::DamageReceived(Puntos pt)
   }
   setSalud(pt);
   cout<<"El "<<getstrEnemigo()<<" ha recibido daño, salud: "<<getSalud()<<"/100"<<endl;
+  if(getSalud()==0)
+  {
+    CambiarVisibilidad();
+  }
 }
 
 string Enemigo::getstrTipoPersonaje()
@@ -328,6 +333,11 @@ string Enemigo::getstrTipoPersonaje()
   stringstream aux;
   aux<<"Enemigo ("<<getstrEnemigo()<<")";
   return aux.str();
+}
+
+TipoEnemigo Enemigo::getEnemigo()
+{
+  return enemigo;
 }
 
 #endif
