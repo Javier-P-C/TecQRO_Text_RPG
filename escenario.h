@@ -35,8 +35,8 @@ class Escenario
   void AgregarPersonaje(Personaje *per);//Se agrega un personaje al escenario
   void getObjetos();//Imprime la lista de los objetos visibles
   void AgregarObjetos(Objeto *articulo); //Se agrega un objeto al escenario
-  void getBrujula(); //Muestra los cuartos cercanos
-  void AgregarBrujula(string direccion,Escenario *lugar);
+  //void getBrujula(); //Muestra los cuartos cercanos
+  //void AgregarBrujula(string direccion,Escenario *lugar);
   void CargarObjetos(string archivo); //Carga objetos que vienen de un archivo
   void CargarPersonajes(string archivo); //Carga personajes que vienen de un archivo
   void printContadores(); //Imprime el valor de los contadores contOb y contP

@@ -32,7 +32,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
   //MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string posicion);
   MiembroTec(string name, string description,string id,AreaTec area,string posicion);
   MiembroTec(string name,string id,AreaTec area,string posicion);
-  MiembroTec(string id,AreaTec area,string posicion);
+  //MiembroTec(string id,AreaTec area,string posicion);
   MiembroTec();
 
   //Destructor

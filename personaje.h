@@ -38,7 +38,7 @@ class Personaje
   //Constructores
   Personaje(string name); //Usa los parametros recibidos, provee descripcion generica, vuelve visible al personaje, salud al 100
   Personaje(string name, string description); //Usa los parametros, vuelve visible al personaje, salud al 100
-  Personaje(string name, string description, bool visibility); //Usa los parametros, salud al 100
+  //Personaje(string name, string description, bool visibility); //Usa los parametros, salud al 100
   Personaje(); //Genera un personaje con valores vacios
 
   //Destrcutor
@@ -61,13 +61,13 @@ Personaje::Personaje(string name, string description)
   visibilidad = true;
 }
 
-Personaje::Personaje(string name, string description, bool visibility)
+/*Personaje::Personaje(string name, string description, bool visibility)
 {
   nombre = name;
   descripcion = description;
   salud = 100;
   visibilidad = visibility;
-}
+}*/
 
 Personaje::Personaje()
 {
