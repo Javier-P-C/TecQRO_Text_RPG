@@ -29,7 +29,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
   string getPosicion();
 
   //Constructores
-  MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string posicion);
+  //MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string posicion);
   MiembroTec(string name, string description,string id,AreaTec area,string posicion);
   MiembroTec(string name,string id,AreaTec area,string posicion);
   MiembroTec(string id,AreaTec area,string posicion);
@@ -39,7 +39,7 @@ class MiembroTec : public Personaje //NPC's y el jugador
   ~MiembroTec();
 };
 
-MiembroTec::MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string position)
+/*MiembroTec::MiembroTec(string name, string description, bool visibility,string id,AreaTec area,string position)
            :Personaje(name,description,visibility)
 {
   tipoPersonaje = 3;
@@ -47,7 +47,7 @@ MiembroTec::MiembroTec(string name, string description, bool visibility,string i
   posicion = position;
   this->area = area;
   player=false;
-}
+}*/
 
 MiembroTec::MiembroTec(string name, string description,string id,AreaTec area,string position)
            :Personaje(name,description)
@@ -70,7 +70,7 @@ MiembroTec::MiembroTec(string name,string id,AreaTec area,string position)
   player=false;
 }
 
-MiembroTec::MiembroTec(string id,AreaTec area,string position)
+/*MiembroTec::MiembroTec(string id,AreaTec area,string position)
            :Personaje("---")
 {
   tipoPersonaje = 3;
@@ -79,7 +79,7 @@ MiembroTec::MiembroTec(string id,AreaTec area,string position)
   this->area = area;
   descripcion="Miembro del Tec";
   player=false;
-}
+}*/
 
 MiembroTec::MiembroTec()
 {

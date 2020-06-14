@@ -1,0 +1,90 @@
+              INSTRUCCIONES
+Este juego se controla por medio de comandos y de entrada de 
+números. 
+Si escoge un nueva partida tendrá que llenar sus datos de jugador.
+Al completarlos entrará al juego, pero sus datos no se guardaran.
+Para ello debe escribir el comando GUARDAR en la consola, una vez que se encuentre en el juego.
+
+El juego cuenta con los siguientes comandos.
+
+-MIRAR - Ver los alrededores
+-INTERACTUAR - Te permite interactuar con los objetos y personajes del escenario
+-MOVERSE - Cambiar de escenari
+-STATS - Despliega tus estadísticas
+-GUARDAR - Guardar progreso del personaje
+-SALIR - Terminar el juego
+-AYUDA - Despliega todos los comandos disponibles
+
+PERO no los puede utilizar siempre, debe esperar a que el siguiente
+mensaje apareza en pantalla si no quiere que el juego deje de 
+funcionar.
+
+MENSAJE:
+***Escriba un comando o escriba AYUDA para desplegar la lista de comandos***
+
+Cuando no vea ese mensaje lo que tiene que meter en la consola son
+los números que el juego le va indicando.
+
+LO MÁS IMPORTANTE: Siga las instrucciones que le marca el juego
+es fácil meter un input que rompa la funcionalidad del programa.
+
+¿Qué pasa si se me cicla el juego por haber metido un char en vez de un número?
+Piquele a la pantalla de consola y oprima ctrl + C.
+
+¿Segmentation fault (core dumped)?
+Para está versión del juego me aseguré de eliminar los elementos que generaban esté error. Pero si aparece solo reinicie el juego 
+y esperemos que haya hecho caso a mi recomendación de usar el 
+comando GUARDAR.
+
+¿Como progreso?
+Debido al tiempo y mi subestimación de la complicidad de 
+este proyecto actualmente en el juego exiten dos formas de aumentar 
+lass estadísticas.
+Ganando batallas y si logra acariciar un perro. 
+En un inicio quería generar varios eventos específicos para mejorar 
+cada estadística del jugador pero me encontré con problemas durante
+la programación que alentaron el desarrollo del juego y no me
+permitieron implementar todo lo que tenía en mente. No obstante, 
+me asegure de implementar todo lo que era requisito del proyecto.
+
+¿Por qué mi partida no se guarda?
+Este juego no cuenta con guardado automático, para salvar tu 
+progreso debes usar el comando GUARDAR en la consola antes de 
+salir. Sin embargo, lo único que se guarda son las estadísticas 
+del jugador. Los objetos y personajes del juego vuelven a aparecer 
+en su lugar original una vez que vuelves a cargar tu partida.
+
+¿De qué me sirve subir las estadísticas?
+En las batallas el efecto de tus ataque dependen del nivel
+de ellas. También al interactuar con animales si los perros o gatos
+detectan que tienes un nivel bajo de sentido humano te atacarán.
+
+¿Solo para eso sirven?
+Lamentablemente para esta versión del juego sí. Darle más 
+funcionalidades me era imposible con el tiempo que contaba. Aparte 
+que cada vez me encontraba con más temas que tenía que estudiar para implementar lo que quería. Como pedirle memoria al SO 
+para implementar la funcionalida de brújula que no llego a esta 
+versión.
+
+MUY BONITO PERO ESTO ERA UN PROYECTO DE CLASE:
+En efecto todas las características que pedía el proyecto se cumplen
+y serán descritas en el documento que pidió. Estas aclaraciones 
+son para que pueda usar el programa lo mejor posible pues soy 
+consciente de la facilidad de cometer errores de usuario. También 
+intenté comentar lo mejor posible el código para una mejor 
+comprensión. 
+
+YA QUE ESTAMOS HABLANDO DE TEMAS DE CLASE ¿POR QUÉ USASTE ENUMS
+EN VEZ DE MÁS CLASES HIJAS?
+La respuesta es sencilla, en un principio lo estaba haciendo de esa
+manera pero llego un punto en el que me dí cuenta que clases como 
+perro y gato, o todos los enemigos, no camabiaban mucho. Lo único que estaba logrando era agrandar el proyecto a niveles que hubieran 
+sido díficiles de gestionar, en el limitado tiempo con el que 
+contaba. Tome en cuanta que sigo siendo principiante.
+
+Si leyó todo esto, muchas gracias disfrute sus vacaciones espero 
+verlo el próximo semestre.
+
+P.D.
+Link del github: https://github.com/Javier-P-C/TecQRO_Text_RPG
+En caso de que no corra en un IDE distinto puede correrlo en repl.it

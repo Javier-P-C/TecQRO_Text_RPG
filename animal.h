@@ -27,8 +27,8 @@ class Animal : public Personaje //gato, perro, ave
 
 
   //Constructores
-  Animal(string name,Especie specie);//Usa los parametros, salud a 50
-  Animal(string name);
+  //Animal(string name,Especie specie);//Usa los parametros, salud a 50
+  //Animal(string name);
   Animal(Especie specie);
   Animal();
 
@@ -36,7 +36,7 @@ class Animal : public Personaje //gato, perro, ave
   ~Animal();
 };
 
-Animal::Animal(string name,Especie specie)
+/*Animal::Animal(string name,Especie specie)
       :Personaje(name)
 {
   tipoPersonaje = 1;
@@ -60,7 +60,7 @@ Animal::Animal(string name,Especie specie)
     especie = AVE;
     descripcion = "Pequeño, con plumas, vuela";
   }
-}
+}*/
 
 Animal::Animal(Especie specie)
        :Personaje("---")
@@ -89,13 +89,13 @@ Animal::Animal(Especie specie)
   }
 }
 
-Animal::Animal(string name)
+/*Animal::Animal(string name)
       :Personaje(name)
 {
   tipoPersonaje = 1;
   hostilidad = false;
   especie = NA;
-}
+}*/
 
 Animal::Animal()
        :Personaje()

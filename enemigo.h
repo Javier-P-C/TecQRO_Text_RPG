@@ -32,18 +32,18 @@ class Enemigo : public Personaje
   TipoEnemigo getEnemigo();
 
   //Constructores
-  Enemigo(string name,TipoEnemigo enemy);
+  //Enemigo(string name,TipoEnemigo enemy);
   Enemigo(TipoEnemigo enemy);
   //Solo los bosses pueden tener descripción aparte
   Enemigo(string name,string description,TipoEnemigo enemy); 
-  Enemigo(string name,string description,bool visibility,TipoEnemigo enemy);
+  //Enemigo(string name,string description,bool visibility,TipoEnemigo enemy);
   Enemigo();
 
   //Destructor
   ~Enemigo();
 };
 
-Enemigo::Enemigo(string name,TipoEnemigo enemy)
+/*Enemigo::Enemigo(string name,TipoEnemigo enemy)
         :Personaje(name)
 {
   tipoPersonaje = 2;
@@ -90,7 +90,7 @@ Enemigo::Enemigo(string name,TipoEnemigo enemy)
     fortaleza3 = NAR;
   }
   else if(enemigo==BOSS);//Marcar error
-}
+}*/
 
 Enemigo::Enemigo(TipoEnemigo enemy)
         :Personaje("---")
@@ -157,7 +157,7 @@ Enemigo::Enemigo(string name,string description,TipoEnemigo enemy)
   else if(enemigo!=BOSS);//Marcar error
 }
 
-Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enemy)
+/*Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enemy)
         :Personaje(name,description,visibility)
 {
   tipoPersonaje = 2;
@@ -171,7 +171,7 @@ Enemigo::Enemigo(string name,string description,bool visibility,TipoEnemigo enem
     fortaleza3 = NAR;  
   }
   else if(enemigo!=BOSS);//Marcar error
-}
+}*/
 
 Enemigo::Enemigo()
         :Personaje()

@@ -27,7 +27,7 @@ class Objeto
 
   //Constructores
   Objeto(string name, string description,TipoPuntos tipoBonificacion, float cantPuntos);
-  Objeto(string name, string description);
+  //Objeto(string name, string description);
   Objeto(Objeto &otro);
   Objeto();
 
@@ -44,13 +44,13 @@ Objeto::Objeto(string name, string description,TipoPuntos tipoBonificacion, floa
   visibilidad = true;
 }
 
-Objeto::Objeto(string name, string description)
+/*Objeto::Objeto(string name, string description)
 {
   nombre = name;
   descripcion = description;
   bonificacion = Puntos();
   visibilidad = true;
-}
+}*/
 
 Objeto::Objeto(Objeto &otro)
 {

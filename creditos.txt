@@ -1,4 +1,6 @@
-Este es una prueba
- de como sirve la 
-  lectura de textos 
-   en c++
+Gracias por jugara TEC QRO: UNA AVENTURA DE ROL
+Creado por: Javier Piña Camacho
+            A01701478
+            
+Para la clase de Programación Orientada a Objetos
+Maestro: Pedro Óscar Pérez Murueta

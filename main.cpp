@@ -50,24 +50,81 @@ using namespace listasrpg;
 int main(int argc, char* argv[])
 {
 
-  /*cout<<endl<<endl<<"............................................"<<endl;
-  cout<<"Bienvenido a: TEC QRO: UNA AVENTURA DE ROL"<<endl;
-  cout<<"............................................"<<endl;
+  
 
   //Menu
-  cout<<"1.Jugar"<<endl;
-  cout<<"2.Créditos"<<endl;
-  cout<<"3.Comandos del juego"<<endl;
-  cout<<"4.Tutorial"<<endl;
-  cout<<"............................................"<<endl<<endl;*/
+  int elegir,auxiliar;
+  while(elegir!=5)
+  {
+    cout<<endl<<endl<<"............................................"<<endl;
+    cout<<"Bienvenido a: TEC QRO: UNA AVENTURA DE ROL"<<endl;
+    cout<<"Menú"<<endl;
+    cout<<"............................................"<<endl;
+    cout<<"1.Nueva Partida"<<endl;
+    cout<<"2.Partida Guardada"<<endl;
+    cout<<"3.Comandos del juego (Instrucciones)"<<endl;
+    cout<<"4.Créditos"<<endl;
+    cout<<"5.Salir"<<endl;
+    cout<<"............................................"<<endl<<endl;
+    cin>>elegir;
+    cout<<endl;
 
-  Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
-  //Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
+    if(elegir==1)
+    {
+      Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv");
+      partida.Comandos();
+      partida.~Engine();
+    }
+
+    else if(elegir==2)
+    {
+      Engine partida("carga_de_escenarios.csv","carga_de_objetos.csv","carga_de_personajes.csv","jugador_guardado.csv");
+      partida.Comandos();
+      partida.~Engine();
+    }
+
+    else if(elegir==3)
+    {
+      string line;
+      ifstream myFile;//objeto ifstream
+      vector<string> tokens;
+      myFile.open("instrucciones.txt");//Abre el archivo
+      if (myFile.is_open()) 
+      {
+        while(!myFile.eof()) //Mientras el archivo no haya acabado
+        {
+          getline(myFile,line);
+          cout<<line<<endl;
+        }
+      }
+      else{cout<<"ERROR";}
+      myFile.close();
+    }
+
+    else if(elegir==4)
+    {
+      string line;
+      ifstream myFile;//objeto ifstream
+      vector<string> tokens;
+      myFile.open("creditos.txt");//Abre el archivo
+      if (myFile.is_open()) 
+      {
+        while(!myFile.eof()) //Mientras el archivo no haya acabado
+        {
+          getline(myFile,line);
+          cout<<line<<endl;
+        }
+      }
+      else{cout<<"ERROR";}
+      myFile.close();
+    }
+    cout<<"Presione un NÚMERO para continuar"<<endl;
+    cin>>auxiliar;
+    cout<<endl;
+  }
   //partida.Guardar();
   //partida.MostrarTodo(); //Nos aseguramos que la carga haya sido correcta
-  partida.Comandos();
+  //partida.Comandos();
   //partida.GameOver();
-  partida.~Engine();
-  
   return 0;
 }

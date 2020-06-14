@@ -174,9 +174,9 @@ void Engine::CrearJugador()
 
   cout<<"Bienvenido al proceso de inscripción del Tecnológico de Monterrey campus Querétaro"<<endl<<"Llena el siguiente formulario para continuar"<<endl<<"**Cada que escribas una respuesta pulsa la tecla Enter para que se registre**"<<endl;
   cout<<"Nombre: ";
-  getline(cin,name);
+  cin>>name;
   cout<<endl<<"Escoja una Matricula: ";
-  getline(cin,id);
+  cin>>id;
   while(!correctAns)
   {
     cout<<endl<<"Escoja el área de estudio a la que se quiere inscribir"<<endl<<"1.Ambiente Construido"<<endl<<"2.Ciencias Sociales"<<endl<<"3.Estudios Creativos"<<endl<<"4.Ingenierias"<<endl<<"5.Negocios"<<endl<<"6.Salud"<<endl;

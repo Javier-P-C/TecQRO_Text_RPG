@@ -147,4 +147,6 @@ string Puntos::getstrTipoPuntos()
   return str;
 }
 
+//void Puntos::operator+ ()=
+
 #endif

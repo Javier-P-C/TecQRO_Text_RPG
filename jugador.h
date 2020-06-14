@@ -83,7 +83,7 @@ Jugador::~Jugador()
 Puntos Jugador::Atacar()
 {
   int opcion;
-  /*float Tinteligencia=inteligencia;
+  /*float Tinteligencia=inteligencia;  //Se quito por (segmentation cored dumped)
   float Tcarisma=carisma;
   float Tdestreza=destreza;
   float Tsentido=sentidoHumano;
@@ -133,7 +133,7 @@ Puntos Jugador::Atacar()
 
 void Jugador::getStats() //Enlista las estadísticas del jugador
 {
-  cout<<endl<<endl<<"-----------------"<<endl;
+  cout<<endl<<"-----------------"<<endl;
   cout<<"---ESTADÍSTICAS--";
   cout<<endl<<"-----------------"<<endl;
   cout<<"Vida: "<<getSalud()<<endl;
@@ -147,7 +147,7 @@ void Jugador::getStats() //Enlista las estadísticas del jugador
   cout<<"Espíritu Emprendedor: "<<espirituEmprendedor<<endl;
   cout<<"Integridad Académica: "<<integridadAcademica<<endl;
   cout<<"-----------------"<<endl;
-  cout<<"-----------------"<<endl<<endl;
+  cout<<"-----------------"<<endl;
 }
   
 void Jugador::setInteligencia(Puntos pt)
