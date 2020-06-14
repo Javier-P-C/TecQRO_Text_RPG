@@ -415,8 +415,8 @@ void Engine::InteractuarConPersonaje()
   {
     while (desicion!=4)
     {
-      cout<<"*Los animales te pueden atacar si tu Sentido Humano es muy bajo*"<<endl;
-      cout<<"¿Qué interacción quieres tener con este personaje?"<<endl<<"1.Hablar"<<endl<<"2.Ver descripción"<<endl<<"3.Acariciarlo"<<endl<<"4.Ninguna"<<endl;
+      cout<<"*Los animales te pueden atacar si tu Sentido Humano es muy BAo*"<<endl;
+      cout<<"¿Qué interacción quieres tener con este personaje?"<<endl<<"1.Hablar"<<endl<<"2.Ver descripcióBAn"<<endl<<"3.Acariciarlo"<<endl<<"4.Ninguna"<<endl;
       cin>>desicion;
 
       Animal *auxA=(Animal*)interaccionP;

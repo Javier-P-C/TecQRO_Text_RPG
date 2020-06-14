@@ -27,8 +27,7 @@ class Puntos
   Puntos(TipoPuntos tipo, float cantidad); //Usa los parametros para los atributos
   Puntos(); //Tipo No Aplica, valor a 0
   Puntos(const Puntos &points);
-  void SubirPuntos(float aumento);
-  void BajarPuntos(float disminucion);
+  void operator+= (float cant);
 
   //Destructor
   ~Puntos();
@@ -77,16 +76,6 @@ string Puntos::getUso()
 void Puntos::setUso(string use)
 {
  uso=use;
-}
-
-void Puntos::SubirPuntos(float aumento)
-{
- valor+=aumento;
-}
-
-void Puntos::BajarPuntos(float disminucion)
-{
-  valor-=disminucion;
 }
 
 void Puntos::getPropiedades()
@@ -147,6 +136,9 @@ string Puntos::getstrTipoPuntos()
   return str;
 }
 
-//void Puntos::operator+ ()=
+void Puntos::operator+= (float cant)
+{
+  valor+=cant;
+}
 
 #endif

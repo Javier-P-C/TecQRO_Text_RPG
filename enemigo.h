@@ -209,28 +209,28 @@ Puntos Enemigo::Atacar(AreaTec tipoAl)
   {
     if((fortaleza1||fortaleza2||fortaleza3)==(INGENIERIAS||AMBIENTE_CONSTRUIDO||CIENCIAS_SOCIALES))
     {
-      pt.SubirPuntos(8);
+      pt+=8;
     }
   }
   else if(enemigo==HATER)
   {
      if((fortaleza1||fortaleza2||fortaleza3)==(NEGOCIOS||ESTUDIOS_CREATIVOS||INGENIERIAS))
     {
-      pt.SubirPuntos(8);
+      pt+=8;
     }
   }
   else if(enemigo==VALEM)
   {
     if((fortaleza1||fortaleza2||fortaleza3)==(AMBIENTE_CONSTRUIDO||NEGOCIOS))
     {
-      pt.SubirPuntos(8);
+      pt+=8;
     }
   }
   else if(enemigo==BORRACHO)
   {
     if((fortaleza1||fortaleza2||fortaleza3)==(ESTUDIOS_CREATIVOS||SALUD))
     {
-      pt.SubirPuntos(8);
+      pt+=8;
     }
   }
   return pt;
@@ -309,19 +309,19 @@ void Enemigo::DamageReceived(Puntos pt)
 {
   if((debilidad1||debilidad2)==(NEGOCIOS||SALUD))
   {
-    pt.SubirPuntos(5);
+    pt+=5;
   }
   else if((debilidad1||debilidad2)==(CIENCIAS_SOCIALES||SALUD))
   {
-    pt.SubirPuntos(5);
+    pt+=5;
   }
   else if((debilidad1||debilidad2)==(CIENCIAS_SOCIALES||ESTUDIOS_CREATIVOS))
   {
-    pt.SubirPuntos(5);
+    pt+=5;
   }
   else if((debilidad1||debilidad2)==(AMBIENTE_CONSTRUIDO||INGENIERIAS))
   {
-    pt.SubirPuntos(5);
+    pt+=5;
   }
   setSalud(pt);
   cout<<"El "<<getstrEnemigo()<<" ha recibido daño, salud: "<<getSalud()<<"/100"<<endl;
